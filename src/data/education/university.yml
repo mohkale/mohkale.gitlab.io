@@ -1,0 +1,43 @@
+name: University of Sheffield
+location:
+  town: Sheffield
+  address: Western Bank
+  postcode: S10 2TN
+dates:
+  start:    2018-00-00
+  expected: 2022-00-00
+grades:
+  # year 1
+  - COM1001:
+      title: Introduction to Software Engineering
+      review:
+      result: 74.81
+    COM1002:
+      title:
+      review:
+      result: 67.00
+    COM1003:
+      title:
+      review:
+      result: 73.99
+    COM1005:
+      title:
+      review:
+      result: 72.00
+    COM1008:
+      title:
+      review:
+      result: 88.00
+    COM1009:
+      title:
+      review:
+      result: 89.08
+    PHI126:
+      title:
+      review:
+      result: 69.00
+  # Year 02
+  - COM2004:
+      title:
+      review:
+      result:

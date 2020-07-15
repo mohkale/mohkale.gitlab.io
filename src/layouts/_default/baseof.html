@@ -123,7 +123,9 @@
         {{- end }}
 
         <main>
-            {{ partial "header" . }}
+            {{ block "main_header" . }}
+                {{ partial "header" . }}
+            {{ end }}
 
             {{ block "main" . }}
                 <article>

@@ -1,0 +1,24 @@
+{{ $main_ctx := . }}
+{{ $ctx  := .ctx }}
+{{ $name := .name }}
+
+{{ with .project }}
+  <div data-id="{{ $name }}" class="project">
+    <div class="content">
+      <h5><a href="{{ or .link .repo }}" target="_blank">{{ .title }}</a></h5>
+
+      <div class="description">
+        {{- .description | markdownify -}}
+      </div>
+
+      {{- partial "about/projects/utils/tags" . -}}
+      {{- partial "about/projects/utils/links" $main_ctx -}}
+    </div>
+
+    {{ with .screenshot }}
+      <a class="screenshot" href="{{ . }}">
+        <img alt="{{ $name }}-screenshot" src="{{ . }}" />
+      </a>
+    {{ end }}
+  </div>
+{{ end }}

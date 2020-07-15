@@ -1,0 +1,166 @@
+{{ define "header" }}
+  {{/*
+  for some reason, hugo doesn't let you define empty blocks
+  that's super annoying, so let's fill it with this comment.
+  */}}
+  <!--
+       why does this page not look like any of the others?
+       This page also acts as my cv, so my greedy self would prefer
+       if it looked a little more professional :smirk:.
+
+       My blog is more informal, so it doesn't have to look like this.
+       -->
+{{ end }}
+
+{{ define "navmenu" }}<!-- -->{{ end }}
+{{ define "main_header" }}<!-- -->{{ end }}
+
+{{ define "main"  }}
+  {{ $ctx := . }}
+
+  <!-- only sticky over siblings -->
+  <nav>
+    {{/* enabled when javascript is available */}}
+    {{/* partial "core/fontawesome" (dict "context" . "type" "solid" "name" "adjust" "classes" "theme-toggle hidden") */}}
+
+    {{ range .Params.links }}
+      {{ $name := . }}
+      {{ $link := printf "#%s" . }}
+
+      <a href="{{ $link }}">{{ $name | title }}</a>
+    {{ end }}
+    {{/* TODO fix whatever is causing ref to fail here */}}
+    <a href="../resume/{{/* ref . "resume/index.md" */}}">Resume</a>
+  </nav>
+
+  <h1 id="about">About</h1>
+  <h1 id="portfolio">Portfolio</h1>
+
+  {{ $displayed_projects := slice }}
+
+  <div id="portfolio">
+    {{ range $name := .Params.projects }}
+      {{ if in $displayed_projects $name  }}
+        {{ warnf "included project in portfolio more than once: %s" $name }}
+      {{ end }}
+
+      {{ with index $.Site.Data.projects $name }}
+        {{ $displayed_projects = $displayed_projects | append $name }}
+        {{ if .hide }}
+          {{ warnf "displaying hidden project in portfolio: %s" $name }}
+        {{ end }}
+
+        {{ partial "about/projects/portfolio" (dict "ctx" $ctx "name" $name "project" .) }}
+      {{ else }}
+        {{ errorf "unable to find project with name: %s" . }}
+      {{ end }}
+    {{ end }}
+
+    {{/*
+      let's calculate the remaining unused projects that we can
+      still display.
+    */}}
+    {{ $remaining_projects := dict }}
+    {{ range $name, $value := $.Site.Data.projects }}
+      {{ if not (or $value.hide (in $displayed_projects $name)) }}
+        {{ $remaining_projects = merge $remaining_projects (dict $name $value) }}
+      {{ end }}
+    {{ end }}
+
+    {{/* only shown when at least one project is left to be shown. */}}
+    {{ with $remaining_projects }}
+      <h2>Other Projects</h2>
+      <!-- TODO link to remaining projects list -->
+
+      <div id="projects">
+        {{ range $name, $value := . }}
+          {{ partial "about/projects/extra" (dict "ctx" $ctx "name" $name "project" $value) }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+
+  <h1 id="education">Education</h1>
+  {{ with .Site.Data.testimonials }}
+    <h1>Testimonials</h1>
+
+    {{/*
+      maybe when I have enough of these, you should limit how many
+      are shown on the page. For now, I'm lazy, so just show all of
+      them.
+    */}}
+    <ul id="testimonials">
+      {{ range sort . "weight" }}
+        {{ $type := .type }}
+
+        <li data-kind="{{ $type }}">
+          <header>
+            <a href="{{ .link }}">{{ .title }}</a>
+            <span class="date">{{ dateFormat "2006-01" .date.start }}</span>
+          </header>
+
+          <blockquote>
+            <div class="review">
+              {{- .review | markdownify -}}
+            </div>
+
+            {{ with .client }}
+              <cite>
+                {{ with .link }}<a href="{{ . }}">{{ end }}
+
+                {{- .name -}}
+
+                {{ if .link }}</a>{{ end }}
+              </cite>
+            {{ end }}
+          </blockquote>
+
+          {{/*
+            ratings are shown as 5 stars, approximated to a
+            resolution of half a star, from a percentage value.
+          */}}
+          <div class="rating">
+            {{/* max number of stars shown */}}
+            {{ $max_star_count := 5.0 }}
+            {{/* how much percentage each star takes up */}}
+            {{ $resolution := div 100 $max_star_count }}
+
+            {{/* number of complete stars to be shown */}}
+            {{ $full_star_count := math.Floor (div .rating $resolution) }}
+
+            {{/* number of half stars to be shown, always either one or zero. */}}
+            {{ $half_star_count := 0}}
+            {{ if ge (sub .rating (mul $resolution $full_star_count)) (mul $resolution 0.5) }}
+              {{ $half_star_count = 1}}
+            {{ end }}
+
+            {{ $empty_star_count := sub (sub $max_star_count $full_star_count) $half_star_count }}
+
+            {{ range seq $full_star_count  }} {{ partial "core/fontawesome" (dict "context" $ctx "type" "solid" "name" "star") }}          {{ end }}
+            {{ range seq $half_star_count  }} {{ partial "core/fontawesome" (dict "context" $ctx "type" "solid" "name" "star-half-alt") }} {{ end }}
+            {{ range seq $empty_star_count }} {{ partial "core/fontawesome" (dict "context" $ctx "type" "regular" "name" "star") }}        {{ end }}
+          </div>
+
+          {{ $logo_path := printf "images/brands/%s.svg" $type }}
+          {{ with resources.Get $logo_path }}
+            <div class="logo-icon">
+              <img alt="{{ $type }}" src="{{ .Permalink }}" />
+            </div>
+          {{ else }}
+            {{ warnf "failed to find icon for testimonial type: %s" $type }}
+          {{ end }}
+
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+
+  <h1 id="contact">Contact</h1>
+
+{{ end }}
+
+{{ define "footer" }}
+  <aside id="side-links">
+    {{ partial "utils/sm_links" . }}
+  </aside>
+{{ end }}

@@ -1,0 +1,13 @@
+<div class="links">
+  {{ with .project.repo }}
+    <a href="{{ . }}" class="repo-link" target="_blank">
+      {{- partial "core/fontawesome" (dict "context" $.ctx "type" "brands" "name" "github") -}}
+    </a>
+  {{ end }}
+
+  {{ with .project.link }}
+    <a href="{{ . }}" class="demo-link" target="_blank">
+      {{- partial "core/fontawesome" (dict "context" $.ctx "type" "solid" "name" "external-link-alt") -}}
+    </a>
+  {{ end }}
+</div>

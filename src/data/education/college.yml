@@ -1,0 +1,19 @@
+name: Thomas Rotherham College
+site: https://www.trc.ac.uk/
+location:
+  town: Rotherham
+  address: Moorgate Road
+  postcode: S60 2BE
+dates:
+  start:  2016-00-00
+  finish: 2018-00-00
+grades:
+  - title: A Levels
+    results:
+      Computer Science: A
+      Physics:          B
+      Mathematics:      A
+  - title: AS Levels
+    results:
+      Further Mathematics: A
+      Biology:             C

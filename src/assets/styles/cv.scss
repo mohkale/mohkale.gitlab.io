@@ -1,0 +1,563 @@
+@import "includes/cv-vars";
+
+// $red:       hsl(352, 081%, 058%); // Vader's lightsaber.
+// $orange:    hsl(025, 086%, 055%); // Luke's pilot uniform.
+// $yellow:    hsl(050, 074%, 061%); // Human cyborg relations.
+// $green:     hsl(107, 040%, 057%); // Fear is the path to the dark side.
+// $blue:      hsl(196, 064%, 058%); // Whistle. Bloop.
+// $purple:    hsl(313, 032%, 054%);
+// $white:     hsl(000, 000%, 100%);
+// $turquoise: hsl(161, 078%, 055%);
+
+@mixin flex-row($wrap: false) {
+    display: flex;
+    flex-direction: row;
+
+    @if $wrap {
+        flex-wrap: wrap;
+    }
+}
+
+@mixin flex-column($wrap: false) {
+    display: flex;
+    flex-direction: column;
+
+    @if $wrap {
+        flex-wrap: wrap;
+    }
+}
+
+body {
+    min-width: 480px;
+    box-sizing: border-box;
+
+    .icon {
+        transition: fill $color-animation-duration;
+    }
+
+    a {
+        text-decoration: none;
+        transition: color $color-animation-duration;
+
+        &:hover {
+            color: $hover-color;
+
+            & > .icon {
+                fill: $hover-color;
+            }
+        }
+    }
+
+    @media screen and (min-width: $small-screen-size) {
+        padding: 0 $center-padding;
+    }
+}
+
+h1::after {
+    // content: "";
+    // color: black;
+    // width: 1em;
+    // height: 1em;
+    // TODO bar to right hand side.
+}
+
+aside#side-links {
+    $seperator-width: 2px;
+    $seperator-color: black;
+
+    $icon-size:    1.4 * $em * 2;
+    $icon-spacing: 0.4 * $em * 2;
+
+    .sm-links {
+        // disable list formatting
+        list-style-type: none;
+        margin: 0px;
+        padding-left: 0px;
+
+        // center
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+            max-width:  $icon-size;
+            max-height: $icon-size;
+
+            transition: padding 0.5s;
+            margin: 4.8px 0px;
+            padding: $icon-spacing 9.6px;
+
+            &:hover {
+                fill: $hover-color;
+                padding-top: 0px;
+                padding-bottom: $icon-spacing;
+            }
+        }
+    }
+
+    @media screen and (min-width: $small-screen-size) {
+        $icon-size:    $icon-size / 2;
+        $icon-spacing: $icon-spacing / 2;
+
+        // shrink the padding and spacing for larger screen sizes.
+        .sm-links {
+            flex-direction: column;
+
+            .icon {
+                width:  $icon-size;
+                height: $icon-size;
+                padding: $icon-spacing 0px;
+
+                &:hover {
+                    padding-bottom: 2 * $icon-spacing;
+                }
+            }
+        }
+
+        // align icons to the left hand side of the page.
+        position: fixed;
+        top: 0px;
+
+        $left-offset: ($side-column-width / 2) - $icon-size;
+        @if $left-offset < 0 {
+            @error "left-offset set to non-positive value: #{$left-offset}"
+        } @else {
+            left: $left-offset;
+        }
+
+        // add some seperators above and below the icons.
+        &::after, &::before {
+            content: "";
+            display: block;
+            margin: 0px auto;
+            width: $seperator-width;
+            background-color: $seperator-color;
+        }
+
+        &::before {
+            // NOTE: adjust to change offset of icons from
+            // the top of the page.
+            height: 90px;
+        }
+
+        &::after {
+            // for some reason, height: 100%, doesn't work but
+            // setting to an absurdly high value does, :kiwifruit:.
+            // Apologies for the mild inconsistency for those who
+            // have screens taller than 1_000_000 pixels.
+            height: 1000000px;
+        }
+    }
+}
+
+main {
+    max-width: 1000px;
+
+    @media screen and (min-width: $small-screen-size) {
+        // position: absolute;
+        // left: $side-column-width;
+        width: calc(100% - #{$side-column-width} - #{$center-padding});
+        left: 0;
+        position: relative;
+        margin: 0px auto;
+    }
+}
+
+nav {
+    $horizontal-padding: 16px;
+
+    padding: 16px 0;
+    position: sticky;
+    top: 0px;
+    z-index: 50;
+    background-color: white;
+
+    // allign items to the right hand side.
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+
+    // .theme-toggle {
+    //     width:  2em;
+    //     height: 2em;
+    //     vertical-align: middle;
+
+    //     &:hover {
+    //         fill: $hover-color;
+    //         cursor: pointer;
+    //     }
+    // }
+
+    a {
+        color: inherit;
+        padding: 12px $horizontal-padding;
+
+        // &:link, &:visited, &:hover, &: active {
+        // }
+
+        &:last-child {
+            border: solid 1px $highlight-color;
+            border-radius: 10px;
+            transition: border-color $color-animation-duration;
+        }
+    }
+}
+
+#portfolio, #projects {
+    & > .project {
+        h5 {
+            // allows overlay to span whole element.
+            // use padding to create seperation instead.
+            margin-top: 0px;
+            margin-bottom: 8px;
+
+            font-size: 28px;
+        }
+
+        // list of icon links, show inline.
+        .links {
+            @include flex-row;
+
+            // spacing/alignment
+            margin-top: 10px;
+            margin-left: 10px;
+
+            .icon {
+                width:  22px;
+                height: 22px;
+            }
+        }
+
+        .tags {
+            list-style: none;
+            @include flex-row(true);
+
+            // spacing/alignment
+            padding-left: 0px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+
+            li {
+                // seperation between tags.
+                margin: 0px 8px;
+            }
+        }
+    }
+}
+
+#portfolio > .project {
+    // variables
+    $min-height: 400px;
+    $image-cover: transparentize($highlight-color, 0.5);
+    $image-cover-hover: transparentize($highlight-color, 0.8);
+
+    // spacing between containers.
+    margin: 70px 0 70px 0px;
+    &:first-child { margin-top:    16px; }
+    &:last-child  { margin-bottom: 16px; }
+    .content {
+        padding: 40px 40px 40px 30px;
+    }
+
+
+    color: white;
+    fill:  white;
+    a {
+        color: white;
+        &:hover { color: $hover-color; }
+    }
+
+    min-height: $min-height;
+    position: relative; // preserves object-fit for image.
+    overflow: hidden;
+    border-radius: 4px;
+
+    h5 {
+        // spacing/alignment
+        margin-bottom: 20px;
+    }
+
+    .description {
+        // width: 90%;
+        // margin: auto;
+        padding: 20px 0px;
+        font-size: 18px;
+    }
+
+    background: $image-cover;
+    transition: background $color-animation-duration;
+    &:hover {
+        background: $image-cover-hover;
+    }
+
+    .screenshot {
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        width:  100%;
+        height: 100%;
+
+        img {
+            // resize such that as large an image as possible is always shown.
+            // when not possible, the image is focused onto it's center.
+            object-fit: cover;
+            object-position: center;
+            width:  100%;
+            height: 100%;
+            border-radius: inherit;
+        }
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            position: absolute;
+        }
+    }
+
+    @media screen and (min-width: $small-screen-size) {
+        $column-count: 12;
+        $image-ratio: 7;     /* how many columns is taken up by the image. */
+        $image-overlap: 1;   /* how many columns are shared between image and text.*/
+        $border-radius: 8px; /* new border radius for text box and screenshot. */
+        min-height: $min-height / 2;
+
+        // disable full entry overlay.
+        background: none;
+        &:hover { background: none; }
+
+        // reset text colors for background.
+        color: black;
+        fill:  black;
+        a {
+            color: black;
+        }
+
+        // reset surrounding padding.
+        .content {
+            padding: 0px;
+            :not(h5) {
+                z-index: 30;
+                position: relative;
+            }
+        }
+
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat($column-count, 1fr);
+        // align-items: center;
+
+        .screenshot, .content {
+            // allow image to maintain it's own height.
+            grid-row: 1 / -1;
+            position: relative;
+        }
+
+        .screenshot {
+            z-index: 10;
+            border-radius: $border-radius;
+
+            &:hover::before {
+                background-color: $image-cover-hover;
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                z-index: 20;
+                background-color: $image-cover;
+                transition: background $color-animation-duration;
+                border-radius: inherit;
+            }
+        }
+
+        // allign the text in every odd element to the right.
+        &:nth-child(odd) {
+            .content { text-align: right; }
+            .tags, .links { justify-content: flex-end; }
+        }
+
+        // set columns depending on child order.
+        &:nth-child(odd) {
+            .screenshot { grid-column: 1 / #{$image-ratio + $image-overlap}; }
+            .content    { grid-column: #{$image-ratio} / -1; }
+        }
+
+        &:nth-child(even) {
+            .screenshot { grid-column: #{$image-ratio - $image-overlap} / -1; }
+            .content    { grid-column: 1 / #{$image-ratio}; }
+        }
+
+        // screenshot and description re-positioning.
+        .description {
+            background: green;
+            border-radius: $border-radius;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+    }
+
+    @media screen and (min-width: $medium-screen-size) {
+        .screenshot {
+            height: fit-content;
+            width:  100%;
+
+            // vertically center, see [[https://stackoverflow.com/questions/28455100/how-to-center-div-vertically-inside-of-absolutely-positioned-parent-div][here]].
+            top: 50%;
+            transform: translateY(-50%);
+
+            img {
+                // display the full image, scaling to maintain
+                // it's aspect ratio.
+                object-fit: contain;
+                height: auto;
+
+                // FIXES a small height difference between the
+                // overlay and the image. Probably because the
+                // page is rendering with whitespace between the
+                // image.
+                display: block;
+            }
+        }
+    }
+}
+
+#projects {
+    display: grid;
+    grid-gap: 15px;
+
+    @media screen and (min-width: $medium-screen-size) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (min-width: $large-screen-size) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    $vertical-padding:   32px;
+    $horizontal-padding: 28px;
+    $hover-displacement: 10px;
+
+    @if $hover-displacement {
+        @if ($vertical-padding - $hover-displacement) > 0 {
+            & > .project {
+                transition: padding 0.5s;
+                &:hover {
+                    padding-top:    $vertical-padding - $hover-displacement;
+                    padding-bottom: $vertical-padding + $hover-displacement;
+                }
+            }
+        } @else {
+            @error "project hover padding too large: #{$hover-displacement}"
+        }
+    }
+
+    & > .project {
+        background-color: grey;
+        padding: $vertical-padding $horizontal-padding;
+
+        &:hover .folder-icon {
+            fill: $hover-color;
+        }
+
+        .folder-icon {
+            width:  40px;
+            height: 40px;
+        }
+
+        .description {
+            padding-bottom: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+
+            & > * {
+                margin: 10px 5px;
+            }
+
+            .links {
+                display: inline-flex;
+                // margin-left: 0px;
+                margin: auto 0px;
+            }
+        }
+    }
+}
+
+#testimonials {
+    list-style-type: none;
+    padding-left: 0px;
+
+    & > li {
+        background-color: transparentize(#1d4354, 0.1);
+        color: white;
+        border-radius: 6px;
+        margin: 40px 28px;
+        padding: 20px 10px;
+        max-width: 35em;
+
+        &:hover {
+            background-color: red;
+        }
+
+        .logo-icon {
+            height: 1.4em;
+            display: flex;
+            justify-content: flex-end;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+
+            .date {
+                flex: 0 0 auto;
+                font-weight: bold;
+            }
+        }
+
+        blockquote {
+            text-align: center;
+        }
+
+        cite {
+            text-align: right;
+            display: block;
+
+            &::before {
+                content: "—";
+            }
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+
+            .icon {
+                width:  1.6em;
+                height: 1.6em;
+
+                fill: green;
+            }
+
+            &:hover .icon {
+                fill: yellow;
+            }
+        }
+    }
+}

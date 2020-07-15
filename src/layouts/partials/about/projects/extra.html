@@ -1,0 +1,20 @@
+{{ $main_ctx := . }}
+{{ $ctx  := .ctx }}
+{{ $name := .name }}
+
+{{ with .project }}
+  <div data-id="{{ $name }}" class="project">
+    <header>
+      {{- partial "core/fontawesome" (dict "context" $ctx "type" "solid" "name" "folder-open" "classes" "folder-icon") -}}
+      {{- partial "about/projects/utils/links" $main_ctx -}}
+    </header>
+
+    <h5>{{ .title }}</h5>
+
+    <div class="description">
+      {{- .description | markdownify -}}
+    </div>
+
+    {{- partial "about/projects/utils/tags" . -}}
+  </div>
+{{ end }}

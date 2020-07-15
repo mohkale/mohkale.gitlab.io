@@ -1,0 +1,5 @@
+{{ with .tags }}
+  <ul class="tags">
+    {{ range . }}<li>{{ . | title }}</li>{{ end }}
+  </ul>
+{{ end }}

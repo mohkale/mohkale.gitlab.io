@@ -1,0 +1,23 @@
+type: secondary
+name: Oakwood High School
+site: https://www.oakwood.ac/
+location:
+  town: Rotherham
+  address: Moorgate Road
+  postcode: S60 2UH
+dates:
+  start:  2011-00-00
+  finish: 2016-00-00
+grades:
+  type: GCSEs
+  results:
+    subject: A*
+    subject: A*
+    subject: A
+    subject: A
+    subject: A
+    subject: A
+    subject: A
+    subject: B
+    subject: B
+    subject: B

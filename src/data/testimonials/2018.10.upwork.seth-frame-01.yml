@@ -1,0 +1,26 @@
+title: Need a script to check a specific website for information on different companies.
+link: https://www.upwork.com/freelancers/~01b9386b9361c6cba7
+type: upwork
+rating: 100
+client:
+  name: Seth Frame
+date:
+  start: 2018-10-05
+  finish: 2018-10-12
+tags:
+  - microsoft excel
+  - python
+  - web scraper
+description: |
+    I need a programmer to write a script (preferably Python) that
+    will take a list of URLs and check them in the database website
+    Crunchbase, and then check if they have recieved funding. It would
+    be great if it would also check if the company is headquartered in
+    a specific country (that info is also on crunchbase).
+
+    It will then need to input that information back into excel.
+review: |
+    Mohsin did everything perfectly and was great at communicating
+    with me. It's always nice to work with native English speakers as
+    well. He wrote the program quickly and helped me set everything up
+    once it was written. Grade A work.

@@ -1,0 +1,15 @@
+$em: 16px;
+
+$hover-color: green;
+$highlight-color: red;
+$side-column-width: 10 * $em;
+
+// resizing boundaries.
+$small-screen-size: 600px;
+$medium-screen-size: 768px;
+$large-screen-size: 1120px;
+$center-padding: 50px;
+$max-page-width: 1000px - $center-padding;
+
+$color-animation-duration: 0.2s;
+

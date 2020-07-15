@@ -9,3 +9,5 @@ layout: single
 ---
 
 Hi I'm Mohsin Kaleem,
+
+you can find my [cv](./cv) here.
