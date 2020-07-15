@@ -1,0 +1,109 @@
+@import "./main";
+
+form {
+    $highlight: $grey;
+    $radius: 5px;
+    $trans-duration: 0.5s;
+    margin: 16px 0px;
+    display: flex;
+
+    transition: border $trans-duration;
+
+    .search {
+        width: 100%;
+        border: 3px solid $highlight;
+        border-right: none;
+        padding: 5px;
+        height: 20px;
+        caret-color: black;
+
+        border-radius: $radius 0 0 $radius;
+        outline: none;
+
+        &::placeholder {
+            color:  $grey;
+        }
+    }
+
+    button {
+        transition: background-color $trans-duration;
+        border-radius: 0 $radius $radius 0;
+        border: 1px solid $highlight;
+        background: $highlight;
+        text-align: center;
+        color: white;
+        outline: 0px;
+        cursor: pointer;
+    }
+
+    &.active {
+        .search, button {
+            border-color: black;
+        }
+
+        button {
+            background: black;
+        }
+    }
+}
+
+.loader-container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+
+    .loader {
+        stroke: black;
+        width:  4em;
+        height: 4em;
+    }
+}
+
+ul#search-results {
+    list-style-type: none;
+    padding: 0px;
+
+    li {
+        margin-top: 50px;
+
+        &.search-status {
+            text-align: center;
+        }
+    }
+
+    div.content {
+        margin-top: 10px;
+    }
+
+    @include link(black);
+
+    .meta {
+        $font-size: 12px;
+        font-size: $font-size;
+
+        margin: 20px 0px;
+        display: flex;
+        vertical-align: middle;
+
+        fill:  $grey;
+        color: $grey;
+
+        .tags {
+            @extend .inline-list;
+            @include link($grey, $dark-grey);
+        }
+
+        .date, .tags {
+            margin: 0px 8px;
+        }
+
+        .icon {
+            width:  $font-size;
+            height: $font-size;
+
+            &:not(:first-child) {
+                margin-left: 8px;
+            }
+        }
+    }
+}

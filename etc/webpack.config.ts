@@ -55,6 +55,7 @@ const scriptsConfig: WebpackConfigFunction = env => Object.assign({}, defaultCon
     entry: {
         'ascii-gif': pathResolve('src', 'scripts', 'ascii-gif', 'index.ts'),
         'main':      pathResolve('src', 'scripts', 'main.ts'),
+        'search':    pathResolve('src', 'scripts', 'search.ts'),
         // 'slideshow': pathResolve('src', 'scripts', 'slideshow.ts'),
     },
 
