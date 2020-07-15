@@ -76,5 +76,14 @@ menu:
       url: /tags/
       weight: 30
 
+# Extra output formats, including a search index.
+outputFormats:
+  SearchIndex:
+    mediaType: application/json
+    baseName: searchindex
+    isPlainText: true
+    notAlternative: true
+
 outputs:
+  home: [HTML, RSS, JSON, SearchIndex]
   section: [HTML, RSS, JSON]
