@@ -1,0 +1,61 @@
+#!/usr/bin/python3
+import os
+import sys
+from time import sleep
+from animascii2ant import duration_to_framecount
+
+def scrolling(figlet, width, height, direction=1, step=1):
+    for X in range(0, width, step):
+        animated = ''
+
+        for row in figlet:
+            for column in range(len(row)):
+                animated += row[(column + (direction * X)) % width]
+
+            animated += (((width - len(row)) * ' ')) + "\n"
+
+        yield animated
+
+def v(figlet, width, height, direction=1):
+    print('not yet implemented', file=sys.stderr)
+
+if __name__ == '__main__':
+    def parse_args():
+        from argparse import ArgumentParser
+
+        parser = ArgumentParser()
+
+        parser.add_argument('-f', '--fps', type=int, default=5,
+                            help='number of frames to run per second')
+        parser.add_argument('-d', '--frame-span', type=int, default=1,
+                            help='duration of each frame')
+        parser.add_argument('-s', '--style', dest='styles', action='append',
+                            default=[], help='add style decleration to all frames of animation')
+
+        args  = parser.parse_args()
+        vargs = vars(args)
+
+        return args, vargs, parser
+
+    def do_animate(frame_iter, fps, frame_span, styles, **kwargs):
+        print("$: %d" % fps)
+
+        for frame in frame_iter:
+            print("|: %d" % frame_span)
+
+            for style in styles:
+                print('+: %s' % style)
+
+            for line in frame.split('\n'):
+                print("%%:%s" % line)
+
+            print()
+
+    args, vargs, parser = parse_args()
+
+    figlet = sys.stdin.read(-1).strip('\n').split('\n')
+
+    width  = max(map(len, figlet))
+    height = len(figlet)
+
+    do_animate(scrolling(figlet, width, height), **vargs)

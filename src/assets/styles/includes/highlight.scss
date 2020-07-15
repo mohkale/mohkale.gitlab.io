@@ -1,0 +1,92 @@
+/**
+ * syntax highlighting and inline code blocks.
+ */
+
+$code-font: "Source Code Pro", noto-sans-mono, monospace;
+
+code {
+    font-family: $code-font;
+}
+
+// syntax highlighting for inline code.
+code:not([class*="lang"]) {
+    // color: white;
+    // background: $inline-code-bg-color;
+    // padding: 1px 2px 2px 2px;
+    // border-radius: 3px;
+    // white-space: nowrap;
+    // vertical-align: baseline;
+    color: darken($grey, 15%);
+    background: darken($white, 3%);
+    // WARN a non-0 vertical padding overlaps with text above and below the element.
+    padding: 0px 5px;
+    border-radius: 2px;
+    white-space: nowrap;
+    // box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700");
+@font-face {
+    font-family: 'noto-sans-mono';
+    src: url('/fonts/NotoSansMono-Regular.ttf') format('truetype')
+}
+
+.highlight, code {
+    font-size: 0.85rem;
+    tab-size: 4;
+}
+
+.highlight {
+    padding: 1rem;
+    margin: $vertical-spacing 0px;
+    border-radius: 10px 10px;
+
+    line-height: 1.45;
+    border-top:    solid 1.2px $aoh-grey;
+    border-bottom: solid 1.2px $aoh-grey;
+    background-color: lighten($aoh-very-dark-grey, 3%);
+
+    code {
+        display: block;
+    }
+
+    @media screen and (max-width: $medium) {
+        @include full-main-width;
+        border-radius: 0px;
+    }
+
+    @if $code-can-has-scroll-bar {
+        overflow-x: auto;
+    } @else {
+        pre {
+            // prevent lines going off the page when they're too wide.
+            white-space: pre-wrap;
+        }
+    }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono');
+
+body .gist {
+    font-size:13px;
+    line-height:18px;
+    // width:53em
+
+    .blob-code-inner {
+        font-family: $code-font !important;
+    }
+
+    .gist-meta {
+        font-family: Arial,sans-serif;
+        font-size: 13px !important;
+
+        a {
+            font-weight: bold;
+            color: $link-color !important;
+
+            &:hover{
+                color: $link-hover-color !important;
+            }
+        }
+    }
+}

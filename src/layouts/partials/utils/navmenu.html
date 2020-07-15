@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+    {{ range .Site.Menus.nav }}
+      <li>
+        <a href="{{ .URL }}"
+           {{/*
+           for some reason any pages that're their own sections, are also
+           subsections of the home page so you've to explicitly cancel that
+           condition in the following check or else you may end up with both
+           home and tags marked as active in the navbar.
+           */}}
+           {{ if or ($.IsMenuCurrent "nav" .) (and (not (eq $.Site.Home $.CurrentSection)) ($.CurrentSection.InSection .Page)) }}
+           class="current"
+           {{ end }}>
+          {{- if .Name -}}{{ .Name | title }}{{ else if .Identifier }}{{ .Identifier | title }}{{ else }}
+            {{ warnf "no name assigned for menu at: %s" .Page.File.Path }}
+          {{- end -}}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</nav>

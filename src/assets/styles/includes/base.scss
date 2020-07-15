@@ -1,0 +1,294 @@
+/**
+ * base styles used to setup the look and feel for every page on my blog.
+ *
+ * most of my theme is forked from [[https://github.com/varkai/hugo-theme-zozo][hugo-theme-zozo]] mixed with [[https://github.com/jakewies/hugo-theme-codex][hugo-theme-codex]].
+ * I couldn't use the themes by themselves because I already had a lot of layouts
+ * and utils written up to use styles/scripts. Adjusting the themes to conform to
+ * my setup would've taken too long, but adjusting my setup to resemble the themes
+ * worked wonders :smile:.
+ *
+ */
+
+@import "../utils/colors";
+@import "../utils/mixins";
+@import "../utils/normalize";
+
+$font-size: 16px;
+$animate-duration: 1s;
+$link-hover-duration: 0.15s;
+
+// screen sizes
+$large:  1400px;
+$medium: 800px;
+$small:  443px;
+// $min-width: 443px;
+
+// spacing/alignment
+$center-padding: 40px;
+$top-offset:     60px;
+$vertical-spacing: 16px;
+
+// colors
+$main-bg: $white;
+$main-shadow: rgba(236, 236, 236, 0.86);
+
+@import "../utils/hamburgers";
+@import "./animations/fade-in-down";
+
+html {
+    background-color: $light-grey;
+    -webkit-font-smoothing: antialiased;
+
+    body.nav-active {
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 13px;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        min-height: 16px;
+        background-color: #999999;
+        background-clip: padding-box;
+        border: 3px solid #fdfdfd;
+        border-radius: 5px;
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: $font-size;
+    @if variable_exists(min-width) {
+        min-width: $min-width;
+    }
+}
+
+main {
+    width: 100%;
+    text-align: justify;
+    box-shadow: 0 10px 20px 0 $main-shadow;
+    margin-bottom: 40px;
+
+    @include link($link-color, $link-hover-color);
+
+    $leading: 1.5rem;
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: $leading;
+        margin-bottom: 0;
+        line-height: $leading;
+        clear: left;
+        text-align: left;
+    }
+
+    h1 {
+        line-height: 1.5 * $leading;
+        margin-top:  1.5 * $leading;
+        &:first-child {
+            @include link(black);
+        }
+    }
+
+
+    $scale: 1.414;
+    h1 { font-size: ($scale * 1.5)   * 1rem; }
+    h2 { font-size: ($scale)         * 1rem; }
+    h3 { font-size: ($scale / 1.2)   * 1rem; }
+    h4 { font-size: ($scale / 1.44)  * 1rem; }
+    h5 { font-size: ($scale / 1.728) * 1rem; }
+
+    h2, h3, h4 {
+        .anchor {
+            left: calc(#{$center-padding} - 1rem);
+            position: absolute;
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        @include link($grey, $dark-grey);
+    }
+
+    // @for $i from 1 through 6 {
+    //     h#{$i} + h#{$i+1} {
+    //         // don't seperate 2 headings, specified
+    //         // one after the other. collapse them
+    //         // together.
+    //         margin-top: 0px;
+    //     }
+    // }
+}
+
+// make element take up the full width of main,
+// disregarding $center-padding.
+@mixin full-main-width {
+    left: -$center-padding;
+    position: relative;
+    width: calc(100% + #{2 * $center-padding});
+    box-sizing: border-box;
+}
+
+main, nav, footer {
+    @include fade-in-down;
+    box-sizing: border-box;
+
+    @media screen and (min-width: $medium) {
+        width: $medium;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media screen and (min-width: $large) {
+        width: 1000px;
+    }
+}
+
+main, nav {
+    background: $main-bg;
+    padding: 0px $center-padding;
+}
+
+main {
+    // margin-top: $top-offset;
+    padding-top: $top-offset;
+    @media screen and (min-width: $medium) {
+        margin-top: 0px;
+        padding-top: 0px;
+    }
+}
+
+nav {
+    box-sizing: border-box;
+    padding-right: $center-padding;
+
+    @media screen and (min-width: $medium) {
+        margin-top: $top-offset;
+    }
+}
+
+footer {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+@import "./header";
+@import "./notify";
+
+a {
+    text-decoration: none;
+    @include link;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+table {
+    margin-top: $vertical-spacing;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    &:not(.auto-width) { width: 100%; }
+
+    &:not(.no-style) {
+        th {
+            background-color: $light-grey;
+        }
+
+        th, td {
+            padding: 10px 20px;
+            border: 1px solid $table-border-color;
+        }
+    }
+}
+
+blockquote {
+    box-sizing: border-box;
+    margin: 2.5em 0;
+    padding: 0 0 0 50px;
+    font-style: italic;
+    color: #555555;
+    border-left: none;
+
+    cite {
+        &::before {
+            content: "— ";
+        }
+    }
+
+    &::before {
+        content: '“';
+        display: block;
+        font-family: times, sans-serif;
+        font-style: normal;
+        font-size: 48px;
+        color: #444444;
+        font-weight: bold;
+        line-height: 30px;
+        margin-left: -50px;
+        position: absolute;
+    }
+}
+
+hr {
+    border: 0px;
+    border-bottom: 2px solid #f3f3f3;
+}
+
+figure {
+    $caption-fg: white;
+    $caption-bg: transparentize(black, 0.3);
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2*$vertical-spacing;
+    padding: 1em;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    & > figcaption {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: .5rem;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 0 0 transparent;
+        color: $caption-fg;
+        background-color: $caption-bg;
+
+        // z-index: 3;
+        // font-family: montserrat,sans-serif;
+        // font-weight: 700;
+        cursor: pointer;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        &::after {
+            content: "➖🔍➖";
+        }
+
+        p {
+            margin-bottom: 0px;
+        }
+    }
+
+    &:hover > figcaption {
+        display: flex;
+    }
+}
+
+@import "./ascii";
+@import "./classes";

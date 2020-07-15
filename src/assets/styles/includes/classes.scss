@@ -1,0 +1,98 @@
+/**
+ * defines classes used for special formatting. such as text alignment
+ * or special coloring, etc.
+ */
+
+@mixin apply-to-image($classes...) {
+    @each $class in $classes {
+        figure.#{$class} > img {
+            @content
+        }
+    }
+}
+
+// allignment/indent
+.left  { float: left;  }
+.right { float: right; }
+
+.clear-left  { clear: left; }
+.clear-right { clear: right; }
+
+.pad-left  { margin-right: 1em; }
+.pad-right { margin-left:  1em; }
+
+.stack-left  { @extend .left;  @extend .pad-left; }
+.stack-right { @extend .right; @extend .pad-right; }
+
+.center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.inline-list {
+    padding-inline-start: 0px;
+
+    li {
+        display: inline;
+        list-style-type: none;
+    }
+
+    &:not(.no-sep) li:not(:last-child) {
+        &::after {
+            content: ", ";
+        }
+    }
+}
+
+@each $name, $color in $aoh-colors {
+    .#{$name} {
+        color: $color;
+        fill:  $color;
+    }
+
+    .bg-#{$name} {
+        background-color: $color;
+    }
+
+    .border-#{$name} {
+        border-color: $color;
+    }
+
+    .hl-#{$name}:hover {
+        color: black;
+        background-color: $color;
+    }
+
+    .hl-icon-#{$name} .icon {
+        transition: fill $link-hover-duration;
+        &:hover, &:active {
+            fill: $color !important;
+        }
+    }
+}
+
+table.img-gallery {
+    vertical-align: middle;
+    td, th {
+        // captions/labels
+        text-align: center;
+
+        figure > img {
+            width: 100%;
+        }
+
+        // &:first-child figure { text-align: left; }
+        // &:last-child  figure { text-align: right; }
+    }
+
+    @media screen and (max-width: $medium) {
+        @include full-main-width;
+    }
+}

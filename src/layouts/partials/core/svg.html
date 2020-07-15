@@ -1,0 +1,37 @@
+{{ $fp   := .path }}
+{{ $id   := or .id (replaceRE "\\..+$" "" (path.Base $fp) | htmlEscape) }}
+{{ $name := or .name }}
+{{ $ctx  := .context }}
+{{ $classes := .classes }}
+
+{{/* add SVGs to trail, but don't include them in DOM. */}}
+{{ $trail_only := .trail_only }}
+
+{{- with resources.Get $fp -}}
+    {{ if not $trail_only }}
+        <svg class="icon {{ with $classes }}{{ . }}{{ end }}"><use xlink:href="#{{ $id }}"></use></svg>
+    {{ end }}
+
+    {{ $svgs := or ($ctx.Scratch.Get "svgs") slice }}
+
+    {{ if not (in $svgs $id) }}
+        {{/* thanks to [[https://github.com/sylvainmetayer/jekyll-fontawesome-svg/blob/master/lib/jekyll/fontawesome/svg/fa-icon.rb][jekyll-fontawesome]]. */}}
+        {{ $svg_path := replaceRE "^.*path d=\"([^\"]*)\".*\\/>.*$" "$1" .Content }}
+        {{ $svg_vbox := replaceRE "^.*viewBox=\"([^\"]*)\".*$" "$1" .Content }}
+
+        {{ $trail := or ($ctx.Scratch.Get "svg-trail") "" }}
+
+        {{ $title := "" }}
+        {{ if $name }}
+            {{/* $title = printf "<title>%s</title>" ($name | htmlEscape) */}}
+        {{ end }}
+
+        {{ $trail = printf "%s%s" $trail (printf "<symbol id=\"%s\" viewBox=\"%s\">%s<path class='path1' d=\"%s\"></path></symbol>" $id ($svg_vbox | htmlEscape) $title ($svg_path | htmlEscape)) }}
+        {{ $ctx.Scratch.Set "svg-trail" $trail }}
+
+        {{/* don't repeatedly include the current svg */}}
+        {{ $ctx.Scratch.Set "svgs" ($svgs | append $id) }}
+    {{ end }}
+{{- else -}}
+    {{ warnf "failed to find svg at: %s" $fp }}
+{{- end -}}

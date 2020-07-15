@@ -1,0 +1,31 @@
+{{/*
+List page for individual taxonomies. If you've got a page
+with the tags a and b. You'll generate a tags/ page which
+links to pages listing out content related to tags a and
+tags b.
+
+This is the layout for the page linked to by tags/, I.E.
+/tags/a/ and /tags/b/.
+*/}}
+
+
+{{ define "main" }}
+  <h1>{{ .Title | title }}</h1>
+
+  {{- partial "utils/list_index" . -}}
+
+  <section>
+    {{ range .Pages }}
+      <div>
+        {{/* partial "summary.html" . */}}
+      </div>
+    {{ end }}
+  </section>
+
+  {{ partial "utils/meta" . }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "utils/pagination" . }}
+  {{ partial "footer" . }}
+{{ end }}

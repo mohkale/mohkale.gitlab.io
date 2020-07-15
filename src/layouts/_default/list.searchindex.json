@@ -1,0 +1,10 @@
+{{/* -*- mode: js -*-
+JSON search-index template, initially sourced from [[https://xdeb.org/post/2017/06/11/make-hugo-generate-a-json-search-index-and-json-feed/#json-search-index][here]].
+*/}}
+
+{{- $.Scratch.Add "searchindex" slice -}}
+{{- range $i, $it := (where .Site.Pages "Kind" "page") -}}
+{{ $dict := (dict "id" $i "title" $it.Title "uri" $it.Permalink "tags" (or $it.Params.tags $it.Params.tag slice) "categories" (or $it.Params.category $it.Params.categories slice) "section" $it.Section "content" (delimit $it.PlainWords " ") "summary" (htmlUnescape $it.Summary) "date" ($it.Date.Format "2006-01-02T15:04:05Z07:00")) }}
+  {{- $.Scratch.Add "searchindex" $dict  -}}
+{{- end -}}
+{{- $.Scratch.Get "searchindex" | jsonify -}}

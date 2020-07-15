@@ -1,0 +1,147 @@
+{{/* evaluates body first */}}
+{{ $content := .Content }}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width,minimum-scale=1" />
+
+        <title>
+            {{- block "title" . -}}
+                {{ with .Title }}{{ . | title }} | {{ end }}{{ .Site.Title }}
+            {{- end -}}
+        </title>
+
+        {{ hugo.Generator }}
+
+        {{ $production := or (eq (getenv "HUGO_ENV") "production") (eq .Site.Params.env "production") }}
+
+        {{ if $production }}
+            <meta name="robots" content="index,follow">
+        {{ else }}
+            <meta name="robots" content="noindex,nofollow">
+        {{ end }}
+
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        {{ with .OutputFormats.Get "RSS" }}
+            <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+            <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+        {{ end }}
+
+        {{/* NOTE: These Hugo Internal Templates can be found [[https://github.com/spf13/hugo/blob/master/tpl/tplimpl/template_embedded.go#L158][here]]. */}}
+        {{- template "_internal/opengraph.html" . -}}
+        {{- template "_internal/schema.html" . -}}
+        {{- template "_internal/twitter_cards.html" . -}}
+
+        {{ if $production }}
+            {{- template "_internal/google_analytics_async.html" . -}}
+
+            <script src="//instant.page/3.0.0" type="module" defer="defer"
+                    integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1">
+            </script>
+        {{ end }}
+
+        {{ block "styles" . }}
+            {{/* apply styles for current page */}}
+            {{ range partial "utils/styles" . }}
+                {{ $resource := false }}
+                {{ if hasPrefix . "./" }}
+                    {{ $resource = $.Resources.GetMatch . }}
+                {{ else }}
+                    {{ $resource = resources.Get . }}
+                {{ end }}
+
+                {{ if $resource }}
+                    <link rel="stylesheet" type="text/css"
+                        href="{{- ($resource | resources.ExecuteAsTemplate (printf "styles/%s" .) $.Site | toCSS | postCSS (dict "config" "etc/postcss.config.js") | minify | resources.Fingerprint).Permalink -}}" />
+                {{ else }}
+                    {{ warnf "failed to find resource: %s" . }}
+                {{ end }}
+
+                {{/* now get noscript variants.... if they exist. */}}
+                {{ with printf "%s.noscript.scss" (strings.TrimSuffix ".scss" .) }}
+                    {{ if hasPrefix . "./" }}
+                        {{ $resource = $.Resources.GetMatch . }}
+                    {{ else }}
+                        {{ $resource = resources.Get . }}
+                    {{ end }}
+
+                    {{ if $resource }}
+                        <noscript>
+                            <link rel="stylesheet"
+                                  href="{{- ($resource | resources.ExecuteAsTemplate (printf "styles/%s" .) $.Site | toCSS | postCSS (dict "config" "etc/postcss.config.js") | minify | resources.Fingerprint).Permalink -}}" />
+                        </noscript>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        {{/* apply desired scripts for current page */}}
+        {{ $scripts := .Params.scripts }}
+
+        {{ if $scripts }}
+            {{ if not (reflect.IsSlice $scripts) }}
+                {{ $scripts = slice $scripts }}
+            {{ end }}
+
+            {{ with .Scratch.Get "scripts" }}
+                {{ range . }}
+                    {{ $scripts = $scripts | append . }}
+                {{ end }}
+            {{ end }}
+
+            {{ range $it := $scripts }}
+                {{ if not (reflect.IsMap $it) }}
+                    {{ $it = (dict "path" $it) }}
+                {{ end }}
+
+                {{ $script := resources.Get (printf "scripts/%s" $it.path) }}
+
+                {{ if $script }}
+                    <script type="text/javascript" src="{{- ($script | fingerprint).Permalink -}}"
+                            {{- if $it.async -}}async="true"{{- end -}}
+                            {{- if $it.module -}}type="module"{{- end -}}>
+                    </script>
+                {{ else }}
+                    {{ warnf "failed to find script: %s" $it.path }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        {{ block "head" . }}{{ end }}
+    </head>
+    <body>
+        {{ block "header" . -}}
+            {{ partial "utils/burger_menu" . }}
+        {{- end }}
+
+        {{ block "navmenu" . -}}
+            {{ partial "utils/navmenu" . }}
+        {{- end }}
+
+        <main>
+            {{ partial "header" . }}
+
+            {{ block "main" . }}
+                <article>
+                    {{ partial "content" . }}
+                </article>
+
+                {{ partial "utils/meta" . }}
+            {{ end }}
+        </main>
+
+        {{ block "footer"  . }}
+          {{ partial "footer" . }}
+        {{ end }}
+
+        {{ partial "utils/svg-trail" . }}
+    </body>
+
+    {{ if .Params.meta.latex }}
+        {{ partial "utils/latex" . }}
+    {{ end }}
+</html>

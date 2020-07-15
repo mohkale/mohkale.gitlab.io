@@ -1,0 +1,8 @@
+<footer>
+  {{/*
+  cached so that the same quote is used on every page, instead of every
+  page choosing a potentially unique quote from the list of available
+  ones.
+  */}}
+  <p class="quote center" title="quote of the day">{{ partialCached "utils/footer_quote" . }}</p>
+</footer>

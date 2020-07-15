@@ -1,0 +1,30 @@
+// styles for ascii art gifs/blocks. See [[file:../../../scripts/ascii-gif/][ascii-gif]].
+
+.ascii-frame {
+    margin: 0px;
+}
+
+.ascii-gif {
+    margin-bottom: $vertical-spacing;
+
+    pre {
+        line-height: normal;
+    }
+}
+
+.ascii-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: $vertical-spacing;
+    .ascii-gif {
+        margin-bottom: 0px;
+    }
+
+    .ascii-gif:not(:last-child) {
+        margin-right: 1em;
+    }
+}

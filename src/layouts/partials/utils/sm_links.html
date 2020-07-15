@@ -1,0 +1,41 @@
+{{ $ctx := . }}
+
+<ul class="sm-links">
+  {{ range .Site.Data.sm_links }}
+    {{ $skip := false }}
+    {{ $permalink := false }}
+
+    {{ if eq .type "contact" }}
+      {{ $permalink = index $.Site.Params.contact .key }}
+    {{ else if eq .type "rss" }}
+      {{ $permalink = (($.Site.GetPage .link).OutputFormats.Get "RSS").Permalink }}
+    {{ else if eq .type "page" }}
+      {{ $permalink = ($.Site.GetPage .link).Permalink }}
+    {{ else }}
+      {{ $skip = true }}
+      {{ warnf "malformed footer link schema: %s" . }}
+    {{ end }}
+
+    {{ if and (eq $ctx.Layout "cv") (and (not (eq (index . "cv") nil)) (not .cv)) }}
+      {{ $skip = true }}
+    {{ end }}
+
+    {{ if not $skip }}
+      {{ if $permalink }}
+        <li>
+          <a href="{{ $permalink }}" target="_blank"
+             {{ with .class }}class="{{ . }}"{{ end }}
+             {{ with or .title .key }}title="{{ . }}"{{ end }}>
+            {{ with .fontawesome }}
+              {{- partial "core/fontawesome" (merge (dict "context" $ctx) .) -}}
+            {{ else }}
+              {{ or .title .key }}
+            {{ end }}
+          </a>
+        </li>
+      {{ else }}
+        {{ warnf "unable to find footer-link: %s" . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</ul>

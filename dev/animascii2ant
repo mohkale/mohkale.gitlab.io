@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# runs animascii-to-ant.py but also specifies a min width & min height
+# as the max width and height of any frame in the animation. Also sets
+# the frame-size annotation to this as well.
+
+# this script is expected to be run with just the animascii URL. It is
+# guaranteed to fail if you pass -a or -p.
+
+cd "$(dirname $0)"  # change to same directory as this script
+
+frame_sizes="$(./animascii2ant.py "$@" -p 2>&1 1>/dev/null)"
+
+if [ ! $? ]; then
+    echo "init::error() : failed to run animascii-to-ant.py with given args."
+    exit 1
+fi
+
+max_width=$(echo "${frame_sizes}"  | cut -d ' ' -f 1 | sort -r | head -n 1)
+max_height=$(echo "${frame_sizes}" | cut -d ' ' -f 2 | sort -r | head -n 1)
+
+./animascii2ant.py "$@" -s "${max_width}" "${max_height}" -a "${max_width}" "${max_height}"

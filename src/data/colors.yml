@@ -1,0 +1,16 @@
+# shades of the millennium falcon
+very-light-grey: hsl(228, 007%, 081%)
+light-grey:      hsl(228, 007%, 055%)
+normal-grey:     hsl(228, 007%, 044%)
+dark-grey:       hsl(228, 007%, 029%)
+very-dark-grey:  hsl(228, 007%, 012%)
+
+vader:    hsl(352, 081%, 058%) # Vader's lightsaber.
+luke:     hsl(025, 086%, 055%) # Luke's pilot uniform.
+threepio: hsl(050, 074%, 061%) # Human cyborg relations.
+yoda:     hsl(107, 040%, 057%) # Fear is the path to the dark side.
+artoo:    hsl(196, 064%, 058%) # Whistle. Bloop.
+
+purple:    hsl(313, 032%, 054%)
+white:     hsl(000, 000%, 100%)
+turquoise: hsl(161, 078%, 055%)

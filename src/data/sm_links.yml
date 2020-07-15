@@ -1,0 +1,60 @@
+# links shown when supported.
+#
+# This file should be an array of configuration options for a displayed link.
+#
+# There are three types of links, links to a page which you can find at runtime,
+# links to an entry in the `contact' section of our site params and literal links
+# to fixed URLs. The former requires `key' argument, the second latter requires a
+# link argument and the last just requires a `link' field.
+#
+# there's also a variant of `page' links of type RSS which're the same as `page'
+# except they permalink to the "RSS" output format.
+#
+# Each link can also specify a for:
+# * title
+# * class
+# * fontawesome [1]
+#
+# [1]: which has to be a hash that can be passed to the utils/fontawesome partial.
+
+# Page Links
+## RSS
+- type: rss
+  link: /_index.md
+  title: RSS
+  cv: false
+  class: hl-icon-green
+  fontawesome:
+    type: solid
+    name: rss
+
+# Contact Links
+## Github
+- type: contact
+  key:  github
+  class: hl-icon-orange
+  fontawesome:
+    type: brands
+    name: github-alt
+## Gitlab
+- type: contact
+  key: gitlab
+  class: hl-icon-red
+  fontawesome:
+    type: brands
+    name: gitlab
+## Linkedin
+- type: contact
+  key: linkedin
+  class: hl-icon-blue
+  fontawesome:
+    type: brands
+    name: linkedin
+# mail me
+- type: contact
+  cv: false
+  key: mail
+  class: hl-icon-purple
+  fontawesome:
+    type: solid
+    name: paper-plane

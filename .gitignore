@@ -1,0 +1,34 @@
+# junk files I can't stop being made.
+.log/
+.git/
+.bundle/
+yarn-error.log
+node_modules/
+__pycache__/
+
+# root level misc runtime directories
+tmp/
+var/
+bin/
+vendor/
+font-awesome
+.deprecated/
+
+# swap/temp files used by editors, see [[https://simpleit.rocks/git/make-git-ignore-temporary-files-produced-by-emacs-and-vim-in-all-directories-globally/][here]].
+*~
+\#*\#
+.\#*
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+# generated assets within the src directory
+src/assets/images/fa
+src/assets/scripts/*.bundle.js
+
+# lock files. I don't like commiting lock files.
+# They introduce complexity which is useful for
+# deployment, but not much so for developmenet.
+Gemfile.lock
+package-lock.json

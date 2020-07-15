@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# downloads all freely available font-awesome icon SVGs.
+
+print_usage() { echo "$0 [-h] [-o OUTPUT]"; }
+
+dest=font-awesome
+
+while getopts 'ho:' OPTION; do
+    case "$OPTION" in
+        h) print_usage
+           exit 0
+           ;;
+        \?) print_usage >&2
+            exit 1
+            ;;
+        o) dest=$OPTARG ;;
+    esac
+done
+
+curl_flags='-#'
+
+if ! mkdir -p "$dest" 2>/dev/null; then
+    echo "failed to create destination directory: $dest" >&2
+    exit 1
+fi
+
+if ! pushd "$dest" >/dev/null; then
+    echo "failed to change to destination directory: $dest" >&2
+    exit 1
+fi
+
+repo='FortAwesome/Font-Awesome'
+
+svgs_url="https://api.github.com/repos/$repo/contents/svgs"
+echo "retrieving SVG category list from: $repo"
+curl $curl_flags "$svgs_url" -L | jq '.[]' -c | while read -r type; do
+    read name url <<< $(jq '"\(.name) \(.url)"' -r <<< "$type")
+
+    mkdir "$name"
+    pushd "$name" >/dev/null
+
+    curl $curl_flags -L "$url" | jq '.[] | .download_url' -rc | tr -d '\r' |
+        wget -i - --trust-server-names -q --show-progress -c
+
+    popd >/dev/null
+done

@@ -1,0 +1,27 @@
+@import "page";
+
+h2 {
+    padding-top: 10px;
+    font-size: 1.4rem;
+    line-height: 2.2em;
+}
+
+table.pagination {
+    line-height: 2.1;
+
+    tr {
+        padding-bottom: 5px;
+    }
+
+    td {
+        font-size: 14px;
+        padding: 0px;
+        border: 0px;
+        @include link(#424242, #1f1f1f);
+
+        &:nth-child(2) {
+            text-align: right;
+            color: $grey;
+        }
+    }
+}

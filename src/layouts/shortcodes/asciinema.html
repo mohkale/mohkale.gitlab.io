@@ -1,0 +1,46 @@
+{{ $id := or (.Get 0) (.Get "key") }}
+
+{{ $resource := false }}
+{{ with $id }}
+  {{ if hasPrefix . "./" }}
+    {{ $resource = $.Page.Resources.GetMatch (strings.TrimPrefix "./" .) }}
+  {{ else }}
+    {{ $resource = resources.Get (printf "casts/%s.cast" .) }}
+  {{ end }}
+{{ end }}
+
+{{/* source: [[https://jenciso.github.io/blog/embedding-asciinema-cast-in-your-hugo-site/][here]]. */}}
+{{ if $resource }}
+  <p>
+    <asciinema-player
+      src="{{ $resource.Permalink }}"
+      {{ with .Get "classes" }}class="{{ range . }}{{ . }}{{ end }}"{{ end }}
+      {{ with or (.Get 1) (.Get "cols") }}cols="{{ . }}"{{ end }}
+      {{ with or (.Get 2) (.Get "rows") }}rows="{{ . }}"{{ end }}
+      {{ with .Get "autoplay" }}autoplay="{{ . }}"{{ end }}
+      {{ with .Get "preload" }}preload="{{ . }}"{{ end }}
+      {{ with .Get "loop" }}loop="{{ . }}"{{ end }}
+      start-at="{{ with .Get "start-at" }}{{ . }}{{ else }}0{{ end }}"
+      speed="{{ with .Get "speed" }}{{ . }}{{ else }}1{{ end }}"
+      {{ with .Get "idle-time-limit" }}idle-time-limit="{{ . }}"{{ end }}
+      {{ with .Get "poster" }}poster="{{ . }}"{{ end }}
+      {{ with .Get "font-size" }}font-size="{{ . }}"{{ end }}
+      theme="{{ with .Get "theme" }}{{ . }}{{ else }}tango{{ end }}"
+      {{ with .Get "title" }}title="{{ . }}"{{ end }}
+      {{ with .Get "author" }}author="{{ . }}"{{ end }}
+      {{ with .Get "author-url" }}author-url="{{ . }}"{{ end }}
+      {{ with .Get "author-img-url" }}author-img-url="{{ . }}"{{ end }}
+    ></asciinema-player>
+  </p>
+{{ else }}
+  {{ warnf "failed to find resource: %s" $id }}
+{{ end }}
+
+{{ with .Page }}
+  {{ if not (.Scratch.Get "asciinema") }}
+    {{ .Scratch.Set "styles"  (or (.Scratch.Get "styles")  slice | append "asciinema") }}
+    {{ .Scratch.Set "scripts" (or (.Scratch.Get "scripts") slice | append "asciinema.js") }}
+
+    {{ .Scratch.Set "asciinema" true }}
+  {{ end }}
+{{ end }}

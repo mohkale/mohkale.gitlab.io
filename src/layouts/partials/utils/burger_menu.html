@@ -1,0 +1,51 @@
+<div class="burger-container">
+  <button class="nav-burger hamburger hamburger--elastic" type="button">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
+</div>
+
+<script>
+ 'use strict';
+ let burgerContainer = document.querySelector('.burger-container'),
+     dropdownMenuButton = document.querySelector('.nav-burger'),
+     body = document.querySelector('body');
+
+ // trigger dropdown navmenu.
+ dropdownMenuButton.addEventListener('click', function() {
+     body.classList.toggle('nav-active');
+     dropdownMenuButton.classList.toggle('is-active');
+ });
+
+ // hide active navmenu on resize, when the menu is activated
+ // and the screen becomes wide enough, the styling gets messed
+ // up. This prevents that.
+ window.addEventListener('resize', function() {
+     if (body.classList.contains('nav-active') &&
+         window.getComputedStyle(dropdownMenuButton).visibility !== "visible") {
+         body.classList.remove('nav-active');
+         dropdownMenuButton.classList.remove('is-active');
+     }
+ });
+
+ // hide the burger button on scroll. reshow it when you scroll back up.
+ // see [[https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp][here]].
+ (function () {
+     let prevScrollPos = window.pageYOffset;
+     const MINIMUM_SCROLL_RATIO = 3;
+     window.addEventListener('scroll', function() {
+         let currentScrollPos = window.pageYOffset;
+         if (currentScrollPos <= MINIMUM_SCROLL_RATIO * burgerContainer.offsetHeight) {
+             // guarantee you've scrolled at least a MINIMUM_SCROLL_RATIO amount
+             // from the top before you start hiding the navmenu. For mobile where
+             // the navbar seems to be hidden even when the page isn't scrolled.
+             burgerContainer.style.top = "0";
+         } else if (!body.classList.contains('nav-active')) {
+             burgerContainer.style.top =  (prevScrollPos > currentScrollPos) ?
+                                            "0" : `-${burgerContainer.offsetHeight}px`;
+         }
+         prevScrollPos = currentScrollPos;
+     });
+ })()
+</script>

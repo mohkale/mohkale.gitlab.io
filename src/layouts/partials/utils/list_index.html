@@ -1,0 +1,44 @@
+{{/* build list items for the current paginated page. */}}
+
+{{/* prepopulate page subsections, then posts. */}}
+{{ with .Sections }}
+  <table class="pagination">
+    {{ range . }}
+      {{ $title := (or .Title .File.ContentBaseName) }}
+      {{ if eq $title "_index" }}
+        {{ $title = path.Base .File.Dir }}
+      {{ end }}
+
+      <tr>
+        <td><a href="{{ .Permalink }}">{{ $title | title }}</a></td>
+      </tr>
+    {{ end }}
+  </table>
+{{ end }}
+
+{{/* doubt I was posting before I was born 😀. */}}
+{{ $last_year := 1999 }}
+
+{{/* ignore the broken HTML, it's necessary. */}}
+{{ range .Paginator.Pages.ByDate.Reverse }}
+  {{ if not (eq $last_year .Date.Year) }}
+    {{ if not (eq $last_year 1999) }}
+      </table> {{/* close the previous table. */}}
+    {{ end }}
+
+    {{ if not $.Params.meta.no_date }}
+      <h2>{{ .Date.Year }}</h2>
+    {{ end }}
+
+    <table class="pagination">
+    {{ $last_year = .Date.Year }}
+  {{ end }}
+
+  <tr>
+    <td><a href="{{ .Permalink }}">{{ (or .Title .File.ContentBaseName) | title }}</a></td>
+    {{ if not $.Params.meta.no_date }}
+      <td>{{ dateFormat "01-02" .Date }}</td>
+    {{ end }}
+  </tr>
+{{ end }}
+</table>

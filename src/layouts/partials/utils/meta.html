@@ -1,0 +1,34 @@
+{{ $ctx := . }}
+
+<aside class="post-meta">
+  {{ if .Params.meta.post }}
+    <div class="pagination">
+      {{ with .PrevInSection }}
+        <a href="{{ .Permalink }}" class="prev">
+          <span class="pagination-label">Prev Post</span>
+          <span class="pagination-title">{{ .Title }}</span>
+        </a>
+      {{ end }}
+
+      {{ with .NextInSection }}
+        <a href="{{ .Permalink }}" class="next">
+          <span class="pagination-label">Next Post</span>
+          <span class="pagination-title">{{ .Title }}</span>
+        </a>
+      {{ end }}
+    </div>
+
+    {{ with or .Params.tags .Params.tag }}
+      <div class="tags">
+        {{- partial "core/fontawesome" (dict "context" $ctx "type" "solid" "name" "tags") -}}
+
+        <ul class="inline-list no-sep inline">
+          {{ range . -}}
+            {{ $page := $.Site.GetPage (printf "tags/%s" .) }}
+            <li><a href="{{ $page.Permalink }}">{{ . }}</a></li>
+          {{- end }}
+        </ul>
+      </div>
+    {{ end }}
+  {{ end }}
+</aside>

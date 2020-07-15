@@ -1,0 +1,19 @@
+@keyframes anim-fade-in-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@mixin fade-in-down($duration: $animate-duration,
+                    $delay: 1s,
+                    $fill-mode: both) {
+    animation: anim-fade-in-down;
+    animation-duration: $animate-duration;
+    animation-delay: 0;
+    animation-fill-mode: both;
+}

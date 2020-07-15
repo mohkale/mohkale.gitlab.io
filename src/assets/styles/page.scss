@@ -1,0 +1,159 @@
+@import "./main";
+@import "./includes/syntax";
+
+// whether to wrap code blocks when they're too wide
+// or instead show a scroll bar.
+$code-can-has-scroll-bar: true;
+
+@import "./includes/highlight";
+
+ul.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0px;
+    margin-top: 6px;
+    marign-bottom: $vertical-spacing;
+    align-items: center;
+    list-style-type: none;
+
+    li:not(:last-child) {
+        margin-right: 0.25em;
+    }
+    .category::before {
+        content: " in category ";
+    }
+
+    .categories::before {
+        content: "in categories";
+    }
+
+    #categories {
+        margin: 0px;
+    }
+
+    .duration:not(:first-child)::before {
+        content: " • ";
+    }
+}
+
+aside.post-meta {
+    .pagination {
+        display: flex;
+        align-items: center;
+
+        // only one child.
+        // a:first-child:last-child {
+        // }
+
+        a {
+            border-radius: 4px;
+            padding: 15px;
+            width: 50%;
+
+            &:hover, &:active {
+                background-color: $light-grey;
+            }
+
+            margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 500px) {
+            flex-direction: column;
+
+            a {
+                width: 100%;
+            }
+        }
+
+        span {
+            display: block;
+
+            &.pagination-label {
+                color: $grey;
+                font-size: .8rem;
+            }
+
+            &.pagination-title {
+                color: #111;
+                font-weight: 700;
+                margin-top: .25rem;
+            }
+        }
+    }
+
+    .tags {
+        display: flex;
+        align-items: center;
+        padding-bottom: 30px;
+
+        $font-size: 0.8rem;
+
+        .icon {
+            width:  $font-size;
+            height: $font-size;
+            margin-right: 5px;
+        }
+
+        ul {
+            margin: 0px;
+            display: inline-block;
+
+            font-size: $font-size;
+
+            li {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+// figure {
+//     $caption-fg: white;
+//     $caption-bg: transparentize(black, 0.3);
+
+//     position: relative;
+//     display: flex;
+//     justify-content: center;
+//     margin-bottom: $vertical-spacing;
+//     padding: 0px 1em;
+
+//     img {
+//         width: 100%;
+//         object-fit: contain;
+//     }
+
+//     & > figcaption {
+//         position: absolute;
+//         left: 0;
+//         top: 0;
+//         padding: .5rem;
+//         width: 100%;
+//         height: 100%;
+//         box-shadow: 0 0 0 0 transparent;
+//         color: $caption-fg;
+//         background-color: $caption-bg;
+
+//         // z-index: 3;
+//         // font-family: montserrat,sans-serif;
+//         // font-weight: 700;
+//         cursor: pointer;
+
+//         display: none;
+//         align-items: center;
+//         justify-content: center;
+//         flex-direction: column;
+
+//         &::after {
+//             content: "➖🔍➖";
+//         }
+
+//         p {
+//             margin-bottom: 0px;
+//         }
+//     }
+
+//     &:hover > figcaption {
+//         display: flex;
+//     }
+// }
+

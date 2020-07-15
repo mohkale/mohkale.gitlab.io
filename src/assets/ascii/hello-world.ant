@@ -1,0 +1,535 @@
+-: hello world!
+$: 5
+@: https://animasci.com/play/2c918083610800fd01613a7242cb0005/hello-world
+": 11 5
+|: 1
+%:          H
+%:          H
+%:          H
+%:          H
+%:          H
+
+|: 1
+%:         H 
+%:         H 
+%:         HH
+%:         H 
+%:         H 
+
+|: 1
+%:        H  
+%:        H  
+%:        HHH
+%:        H  
+%:        H  
+
+|: 1
+%:       H   
+%:       H   
+%:       HHHH
+%:       H   
+%:       H   
+
+|: 1
+%:      H   H
+%:      H   H
+%:      HHHHH
+%:      H   H
+%:      H   H
+
+|: 1
+%:     H   H 
+%:     H   H 
+%:     HHHHH 
+%:     H   H 
+%:     H   H 
+
+|: 1
+%:    H   H E
+%:    H   H E
+%:    HHHHH E
+%:    H   H E
+%:    H   H E
+
+|: 1
+%:   H   H EE
+%:   H   H E 
+%:   HHHHH EE
+%:   H   H E 
+%:   H   H EE
+
+|: 1
+%:  H   H EEE
+%:  H   H E  
+%:  HHHHH EEE
+%:  H   H E  
+%:  H   H EEE
+
+|: 1
+%: H   H EEEE
+%: H   H E   
+%: HHHHH EEEE
+%: H   H E   
+%: H   H EEEE
+
+|: 1
+%:H   H EEEEE
+%:H   H E    
+%:HHHHH EEEE 
+%:H   H E    
+%:H   H EEEEE
+
+|: 1
+%:   H EEEEE 
+%:   H E     
+%:HHHH EEEE  
+%:   H E     
+%:   H EEEEE 
+
+|: 1
+%:  H EEEEE L
+%:  H E     L
+%:HHH EEEE  L
+%:  H E     L
+%:  H EEEEE L
+
+|: 1
+%: H EEEEE L 
+%: H E     L 
+%:HH EEEE  L 
+%: H E     L 
+%: H EEEEE LL
+
+|: 1
+%:H EEEEE L  
+%:H E     L  
+%:H EEEE  L  
+%:H E     L  
+%:H EEEEE LLL
+
+|: 1
+%: EEEEE L   
+%: E     L   
+%: EEEE  L   
+%: E     L   
+%: EEEEE LLLL
+
+|: 1
+%:EEEEE L    
+%:E     L    
+%:EEEE  L    
+%:E     L    
+%:EEEEE LLLLL
+
+|: 1
+%:EEEE L     
+%:     L     
+%:EEE  L     
+%:     L     
+%:EEEE LLLLL 
+
+|: 1
+%:EEE L     L
+%:    L     L
+%:EE  L     L
+%:    L     L
+%:EEE LLLLL L
+
+|: 1
+%:EE L     L 
+%:   L     L 
+%:E  L     L 
+%:   L     L 
+%:EE LLLLL LL
+
+|: 1
+%:E L     L  
+%:  L     L  
+%:  L     L  
+%:  L     L  
+%:E LLLLL LLL
+
+|: 1
+%: L     L   
+%: L     L   
+%: L     L   
+%: L     L   
+%: LLLLL LLLL
+
+|: 1
+%:L     L    
+%:L     L    
+%:L     L    
+%:L     L    
+%:LLLLL LLLLL
+
+|: 1
+%:     L     
+%:     L     
+%:     L     
+%:     L     
+%:LLLL LLLLL 
+
+|: 1
+%:    L      
+%:    L     O
+%:    L     O
+%:    L     O
+%:LLL LLLLL  
+
+|: 1
+%:    L      
+%:    L     O
+%:    L     O
+%:    L     O
+%:LLL LLLLL  
+
+|: 1
+%:   L      O
+%:   L     O 
+%:   L     O 
+%:   L     O 
+%:LL LLLLL  O
+
+|: 1
+%:  L      OO
+%:  L     O  
+%:  L     O  
+%:  L     O  
+%:L LLLLL  OO
+
+|: 1
+%: L      OOO
+%: L     O   
+%: L     O   
+%: L     O   
+%: LLLLL  OOO
+
+|: 1
+%:L      OOO 
+%:L     O   O
+%:L     O   O
+%:L     O   O
+%:LLLLL  OOO 
+
+|: 1
+%:      OOO  
+%:     O   O 
+%:     O   O 
+%:     O   O 
+%:LLLL  OOO  
+
+|: 1
+%:     OOO   
+%:    O   O  
+%:    O   O  
+%:    O   O  
+%:LLL  OOO   
+
+|: 1
+%:    OOO    
+%:   O   O   
+%:   O   O   
+%:   O   O   
+%:LL  OOO    
+
+|: 1
+%:   OOO    W
+%:  O   O   W
+%:  O   O   W
+%:  O   O   W
+%:L  OOO    W
+
+|: 1
+%:  OOO    W 
+%: O   O   W 
+%: O   O   W 
+%: O   O   WW
+%:  OOO    W 
+
+|: 1
+%: OOO    W  
+%:O   O   W  
+%:O   O   W W
+%:O   O   WW 
+%: OOO    W  
+
+|: 1
+%:OOO    W   
+%:   O   W   
+%:   O   W W 
+%:   O   WW W
+%:OOO    W   
+
+|: 1
+%:OO    W   W
+%:  O   W   W
+%:  O   W W W
+%:  O   WW WW
+%:OO    W   W
+
+|: 1
+%:O    W   W 
+%: O   W   W 
+%: O   W W W 
+%: O   WW WW 
+%:O    W   W 
+
+|: 1
+%:    W   W  
+%:O   W   W O
+%:O   W W W O
+%:O   WW WW O
+%:    W   W  
+
+|: 1
+%:   W   W  O
+%:   W   W O 
+%:   W W W O 
+%:   WW WW O 
+%:   W   W  O
+
+|: 1
+%:  W   W  OO
+%:  W   W O  
+%:  W W W O  
+%:  WW WW O  
+%:  W   W  OO
+
+|: 1
+%: W   W  OOO
+%: W   W O   
+%: W W W O   
+%: WW WW O   
+%: W   W  OOO
+
+|: 1
+%:W   W  OOO 
+%:W   W O   O
+%:W W W O   O
+%:WW WW O   O
+%:W   W  OOO 
+
+|: 1
+%:   W  OOO  
+%:   W O   O 
+%: W W O   O 
+%:W WW O   O 
+%:   W  OOO  
+
+|: 1
+%:  W  OOO  R
+%:  W O   O R
+%:W W O   O R
+%: WW O   O R
+%:  W  OOO  R
+
+|: 1
+%:  W  OOO  R
+%:  W O   O R
+%:W W O   O R
+%: WW O   O R
+%:  W  OOO  R
+
+|: 1
+%: W  OOO  RR
+%: W O   O R 
+%: W O   O RR
+%:WW O   O R 
+%: W  OOO  R 
+
+|: 1
+%:W  OOO  RRR
+%:W O   O R  
+%:W O   O RRR
+%:W O   O R  
+%:W  OOO  R  
+
+|: 1
+%:  OOO  RRR 
+%: O   O R  R
+%: O   O RRR 
+%: O   O R  R
+%:  OOO  R  R
+
+|: 1
+%: OOO  RRR  
+%:O   O R  R 
+%:O   O RRR  
+%:O   O R  R 
+%: OOO  R  R 
+
+|: 1
+%:OOO  RRR  L
+%:   O R  R L
+%:   O RRR  L
+%:   O R  R L
+%:OOO  R  R L
+
+|: 1
+%:OO  RRR  L 
+%:  O R  R L 
+%:  O RRR  L 
+%:  O R  R L 
+%:OO  R  R LL
+
+|: 1
+%:O  RRR  L  
+%: O R  R L  
+%: O RRR  L  
+%: O R  R L  
+%:O  R  R LLL
+
+|: 1
+%:  RRR  L   
+%:O R  R L   
+%:O RRR  L   
+%:O R  R L   
+%:  R  R LLL 
+
+|: 1
+%: RRR  L   D
+%: R  R L   D
+%: RRR  L   D
+%: R  R L   D
+%: R  R LLL D
+
+|: 1
+%:RRR  L   DD
+%:R  R L   D 
+%:RRR  L   D 
+%:R  R L   D 
+%:R  R LLL DD
+
+|: 1
+%:RR  L   DDD
+%:  R L   D  
+%:RR  L   D  
+%:  R L   D  
+%:  R LLL DDD
+
+|: 1
+%:R  L   DDDD
+%: R L   D   
+%:R  L   D   
+%: R L   D   
+%: R LLL DDDD
+
+|: 1
+%:R  L   DDDD
+%: R L   D   
+%:R  L   D   
+%: R L   D   
+%: R LLL DDDD
+
+|: 1
+%:  L   DDDD 
+%:R L   D   D
+%:  L   D   D
+%:R L   D   D
+%:R LLL DDDD 
+
+|: 1
+%: L   DDDD  
+%: L   D   D 
+%: L   D   D 
+%: L   D   D 
+%: LLL DDDD  
+
+|: 1
+%:L   DDDD  !
+%:L   D   D !
+%:L   D   D !
+%:L   D   D  
+%:LLL DDDD  !
+
+|: 1
+%:   DDDD  !!
+%:   D   D !!
+%:   D   D !!
+%:   D   D   
+%:LL DDDD  !!
+
+|: 1
+%:  DDDD  !!!
+%:  D   D !!!
+%:  D   D !!!
+%:  D   D    
+%:L DDDD  !!!
+
+|: 1
+%: DDDD  !!! 
+%: D   D !!! 
+%: D   D !!! 
+%: D   D     
+%: DDDD  !!! 
+
+|: 1
+%:DDDD  !!!  
+%:D   D !!!  
+%:D   D !!!  
+%:D   D      
+%:DDDD  !!!  
+
+|: 1
+%:DDD  !!!   
+%:   D !!!   
+%:   D !!!   
+%:   D       
+%:DDD  !!!   
+
+|: 1
+%:DD  !!!    
+%:  D !!!    
+%:  D !!!    
+%:  D        
+%:DD  !!!    
+
+|: 1
+%:D  !!!     
+%: D !!!     
+%: D !!!     
+%: D         
+%:D  !!!     
+
+|: 1
+%:  !!!      
+%:D !!!      
+%:D !!!      
+%:D          
+%:  !!!      
+
+|: 1
+%: !!!       
+%: !!!       
+%: !!!       
+%:           
+%: !!!       
+
+|: 1
+%:!!!        
+%:!!!        
+%:!!!        
+%:           
+%:!!!        
+
+|: 1
+%:!!         
+%:!!         
+%:!!         
+%:           
+%:!!         
+
+|: 1
+%:!          
+%:!          
+%:!          
+%:           
+%:!          
+
+|: 1
+%:           
+%:           
+%:           
+%:           
+%:           

@@ -1,0 +1,69 @@
+# gitlab CI/CD configuration file for mohkale.io
+
+image: monachus/hugo
+
+stages:
+  - setup
+  - build
+  - test
+  - deploy
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+before_script:
+  # setup locale
+  - apt update >/dev/null
+  - apt install -y locales >/dev/null
+  - echo "en_US UTF-8" > /etc/locale.gen
+  - locale-gen en_US.UTF-8
+  - export LANG=en_US.UTF-8
+  - export LANGUAGE=en_US:en
+  - export LC_ALL=en_US.UTF-8
+  # install dependencies
+  - curl -sL https://deb.nodesource.com/setup_13.x | bash -
+  - apt update >/dev/null
+  - apt install -y pcregrep gawk tralics nodejs ruby-full ruby-dev jq wget build-essential patch zlib1g-dev liblzma-dev libffi-dev >/dev/null
+  # setup thor
+  - gem install bundler
+
+install:
+  stage: setup
+  script:
+    - ./dev/setup
+    - bundle install
+    - bundle exec thor install:all
+  artifacts:
+    paths:
+      - vendor/
+      - .bundle/
+      - node_modules/
+      - Gemfile.lock
+      - package-lock.json
+      - yarn.lock
+      - src/assets/images/fa
+      - var/themes
+
+build:
+  stage: build
+  script:
+    - bundle exec thor site:build --output bin/ --no-drafts --env production
+    - ./dev/compress-assets -v bin/
+  artifacts:
+    paths:
+      - bin/
+
+test:
+  stage: test
+  script:
+    - bundle exec thor test:site --output bin/
+
+pages:
+  stage: deploy
+  script:
+    - mv bin public
+  artifacts:
+    paths:
+      - public
+  only:
+    - public # this job will affect only the 'public' branch

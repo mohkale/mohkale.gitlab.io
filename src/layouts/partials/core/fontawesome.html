@@ -1,0 +1,29 @@
+{{/*
+includes the literal body of a font-awesome icon at point.
+
+the context for this partial should be populated with a type
+field (specifying the type of fontawesome to target) and a name
+field specifiying the name of the icon file.
+*/}}
+
+{{ $type := .type }}
+{{ $name := .name }}
+
+{{ if and $type $name }}
+    {{ if eq (len $type) 1 }}
+        {{ if (eq $type "b") }}
+            {{ $type = "brands" }}
+        {{ else if (eq $type "r") }}
+            {{ $type = "regular" }}
+        {{ else if (eq $type "s") }}
+            {{ $type = "solid" }}
+        {{ end }}
+    {{ end }}
+
+    {{ $resource_path := printf "images/fa/%s/%s.svg" $type $name }}
+    {{ $id := printf "%s-%s" $type $name | htmlEscape }}
+
+    {{ partial "core/svg" (merge . (dict "path" $resource_path "context" .context "id" $id "classes" .classes)) }}
+{{ else }}
+    {{ warnf "must supply both type and name" }}
+{{ end }}

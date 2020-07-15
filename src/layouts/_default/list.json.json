@@ -1,0 +1,48 @@
+{{/* -*- mode: js -*-
+JSON feed template, initially sourced from [[https://xdeb.org/post/2017/06/11/make-hugo-generate-a-json-search-index-and-json-feed/#json-feed][here]].
+*/}}
+{{ $static_dir := "/src/static/" }}
+{
+  "Version" : "https://jsonfeed.org/version/1",
+  "title" : "{{ if eq .Title .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}",
+  "description": "Recent content {{ if ne .Title .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}",
+  "home_page_url" : "{{ .Site.BaseURL }}",
+  {{ with .OutputFormats.Get "JSON" -}}
+  "feed_url" : "{{ .Permalink }}",
+  {{ end -}}
+  {{ if fileExists (printf "%s/favicon.ico" $static_dir) }}
+  "favicon" : "{{ "/favicon.ico" | absURL }}",
+  {{ end -}}
+  {{ if fileExists (printf "%s/icon.ico" $static_dir) }}
+  "icon" : "{{ "/icon.ico" | absURL }}",
+  {{ end -}}
+  "author" : {
+    "name" : "{{ .Site.Params.name }}",
+    "url": "{{ .Site.BaseURL }}"
+    {{/*
+      {{ with $.Site.Author.avatar }},
+      "avatar": "{{ . | absURL }}"
+      {{ end }}
+    */}}
+  },
+
+  "items" : [
+    {{ $list := .Pages -}}
+    {{ $length := (len $list) -}}
+    {{ range $index, $element := $list -}}
+    {
+      "title" : {{ .Title | jsonify }},
+      "date_published" : "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+      "id" : "{{ .Permalink }}",
+      "url" : "{{ .Permalink }}",
+      {{ with .Params.author -}}
+      "author" : {
+        "name" : "{{ . }}"
+      },
+      {{ end -}}
+      "content_html" : {{ .Content | jsonify }}
+    }
+    {{ if ne (add $index 1) $length }},{{ end }}
+    {{ end -}}
+  ]
+}

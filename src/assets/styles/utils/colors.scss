@@ -1,0 +1,42 @@
+// shades of the millennium falcon
+$aoh-very-light-grey: hsl(228, 007%, 081%);
+$aoh-light-grey:      hsl(228, 007%, 055%);
+$aoh-grey:            hsl(228, 007%, 044%);
+$aoh-dark-grey:       hsl(228, 007%, 029%);
+$aoh-very-dark-grey:  hsl(228, 007%, 012%);
+
+$aoh-red:       hsl(352, 081%, 058%); // Vader's lightsaber.
+$aoh-orange:    hsl(025, 086%, 055%); // Luke's pilot uniform.
+$aoh-yellow:    hsl(050, 074%, 061%); // Human cyborg relations.
+$aoh-green:     hsl(107, 040%, 057%); // Fear is the path to the dark side.
+$aoh-blue:      hsl(196, 064%, 058%); // Whistle. Bloop.
+$aoh-purple:    hsl(313, 032%, 054%);
+$aoh-white:     hsl(000, 000%, 100%);
+$aoh-turquoise: hsl(161, 078%, 055%);
+
+// aliases
+$aoh-cyan:    $aoh-turquoise;
+$aoh-magenta: $aoh-purple;
+
+$aoh-colors: (
+    "white":     white,
+    "black":     black,
+    "red":       $aoh-red,
+    "orange":    $aoh-orange,
+    "yellow":    $aoh-yellow,
+    "green":     $aoh-green,
+    "blue":      $aoh-blue,
+    "purple":    $aoh-purple,
+    "turquoise": $aoh-turquoise);
+
+$white: #fff;
+$black: #111;
+
+$table-border-color: #DFE2E5;
+
+$grey:       #9B9B9B;
+$dark-grey:  #717171;
+$light-grey: #F7F7F7;
+
+$link-color: #e42b2b;
+$link-hover-color: #8e0000;

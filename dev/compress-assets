@@ -1,0 +1,71 @@
+#!/bin/bash
+# shell script to compress some files in the output directory
+# see https://docs.gitlab.com/ee/user/project/pages/introduction.html#serving-compressed-assets
+
+print_usage() { echo "usage: $0 [-v|-b] [-h|-?] BUILD_PATH"; }
+
+silent=1 # true
+gzip_flags=-fk9
+
+while getopts h?vb option; do
+    case "$option" in
+        [h?]) print_usage
+              exit 0
+              ;;
+        b) silent=1
+           gzip_flags="${gzip_flags}v"
+           ;;
+        v) silent=0
+           ;;
+        *) print_usage >&2
+           exit 1
+           ;;
+    esac
+done
+
+shift $((OPTIND-1))
+bin_path="$*"
+
+if [ -z "$bin_path" ]; then
+    print_usage >&2
+    exit 1
+fi
+
+export GREEN="\e[32m"
+export RED="\e[31m"
+export RESET="\e[0m"
+
+verbose_install_script='
+get_size() { stat -c %s "$@"; }
+
+if gzip '$gzip_flags' "!"; then
+    initial_size=$(get_size "!")
+    final_size=$(get_size "!.gz")
+
+    if [ $final_size -gt $initial_size ]; then
+        rm "!.gz" >/dev/null 2>&1
+
+        printf "expanded   %8d to %8d bytes (${RED}+%03d%%${RESET}) for file: %s\n" \
+            $initial_size $final_size $((100-$((100*initial_size/final_size)))) "!"
+    else
+        printf "compressed %8d to %8d bytes (${GREEN}-%03d%%${RESET}) for file: %s\n" \
+            $initial_size $final_size $((100-$((100*final_size/initial_size)))) "!"
+    fi
+else
+    echo "failed to compress file: !" >&2
+fi
+'
+
+if [ ! -d $bin_path ]; then
+    echo "compress-assets:warning() : destination path for build not found: $bin_path" >&2
+    exit 0 # 0 because a directory which doesn't exist... already has all it's assets compressed
+fi
+
+pushd $bin_path >/dev/null
+find . -type f -regextype egrep -not -empty -iregex '.*\.(htm|html|txt|text|js|css)$' -print0 |
+    if [ $silent -eq 0 ]; then
+        xargs -r0 -I! bash -c "$verbose_install_script"
+    else
+        xargs -r0 -I% gzip $gzip_flags %
+    fi
+popd >/dev/null

@@ -1,0 +1,12 @@
+{{/* collect SVG symbol defintions into an svg-trail variable in the current pages scratchpad */}}
+{{ with .Scratch.Get "svg-trail" }}
+  <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <!--
+           Font Awesome Free 5.5.0 by @fontawesome - https://fontawesome.com
+           License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+      -->
+      {{ . | safeHTML }}
+    </defs>
+  </svg>
+{{ end }}

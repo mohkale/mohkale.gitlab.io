@@ -1,0 +1,80 @@
+baseURL: https://mohkale.gitlab.io
+languageCode: en-us
+# theme: default
+
+title: Mohsin Kaleem
+params:
+  name: Mohsin Kaleem
+  subtitle: I'm a developer
+  subtitles:
+    - a habitual hacker (⌐■_■)
+    - a lifelong weeb (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+    - (lost (in (lisp (parens))))
+    # - a frequent gamer
+  contact:
+    mail: mailto:mohkale@kisara.moe
+    github: https://github.com/mohkale
+    gitlab: https://gitlab.com/mohkale
+    linkedin: https://www.linkedin.com/in/mohsin-kaleem-3911511a3/
+
+themes:
+  - name: default
+    repo: https://github.com/budparr/gohugo-theme-ananke.git
+    branch: master
+  - name: terminal
+    repo: https://github.com/panr/hugo-theme-terminal
+
+taxonomies:
+  category: categories
+  tag: tags
+
+permalinks:
+  posts: /posts/:year/:month/:day/:title/
+
+ignoreFiles:
+  - '^\\.#'
+
+frontmatter:
+  date:
+    - :filename
+    - :default
+
+Paginate: 1000000 # WE DON'T NEED PAGINATION MWAHAHAHAAHAHAH
+
+# make relative URLs stay relative.
+canonifyURLs: false
+enableEmoji: true
+enableRobotsTXT: true
+
+refLinksErrorLevel: WARNING
+
+# configure paths
+archetypeDir: arch/
+configDir: etc/config
+assetDir: src/assets/
+contentDir: src/content/
+dataDir: src/data/
+layoutDir: src/layouts
+staticDir: src/static
+publishDir: bin/
+themesDir: var/themes/
+resourceDir: var/resources/
+
+logFile: var/hugo.log
+
+markup:
+  # literally the only available engine that
+  # let's you configure block-attributes :angry:.
+  defaultMarkdownHandler: mmark
+  highlight:
+    noClasses: false
+
+# add non-content entries to [[https://gohugo.io/content-management/menus/#add-non-content-entries-to-a-menu][menus]].
+menu:
+  nav:
+    - identifier: tags
+      url: /tags/
+      weight: 30
+
+outputs:
+  section: [HTML, RSS, JSON]

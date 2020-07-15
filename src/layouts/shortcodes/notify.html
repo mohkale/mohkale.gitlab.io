@@ -1,0 +1,34 @@
+{{ $type := .Get 0 }}
+
+{{ if eq $type "warn" }}
+  {{ $type = "warning" }}
+{{ end }}
+
+<div class="notice {{ with $type }}{{.}}{{ end }}">
+  <div>
+    {{ if and $type (not (eq $type "")) }}
+      {{ if eq $type "success" }}
+        {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "check") }}
+      {{ else if eq $type "info" }}
+        {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "info") }}
+      {{ else if eq $type "warning" }}
+        {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "exclamation-triangle") }}
+      {{ else if eq $type "error" }}
+        {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "bug") }}
+      {{ else if or (eq $type "debug") (eq $type "note") }}
+        {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "sync") }}
+      {{ end }}
+
+      <span>{{ $type | title }}</span>
+    {{ end }}
+  </div>
+
+  <div>
+    {{- .Get 1 | markdownify -}}
+    {{/* or (.Get 1) .Inner | markdownify */}}
+    {{/*
+    * For some dumb reason, using .Inner prevents the rest of the page being evaluated.
+    * but not including .Inner produces a segmentation violation.
+    */}}
+  </div>
+</div>

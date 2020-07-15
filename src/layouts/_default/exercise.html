@@ -1,0 +1,65 @@
+{{ define "main" }}
+  <article>
+    {{ partial "utils/title" . }}
+
+    {{ with .Params.solution }}
+      {{ highlight . (or $.Params.language "") "" }}
+    {{ else }}
+      {{ warnf "failed to provide solution for post: %s" . }}
+    {{ end }}
+
+    {{/* WARN hardcoded anchor heading format */}}
+
+    {{ if or .Params.challenge .Params.solution }}
+      <h2 id="challenge" data-with-anchor="true"><a class="anchor" href="#challenge">#</a>Challenge</h2>
+
+      {{ if .Params.solution }}
+        <table>
+          <tr>
+            <th>Source</th>
+            <th>Language</th>
+            {{ if .Params.runtime }}
+              <th>Time Complexity</th>
+            {{ end }}
+          </tr>
+          <tr>
+            <td>
+              {{ with .Params.source }}
+                {{ $link := "" }}
+                {{ $title := "" }}
+
+                {{ if reflect.IsMap . }}
+                  {{ $link = .link }}
+                  {{ $title = .title }}
+                {{ else if eq . "dailybyte" }}
+                  {{ $title = "DailyByte" }}
+                  {{ $link = "https://dailybyte.co.uk/" }}
+                {{ end }}
+
+                {{ if gt (len $link) 0 }}<a href="{{ $link }}">{{ end }}
+                  {{ or $title . }}
+                {{ if gt (len $link) 0 }}</a>{{ end }}
+              {{ end }}
+            </td>
+            <td>{{ .Params.language }}</td>
+            {{ with .Params.runtime }}
+              <td>
+                <span class="math">\(\mathcal{O}({{ . }})\)</span>
+              </td>
+            {{ end }}
+          </tr>
+        </table>
+      {{ end }}
+
+      {{ with .Params.challenge }}
+        <p>{{ . | markdownify }}</p>
+      {{ end }}
+    {{ end }}
+
+    <!-- <p><b>Time Complexity</b>: <span class="complexity">O({{ .Params.runtime }})</span></p> -->
+
+    {{ partial "content" . }}
+
+    {{ partial "utils/meta" . }}
+  </article>
+{{ end }}

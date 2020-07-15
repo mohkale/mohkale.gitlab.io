@@ -1,0 +1,160 @@
+/**
+ * styles for the header section, burger menu and navbar of my blog.
+ * these are complex enough to warrant abstraction into their own files.
+ */
+
+// burger menu for the navbar.
+.burger-container {
+    // align contents to the right hand side.
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    z-index: 100;
+    position: fixed;
+    background: transparentize($main-bg, 0.1);
+    @include fade-in-down;
+
+    transition: top 0.3s ease-out;
+
+    .nav-burger:focus {
+        outline: 0;
+    }
+
+    // hide the burger menu when the navbar is visible.
+    @media screen and (min-width: $medium) {
+        visibility: hidden;
+    }
+}
+
+nav {
+    z-index: 1;
+    visibility: hidden;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0px;
+        margin: 0px;
+    }
+
+    a {
+        color: $grey;
+        &.current, &:hover {
+            color: $black;
+        }
+    }
+
+    @media screen and (max-width: $medium) {
+        font-size: 2em;
+        position: fixed;
+        top: 0; left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        ul {
+            width: 50%;
+            text-align: right;
+
+            li {
+                padding-bottom: 0.25em;
+                padding-top:    0.25em;
+                transition: padding 0.3s;
+
+                &:hover {
+                    padding-bottom: 0.5em;
+                    padding-top:    0em;
+                }
+            }
+        }
+
+        a {
+            margin-bottom: 1em;
+        }
+    }
+
+    @media screen and (min-width: $medium) {
+        visibility: visible;
+        position: relative;
+        font-size: 0.9rem;
+
+        ul {
+            height: 3rem;
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 14px;
+
+            li {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+h1.site-title {
+    width: 65px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin: 0px;
+
+    @include link(black);
+}
+
+// dropdown nav menu
+.nav-active nav {
+    height: 100vh;
+    width:  100vw;
+
+    visibility: visible;
+    ul {
+        animation: anim-fade-in-down;
+        animation-duration: $animate-duration;
+        animation-delay: 0;
+        animation-fill-mode: both;
+    }
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 190px;
+
+    @media screen and (max-width: $small) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+
+            #subtitle {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
+
+.about {
+    text-align: right;
+
+    .sm-links {
+        list-style-type: none;
+        display: flex;
+        padding-left: 0px;
+        justify-content: flex-end;
+
+        li:not(:first-child) {
+            margin-left: 1em;
+        }
+
+        .icon {
+            width:  1em;
+            height: 1em;
+        }
+    }
+}

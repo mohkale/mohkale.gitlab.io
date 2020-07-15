@@ -1,0 +1,75 @@
+.notice {
+    $border-radius: .4rem;
+    $indent:        1.6em;
+
+    // border: 1px solid $aoh-very-dark-grey;
+    // border-radius: $border-radius;
+    // &>div:first-child {
+    //     border-bottom: 1px solid $aoh-very-dark-grey;
+    // }
+
+    margin: $vertical-spacing 0px;
+
+    // base colors for each band of notifications
+    $notify-colors: ("success": $aoh-green,
+                     "debug":   $aoh-yellow,
+                     "note":    $aoh-yellow,
+                     "info":    $aoh-blue,
+                     "warning": $aoh-orange,
+                     "error":   $aoh-red,);
+
+    @mixin banner-header($color) {
+        $fg-color: darken($color, 30%);
+        $bg-color: $color;
+
+        background-color: $bg-color;
+        color: $fg-color;
+        .icon {
+            fill:  $fg-color;
+        }
+    }
+
+    & > div {
+        min-height: 30px;
+
+        &:first-child {
+            @include no-select();
+            @include center();
+
+            border-radius: $border-radius $border-radius 0 0;
+            @include banner-header($aoh-purple)
+
+            .icon {
+                width:  0.8em;
+                height: 0.8em;
+                margin-right: 0.75em;
+            }
+
+            padding-left: $indent / 2;
+
+            // center icon and text
+        }
+
+        &:last-child {
+            border-radius: 0 0 $border-radius $border-radius;
+            background-color: darken($light-grey, 5%);
+            color: $aoh-very-dark-grey;
+
+            padding: 0.25em $indent;
+
+            // vertically center content
+            // display: flex;
+            // flex-wrap: wrap;
+            // align-items: center;
+            // & > * {
+            //     margin: 0px 5px;
+            // }
+        }
+    }
+
+    @each $name, $color in $notify-colors {
+        &.#{$name} > div:first-child {
+            @include banner-header($color)
+        }
+    }
+}

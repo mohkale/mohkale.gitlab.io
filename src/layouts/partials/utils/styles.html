@@ -1,0 +1,70 @@
+{{/* get list of styles to include in the current page. */}}
+
+{{ $styles := slice }}
+{{/* WARN hardcoded assets directory */}}
+{{ $style_fmt := "styles/%s.scss" }}
+
+{{/*
+either styles have been given and we're allowed to use the
+default styles, or styles has not been given in which case
+we *can* use the default styles.
+*/}}
+{{ if or (and .Params.styles .Params.default_styles) (not .Params.styles) }}
+  {{ $possibles := slice }}{{/* possible file names for styles */}}
+
+  {{ with .Section }}
+    {{/* NOTE
+    .Section applies for both the taxonomy and taxonomy-term pages.
+    */}}
+    {{ $possibles = $possibles | append . }}
+  {{ end }}
+
+  {{ with .Kind }}
+    {{ $page_kind := . }}
+    {{ if eq $page_kind "taxonomyTerm" }}
+      {{/* style names shouldn't be camel case! */}}
+      {{ $page_kind = "term" }}
+    {{ end }}
+
+    {{ $possibles = $possibles | append $page_kind }}
+  {{ end }}
+
+  {{/* fallback which should definitely exist */}}
+  {{ $possibles = $possibles | append "main" }}
+
+  {{ $break := false }}
+  {{ range $possibles }}
+    {{ if not $break }}
+      {{ $style_name := printf $style_fmt . }}
+
+      {{ with printf "src/assets/%s" $style_name }}
+        {{ if fileExists . }}
+          {{ $styles = $styles | append $style_name }}
+          {{ $break = true }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ with $param_styles := .Params.styles }}
+  {{ if not (reflect.IsSlice $param_styles) }}
+    {{ $param_styles = slice $param_styles }}
+  {{ end }}
+
+  {{ range $param_styles }}
+    {{ if hasPrefix . "./" }}
+      {{ $styles = $styles | append (printf "%s.scss" .) }}
+    {{ else }}
+      {{ $styles = $styles | append (printf $style_fmt .) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ with .Scratch.Get "styles" }}
+  {{ range . }}
+    {{ $styles = $styles | append (printf $style_fmt .) }}
+  {{ end }}
+{{ end }}
+
+{{ return $styles }}

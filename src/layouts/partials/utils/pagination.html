@@ -1,0 +1,68 @@
+{{/* see [[https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/pagination.html][_internal/pagination]] */}}
+{{ with .Paginator }}
+  {{ if gt .TotalPages 1 }}
+    {{ $current_pager := . }}
+
+    <ul id="pagination" class="inline-list center">
+      {{ with .First }}
+        <li class="first">
+          <a href="{{ .URL }}" aria-label="First">&laquo;</a>
+        </li>
+      {{ end }}
+
+      <li class="prev">
+        {{- if .HasPrev -}}<a href="{{ .Prev.URL }}" aria-label="Previous">{{- end -}}
+          &lsaquo;
+          {{- if .HasPrev -}}</a>{{- end -}}
+      </li>
+
+      {{/* ellipses have been included */}}
+      {{ $ellipsed := false }}
+      {{/* number of pages allowed before ellipses */}}
+      {{ $side_tolerance := 3 }}
+      {{/* number of pages allowed between ellipses & current page */}}
+      {{ $page_tolerance := 2 }}
+
+      {{ range .Pagers }}
+        {{ $should_ellipse := false }}
+        {{ $right := sub .TotalPages .PageNumber }}
+
+        {{/* show number when within side pagination sides */}}
+        {{ $show_number := or (le .PageNumber $side_tolerance) (eq $right 0) }}
+        {{/* or when page is within range of page_tolerance */}}
+        {{ if not $show_number }}
+          {{ $show_number =                   gt .PageNumber (sub $current_pager.PageNumber $page_tolerance) }}
+          {{ $show_number = and $show_number (lt .PageNumber (add $current_pager.PageNumber $page_tolerance)) }}
+        {{ end }}
+
+        {{ if $show_number }}
+          {{ $ellipsed = false }}
+          {{ $should_ellipse = false }}
+        {{ else }}
+          {{ $should_ellipse = not $ellipsed }}
+          {{ $ellipsed = true }}
+        {{ end }}
+
+        {{ if $show_number }}
+          <li {{ if eq . $current_pager }}class="current"{{ end }}><!--
+                                                                   --><a href="{{- .URL -}}">{{- .PageNumber -}}</a><!--
+                                                                                                                    --></li>
+        {{ else if $should_ellipse }}
+          <li class="sep">&hellip;</li>
+        {{ end }}
+      {{ end }}
+
+      <li class="next">
+        {{- if .HasNext -}}<a href="{{ .Next.URL }}" aria-label="Next">{{- end -}}
+          &rsaquo;
+          {{- if .HasNext -}}</a>{{- end -}}
+      </li>
+
+      {{ with .Last }}
+        <li class="last">
+          <a href="{{ .URL }}" aria-label="Last">&raquo;</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}

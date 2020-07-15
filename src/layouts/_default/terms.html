@@ -1,0 +1,28 @@
+{{/*
+List page for all taxonomies tied to a given term.
+
+Eg. For the taxonomy tags, you may have the tags a and b, this
+page will be populated with links to pagination for those tags.
+
+I.E. This layout is used for /tags/ and it links to /tags/a/
+and /tags/b/.
+*/}}
+
+{{ define "main" }}
+    <h1>{{ $.Data.Plural | humanize }}</h1>
+
+    <aside>{{- partial "content" . -}}</aside>
+
+    <ul class="tax-entries">
+      {{ range $key, $value := .Data.Terms }}
+        <li>
+          <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">
+            {{- $key -}}
+            <span class="term-count">{{ len $value.Pages }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+
+    {{ partial "utils/meta" . }}
+{{ end }}

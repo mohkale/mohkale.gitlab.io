@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <article>
+    {{ partial "utils/title" . }}
+
+    <div>
+      {{ partial "content" . }}
+    </div>
+
+    {{ partial "utils/meta" . }}
+  </article>
+{{ end }}

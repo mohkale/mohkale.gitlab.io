@@ -1,0 +1,33 @@
+Style/EndOfLine:
+  EnforcedStyle: lf
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  enabled: false
+
+Metrics/AbcSize:
+  enabled: false
+
+Metrics/BlockLength:
+  enabled: false
+
+Style/BlockDelimiters:
+  enabled: false
+
+Layout/BlockEndNewline:
+  enabled: false
+
+Style/StderrPuts:
+  enabled: false
+
+Style/GlobalVars:
+  AllowedVariables:
+    - root
+
+Style/GuardClause:
+  enabled: false
