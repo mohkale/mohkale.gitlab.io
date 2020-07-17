@@ -56,7 +56,11 @@
       {{ end }}
     {{ end }}
 
-    <!-- <p><b>Time Complexity</b>: <span class="complexity">O({{ .Params.runtime }})</span></p> -->
+    {{ with .Params.description }}
+      <h2 id="description" data-with-anchor="true"><a class="anchor" href="#description">#</a>Solution</h2>
+
+      <p>{{ . | markdownify }}</p>
+    {{ end }}
 
     {{ partial "content" . }}
 
