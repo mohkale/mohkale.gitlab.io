@@ -1,7 +1,7 @@
 ---
 title: Spot the Difference
 source: dailybyte
-# tags:
+tags: [python]
 
 challenge: |-
   given a string `s` and a string `t` with `t` being `s` shuffled with optionally

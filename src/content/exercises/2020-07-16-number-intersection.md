@@ -1,7 +1,7 @@
 ---
 title: Number Intersection
 source: dailybyte
-# tags:
+tags: [ruby]
 
 challenge: |-
   given two arrays of numbers (not guaranteed unique) return the set (unique) of
