@@ -49,7 +49,7 @@
             {{ range partial "utils/styles" . }}
                 {{ $resource := false }}
                 {{ if hasPrefix . "./" }}
-                    {{ $resource = $.Resources.GetMatch . }}
+                    {{ $resource = $.Resources.GetMatch (strings.TrimPrefix "./" .) }}
                 {{ else }}
                     {{ $resource = resources.Get . }}
                 {{ end }}

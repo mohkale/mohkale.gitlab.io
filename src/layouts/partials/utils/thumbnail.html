@@ -1,0 +1,49 @@
+{{ $post := .post }}
+{{ $classes := .classes }}
+{{ $fit_to := or .post.Params.thumbnail.resize .resize }}
+{{ $hide_caption := .hide_caption }}
+{{ $link_to_image := not .no_link_to_image }}
+
+{{ with $thumb := $post.Params.thumbnail }}
+  {{ if not (reflect.IsMap $thumb) }}
+    {{ $thumb = (dict "path" $thumb "caption" nil "source" nil "height" nil) }}
+  {{ end }}
+
+  {{ with $res := $post.Resources.GetMatch $thumb.path }}
+    {{ with $fit_to }}
+      {{ $res = $res.Fit . }}
+    {{ end }}
+
+    <div>
+      {{ if $link_to_image }}
+      <a href="{{ $res.Permalink }}" target="_blank">
+      {{ end }}
+        <img
+          class="{{ with $classes }}{{ . }}{{ else }}post-thumbnail{{ end }}"
+          style="
+            {{ with $thumb.height }}max-height: {{ . }}px;{{ end }}
+            {{ with $thumb.position }}object-position: {{ . }};{{ end }}
+          "
+          alt="thumbnail-for-{{ replace $post.Title " " "-" }}"
+          src="{{ $res.Permalink }}" />
+      {{ if $link_to_image }}
+      </a>
+      {{ end }}
+
+      {{ if and (not $hide_caption) (or $thumb.caption $thumb.source) }}
+        <figcaption class="post-thumbnail__caption">
+          {{ with $thumb.caption }}{{ . }}{{ end }}
+          {{ with $thumb.source }}
+            {{ if reflect.IsMap . }}
+              [<a href="{{ .link }}">{{ .title }}</a>]
+            {{ else }}
+              <a href="{{ . }}">{{ . }}</a>
+            {{ end }}
+          {{ end }}
+        </figcaption>
+      {{ end }}
+    </div>
+  {{ else }}
+    {{ warnf "failed to find thumbnail for post: %s%s" $post.File.Dir $thumb.path }}
+  {{ end }}
+{{ end }}

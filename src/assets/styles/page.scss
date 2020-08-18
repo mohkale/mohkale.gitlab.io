@@ -38,31 +38,29 @@ ul.post-meta {
 
 aside.post-meta {
     .pagination {
-        display: flex;
-        align-items: center;
-
-        // only one child.
-        // a:first-child:last-child {
-        // }
+        // display: flex;
+        // align-items: center;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
 
         a {
-            border-radius: 4px;
             padding: 15px;
-            width: 50%;
+            border-radius: 4px;
 
             &:hover, &:active {
                 background-color: $light-grey;
             }
 
             margin-bottom: 20px;
+
+            &.next {
+                grid-column: 2;
+            }
         }
 
         @media screen and (max-width: 500px) {
-            flex-direction: column;
-
-            a {
-                width: 100%;
-            }
+            grid-template-columns: 100%;
+            a.next { grid-column: 1; }
         }
 
         span {
@@ -157,3 +155,15 @@ aside.post-meta {
 //     }
 // }
 
+.post-thumbnail {
+    position: relative;
+    width: calc(100% + #{2 * $center-padding});
+    left: -$center-padding;
+    object-fit: cover;
+}
+
+.post-thumbnail__caption {
+    padding: 4px 75px 12px;
+    text-align: center;
+    color: $grey;
+}

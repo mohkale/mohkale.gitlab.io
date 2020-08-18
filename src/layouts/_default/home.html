@@ -1,0 +1,72 @@
+{{ define "main" }}
+  <article>
+    {{ partial "content" . }}
+
+    {{ with .Params.highlighted_posts }}
+      <h2>Posts</h2>
+
+      <div id="highlighted-posts" class="posts-slider">
+        {{ range . }}
+          {{ with $.Site.GetPage . }}
+            {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
+          {{ else }}
+            {{ warnf "failed to find page: %s" . }}
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+
+    {{ $recent_posts := sort $.Site.RegularPages "Date" "desc" }}
+    {{ with first $.Site.Params.homepage.recent_posts.limit $recent_posts }}
+      <h3>
+        Recent Posts
+
+        {{ with $.Site.GetPage "/all.md" }}
+          (<a href="{{ .Permalink }}">See all</a>)
+        {{ else }}
+          {{ warnf "failed to find complete pagination at: /all.md" }}
+        {{ end }}
+      </h3>
+
+      <div class="slide-container">
+        <div id="recent-posts">
+          {{ range . }}
+            {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+
+    {{/*
+    {{ $potd_posts := where $.Site.RegularPages "Section" "not in" $.Site.Params.homepage.potd.excluded_sections }}
+    {{ $potd_posts = where $potd_posts "Section" "!=" "" }}
+    {{ with index (shuffle $potd_posts) 0 }}
+      <h2>Post of the Day</h2>
+      <div id="post-of-the-day">
+        <iframe frameborder="0" src="{{ .Permalink }}" style="width: 100%; height: 100%;">
+        </iframe>
+      </div>
+    {{ end }}
+    */}}
+
+    {{ $exercises := where $.Site.Pages "Section" "exercises" }}
+    {{ $exercises = where $exercises "Params.solution" "!=" nil }}
+    {{ with index (shuffle $exercises) 0 }}
+      <h2>Snippet of The Day</h2>
+      <p><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+
+      <!--
+        I can't find a visually pleasing place to put a link, so lets just
+        make both the source code and the title text link to the exercise
+        solution.
+      -->
+      <a href="{{ .Permalink }}">
+        {{ highlight .Params.Solution (or .Params.language "") "" }}
+      </a>
+    {{ end }}
+
+
+  </article>
+
+  {{ partial "utils/meta" . }}
+{{ end }}

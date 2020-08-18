@@ -9,16 +9,25 @@ categories: meta
 kind: page
 layout: single
 
+thumbnail:
+  path: 294738.jpg
+  caption: cheatsheet, every good site should have one
+  height: 500
+  position: top
+  resize: 1000x1000
+  source:
+    link: https://yande.re/pool/show/3534
+    title: kantoku
+
 meta:
   post: true
   latex: true
   anchor_links: true
+
 menu:
   nav:
     identifier: cheatsheet
     weight: 15
-resources:
-  - src: "emacs-second.cast"
 ---
 
 This page demonstrates some of the different ways to control the rendering of
@@ -139,17 +148,17 @@ class.
 
 ```markdown
 {.img-gallery .no-style}
-| {{</* figure src="images/5210.webp" */>}} | {{</* figure src="images/5213.webp" */>}} |
-|---------------------------------------|---------------------------------------|
-| caption: *sleepy* Izumi               | caption: *excited* Izumi              |
+| {{</* figure src="5210.webp" */>}} | {{</* figure src="5213.webp" */>}} |
+|------------------------------------|------------------------------------|
+| caption: *sleepy* Izumi            | caption: *excited* Izumi           |
 ```
 
 {{< notify "warn" "mmark requires a table head seperator, even when the table uses default alignment." >}}
 
 {.img-gallery .no-style}
-| {{< figure src="images/5210.webp" >}} | {{< figure src="images/5213.webp" alt="izumi is excited" >}} |
-|---------------------------------------|--------------------------------------------------------------|
-| caption: *sleepy* Izumi               | caption: *excited* Izumi                                     |
+| {{< figure src="5210.webp" >}} | {{< figure src="5213.webp" alt="izumi is excited" >}} |
+|--------------------------------|-------------------------------------------------------|
+| caption: *sleepy* Izumi        | caption: *excited* Izumi                              |
 
 ## Shortcodes
 ### Fontawesome
@@ -172,7 +181,7 @@ calculated at runtime).
 {{</* fontawesome "s" "yin-yang" */>}}
 ```
 
-See [here]({{< relref "fontawesome/index.html" >}}) for a preview of all supported fontawesome icons.
+See [here](./fontawesome/index.html) for a preview of all supported fontawesome icons.
 
 #### Editing SVGs
 When editing SVGs (by hand, from a file), take care ~~for reasons beyond my understanding~~ that this blog
@@ -298,6 +307,23 @@ default_styles: true
 styles:
   - my-sheet.scss
 ---
+```
+
+### Thumbnail
+Pages can define a thumbnail image. This image will be shown at the top of the page
+(after the title) and may have an associated caption (and source) to indicate where
+its from or what it's showing.
+
+```yaml
+thumbnail:
+  path: path/to/image/resource.jpg
+  caption: cheatsheet, every good site should have one
+  height: 500 # maximum height of the image
+  position: center # object-position property
+  resize: widthxheight # resize image before showing
+  source:
+    link: "https://find-this-image-here.com/image"
+    title: show this instead of the image link
 ```
 
 ### Meta

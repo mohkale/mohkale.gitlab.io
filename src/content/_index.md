@@ -8,4 +8,7 @@ cascade:
     - main.bundle.js
 scripts:
   - main.bundle.js
+layout: home
+highlighted_posts:
+  - /cheatsheet
 ---

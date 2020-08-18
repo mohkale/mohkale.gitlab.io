@@ -1,5 +1,5 @@
-@mixin link($fg: #424242, $hover-fg: #555555) {
-    a {
+@mixin link($fg: #424242, $hover-fg: #555555, $selectors: '') {
+    a#{$selectors} {
         &:link, &:visited {
             color: $fg;
             opacity: 1;

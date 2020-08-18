@@ -1,6 +1,7 @@
 {{ define "main" }}
   <article>
     {{ partial "utils/title" . }}
+    {{ partial "utils/thumbnail" (dict "post" .) }}
 
     <div>
       {{ partial "content" . }}

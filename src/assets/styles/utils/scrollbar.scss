@@ -1,0 +1,23 @@
+@mixin scrollbar($size: 13px) {
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        min-height: 16px;
+        background-color: #999999;
+        background-clip: padding-box;
+        border: 3px solid #fdfdfd;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:active,
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #777;
+    }
+}

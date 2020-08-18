@@ -1,0 +1,13 @@
+{{/* copied from ./list.html */}}
+{{ define "main" }}
+  <article>
+    {{ with .Title }}
+      <h1>{{- . | title -}}</h1>
+    {{ end }}
+
+    {{- partial "content" . -}}
+    {{- partial "utils/list_index" (dict "Paginator" (dict "Pages" $.Site.RegularPages) "Sections" nil) -}}
+  </article>
+
+  {{ partial "utils/meta" . }}
+{{ end }}

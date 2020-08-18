@@ -16,6 +16,14 @@ params:
     github: https://github.com/mohkale
     gitlab: https://gitlab.com/mohkale
     linkedin: https://www.linkedin.com/in/mohsin-kaleem-3911511a3/
+  homepage:
+    recent_posts:
+      limit: 12
+    potd: # post of the day
+      excluded_sections:
+        # no posts from this section can exist in the POTD
+        - exercises
+        - notes
 
 themes:
   - name: default
