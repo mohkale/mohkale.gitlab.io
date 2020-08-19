@@ -1,0 +1,117 @@
+@import "./summary";
+
+$timeline-bar-width: .1em;
+$timeline-bar-section-width: 4em;
+$timeline-bar-indicator-size: .8em;
+
+.timeline__item__tag--with-tag {
+    display: flex;
+    justify-content: center;
+    width: $timeline-bar-section-width;
+}
+
+.timeline__item__tag {
+    display: inline-block;
+    color: white;
+    background: $turquoise;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.timeline__item {
+    .summary-section {
+        --icon-spacing: 14px;
+    }
+
+    &:first-child, &:last-child {
+        .timeline__item__tag {
+            font-size: 1rem;
+            padding: 6px 16px;
+        }
+    }
+
+    p {
+        margin: 8px 0px;
+    }
+}
+
+.timeline__item               { --bar-color: #{$grey}; }
+.timeline__item--hl-red       { --bar-color: #{$red}; }
+.timeline__item--hl-turquoise { --bar-color: #{$turquoise}; }
+.timeline__item--hl-blue      { --bar-color: #{$blue}; }
+.timeline__item--hl-yellow    { --bar-color: #{$yellow}; }
+
+.timeline__item--with-bar {
+    display: flex;
+
+    .timeline__item__content {
+        margin-top: 1em;
+        position: relative;
+        padding-bottom: 16px;
+
+        &::after {
+            content: '';
+            width:  $timeline-bar-indicator-size;
+            height: $timeline-bar-indicator-size;
+            background-color: var(--bar-color);
+            position: absolute;
+            border-radius: 10000000px;
+
+            top: 0;
+            left: -($timeline-bar-indicator-size + $timeline-bar-section-width) / 2;
+        }
+    }
+}
+
+.timeline__item__bar {
+    position: relative;
+    width: $timeline-bar-section-width;
+
+    &::after {
+        content: '';
+        height: 100%;
+        width: $timeline-bar-width;
+        background-color: var(--bar-color);
+
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.timeline__item__links {
+    padding: 0px;
+    list-style-type: none;
+    margin: 0px;
+
+    // @include link($blue, darken($blue, 25%));
+
+    display: flex;
+    flex-wrap: wrap;
+    li {
+        margin-right: 1em;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        fill: currentColor;
+        width:  1em;
+        height: 1em;
+        margin-right: 4px;
+    }
+}
+
+p.timeline__item__date {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    line-height: 0.8;
+}

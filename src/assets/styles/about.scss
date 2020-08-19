@@ -1,0 +1,51 @@
+@import "./page";
+
+main {
+    padding-bottom: 48px;
+}
+
+hr {
+    margin: 2.4em 0px;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+h1, h2, h3 {
+    color: $very-dark-grey;
+}
+
+.icon {
+    fill: $very-dark-grey;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1, h2 {
+        margin: 0px;
+    }
+    h1 { margin-bottom: 6px; }
+
+    &:first-child {
+        margin-bottom: 1em;
+    }
+}
+
+.heading__with-icon {
+    display: flex;
+    align-items: center;
+
+    .icon {
+        margin-right: 8px;
+        width:  1.6rem;
+        height: 1.6rem;
+    }
+}
+
+@import "./includes/about/summary";
+@import "./includes/about/skills";
+@import "./includes/about/timeline";

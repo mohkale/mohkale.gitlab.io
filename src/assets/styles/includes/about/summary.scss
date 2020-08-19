@@ -1,0 +1,22 @@
+.summary-section {
+    .icon {
+        width:  1em;
+        height: 1em;
+    }
+
+    h3 {
+        margin: 0px;
+    }
+
+    color: $very-dark-grey;
+    --icon-spacing: 1em;
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: auto auto 1fr;
+    grid-column-gap: var(--icon-spacing);
+    margin-bottom: 10px;
+
+    p {
+        margin: 0px;
+    }
+}

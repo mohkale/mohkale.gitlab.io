@@ -16,8 +16,8 @@
 
     {{ if not (in $svgs $id) }}
         {{/* thanks to [[https://github.com/sylvainmetayer/jekyll-fontawesome-svg/blob/master/lib/jekyll/fontawesome/svg/fa-icon.rb][jekyll-fontawesome]]. */}}
-        {{ $svg_path := replaceRE "^.*path d=\"([^\"]*)\".*\\/>.*$" "$1" .Content }}
-        {{ $svg_vbox := replaceRE "^.*viewBox=\"([^\"]*)\".*$" "$1" .Content }}
+        {{ $svg_path := replaceRE "^.*path d=\"([^\"]*)\".*\\/>.*" "$1" .Content }}
+        {{ $svg_vbox := replaceRE "^.*viewBox=\"([^\"]*)\".*" "$1" .Content }}
 
         {{ $trail := or ($ctx.Scratch.Get "svg-trail") "" }}
 

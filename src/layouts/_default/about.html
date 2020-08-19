@@ -1,0 +1,148 @@
+{{ define "main" }}
+  <article>
+    <section>
+      <div class="heading">
+        <div class="heading__with-icon">
+          {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "book") }}
+          <h1>Summary</h1>
+        </div>
+        <h2>About Me</h2>
+      </div>
+
+      {{ range .Params.about_summary }}
+        <div class="summary-section">
+          {{ partial "core/fontawesome" (dict "context" $.Page "type" (index .icon 0) "name" (index .icon 1)) }}
+          <div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text | markdownify }}</p>
+          </div>
+        </div>
+      {{ end }}
+
+      {{ partial "content" . }}
+    </section>
+
+    <hr/>
+
+    <section>
+      <div class="heading">
+        <div class="heading__with-icon">
+          {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "cog") }}
+          <h1>Skills</h1>
+        </div>
+        <h2>What can I do?</h2>
+      </div>
+
+      <div class="skills">
+        {{ range .Params.skills }}
+          <div class="skills_skill">
+            {{ with .icon }}
+              {{ if reflect.IsSlice . }}
+                {{ partial "core/fontawesome" (dict "context" $.Page "type" (index . 0) "name" (index . 1)) }}
+              {{ else }}
+                {{ with $.Resources.GetMatch . }}
+                  <svg class="icon"><image xlink:href="{{ .Permalink }}" /></svg>
+                {{ else }}
+                  {{ warnf "failed to find resource icon for skill: %s" . }}
+                {{ end }}
+              {{ end }}
+            {{ else }}
+              {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "cog") }}
+            {{ end }}
+
+            <p class="skill__text">{{ .title }}</p>
+            <ul class="skill__tags">
+              {{ with .tags }}
+                {{ range $i, $tags := . }}
+                  {{ if and $tags (not (reflect.IsSlice $tags)) }}
+                    {{ $tags = slice $tags }}
+                  {{ end }}
+
+                  {{ range $tags }}
+                    <li class="skill__tags__tag skills__tags__tag--{{ add $i 1 }}">{{ . }}</li>
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <hr/>
+
+    <section>
+      <div class="heading">
+        <div class="heading__with-icon">
+          {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "history") }}
+          <h1>History</h1>
+        </div>
+        <h2>My Life until Now</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__item">
+          <span class="timeline__item__tag">Start</span>
+        </div>
+
+        {{ $timeline := sort .Params.timeline "date" }}
+        {{ with $timeline }}
+          {{ $first_year := dateFormat "2006" (index $timeline 0).date }}
+          {{ $last_year := $first_year }}
+          {{ range $timeline }}
+            {{ $current_year := dateFormat "2006" .date }}
+
+            {{ if not (eq $last_year $current_year) }}
+              <div class="timeline__item timeline__item__tag--with-tag">
+                <span class="timeline__item__tag">{{ $current_year }}</span>
+              </div>
+              {{ $last_year = $current_year }}
+            {{ end }}
+
+            <div class="timeline__item timeline__item--with-bar {{ with .color }}timeline__item--hl-{{ . }}{{ end }}">
+              <span class="timeline__item__bar"></span>
+
+              <div class="timeline__item__content">
+                <p class="timeline__item__date">
+                  {{ if eq $current_year $first_year }}
+                    {{ dateFormat "January 02, 2006" .date }}
+                  {{ else }}
+                    {{ dateFormat "January 02" .date }}
+                  {{ end }}
+                </p>
+
+                <div class="summary-section">
+                  {{ with .icon }}
+                    {{ partial "core/fontawesome" (dict "context" $.Page "type" (index . 0) "name" (index . 1)) }}
+                  {{ end }}
+
+                  <div>
+                    <p class="timeline__item__text">{{ .text | markdownify }}</p>
+
+                    {{ with .links }}
+                      <ul class="timeline__item__links">
+                        {{ range . }}
+                          <li>
+                            <a href="{{ .link }}" target={{ or .target "_blank" }}>
+                              {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "external-link-alt") }}
+                              {{ .title }}
+                            </a>
+                          </li>
+                        {{ end }}
+                      </ul>
+                    {{ end }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ end }}
+        {{ end }}
+
+        <div class="timeline__item">
+          <span class="timeline__item__tag">Now</span>
+        </div>
+      </div>
+    </section>
+  </article>
+{{ end }}
+
