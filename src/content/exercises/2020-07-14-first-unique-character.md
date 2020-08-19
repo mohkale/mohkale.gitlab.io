@@ -9,7 +9,7 @@ challenge: |-
 
 runtime: "n"
 language: typescript
-solution: |+
+solution: |-
   function firstUniqueChar(str: string) {
       let mem: {[key: string]: number} = {}
       for (let ch of str) {

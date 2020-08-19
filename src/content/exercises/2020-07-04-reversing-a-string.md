@@ -7,7 +7,7 @@ tags:
 
 runtime: "n"
 language: python
-solution: |+
+solution: |-
   def reverse(s):
     s = [x for x in s]
     l = len(s)

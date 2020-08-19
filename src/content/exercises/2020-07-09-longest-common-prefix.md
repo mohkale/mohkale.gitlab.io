@@ -11,7 +11,7 @@ challenge: |+
 
 # runtime: ""
 language: python
-solution: |+
+solution: |-
   def is_prefix(strs, i):
     # assume each element in `strs` is at least as long as `i`.
     return len(set(x[:i] for x in strs)) == 1

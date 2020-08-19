@@ -8,7 +8,7 @@ challenge: |-
 
 runtime: "n"
 language: go
-solution: |+
+solution: |-
   func IsAnagram(str, rts []rune) bool {
   	if len(str) != len(rts) {
   		return false

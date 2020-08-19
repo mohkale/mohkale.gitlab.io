@@ -8,7 +8,7 @@ challenge: |-
   own, return the number of stones you have that're also jewels.
 
 language: python
-solution: |+
+solution: |-
   def jewel_count(stones, jewels):
       stones, jewels = sorted(stones), sorted(jewels)
 

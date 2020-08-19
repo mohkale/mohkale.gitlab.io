@@ -1,7 +1,7 @@
 ---
 title: Root to Leaf Path Sum
 source: dailybyte
-date: 2020-07-04 22:18:00 +0000 UTC
+date: 2020-08-17 22:18:00 +0000 UTC
 tags:
   - typescript
 
@@ -11,7 +11,7 @@ challenge: |-
 
 runtime: "n"
 language: "typescript"
-solution: |+
+solution: |-
   function rootToLeafSum(node: TreeNode|undefined, target: number) {
     if (node === undefined)
       return false

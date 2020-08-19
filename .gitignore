@@ -34,3 +34,6 @@ src/assets/scripts/*.bundle.js
 # deployment, but not much so for developmenet.
 Gemfile.lock
 package-lock.json
+
+# everything else
+*TODO-*
