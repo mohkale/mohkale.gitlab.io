@@ -14,6 +14,7 @@ h3 { font-weight: 500; }
     height: 140px;
     overflow: hidden;
     outline: none;
+    text-align: left;
 
     position: relative;
     border-radius: 8px;
@@ -84,6 +85,7 @@ h3 { font-weight: 500; }
 
 $thumbnail-scale: 50%;
 .posts-slider__post .posts-slider__post__thumbnail {
+    margin: 0px;
     position: absolute;
     top:    0;
     left:   0;
@@ -103,7 +105,7 @@ $thumbnail-scale: 50%;
     right: unset;
     fill: $grey;
 }
-.posts-slider__post--with-thumbnail .posts-slider__post__thumbnail {
+.posts-slider__post--with-thumbnail .posts-slider__post__thumbnail img {
     width:  100% + $thumbnail-scale;
     height: 100%;
     object-fit: cover;
@@ -111,13 +113,11 @@ $thumbnail-scale: 50%;
     transition: all 0.4s;
     transition-property: blur, margin-left, width, transform;
 
-    margin-left: -100%;
-    transform: translateX(50%);
     transform-origin: 50% 50%;
 }
 .posts-slider__post--with-thumbnail:hover,
 .posts-slider__post--with-thumbnail:focus {
-    .posts-slider__post__thumbnail {
+    .posts-slider__post__thumbnail img {
         width: 100%;
         margin-left: 0px;
         transform: none;

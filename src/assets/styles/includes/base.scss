@@ -70,7 +70,7 @@ main {
         margin-top: $leading;
         margin-bottom: 0;
         line-height: $leading;
-        clear: left;
+        clear: both;
         text-align: left;
     }
 
@@ -228,6 +228,44 @@ hr {
 }
 
 figure {
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.left,  &.stack-left  { margin-left:  0px; }
+    &.right, &.stack-right { margin-right: 0px; }
+
+    figcaption {
+        & > p {
+            margin-top: 8px;
+            &:only-child {
+                margin: 8px 0px 0px;
+            }
+        }
+
+        color: $grey;
+        text-align: center;
+    }
+}
+
+figure.post-thumbnail {
+    margin: 0px;
+    position: relative;
+    width: calc(100% + #{2 * $center-padding});
+    left: -$center-padding;
+
+    figcaption {
+        padding: 8px 75px 0px;
+    }
+
+    img {
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+figure.hidden-caption {
     $caption-fg: white;
     $caption-bg: transparentize(black, 0.3);
 

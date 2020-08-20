@@ -14,12 +14,11 @@
       {{ $res = $res.Fit . }}
     {{ end }}
 
-    <div>
+    <figure class="{{ with $classes }}{{ . }}{{ else }}post-thumbnail{{ end }}">
       {{ if $link_to_image }}
       <a href="{{ $res.Permalink }}" target="_blank">
       {{ end }}
         <img
-          class="{{ with $classes }}{{ . }}{{ else }}post-thumbnail{{ end }}"
           style="
             {{ with $thumb.height }}max-height: {{ . }}px;{{ end }}
             {{ with $thumb.position }}object-position: {{ . }};{{ end }}
@@ -31,7 +30,7 @@
       {{ end }}
 
       {{ if and (not $hide_caption) (or $thumb.caption $thumb.source) }}
-        <figcaption class="post-thumbnail__caption">
+        <figcaption>
           {{ with $thumb.caption }}{{ . }}{{ end }}
           {{ with $thumb.source }}
             {{ if reflect.IsMap . }}
@@ -42,7 +41,7 @@
           {{ end }}
         </figcaption>
       {{ end }}
-    </div>
+    </figure>
   {{ else }}
     {{ warnf "failed to find thumbnail for post: %s%s" $post.File.Dir $thumb.path }}
   {{ end }}
