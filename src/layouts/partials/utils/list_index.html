@@ -1,9 +1,9 @@
 {{/* build list items for the current paginated page. */}}
 
-{{/* prepopulate page subsections, then posts. */}}
-{{ with .Sections }}
+{{/* prepopulate page recursively, then posts. */}}
+{{ with and (not .Params.hide_subsections) .Sections }}
   <table class="pagination">
-    {{ range . }}
+    {{ range sort . "Title" }}
       {{ $title := (or .Title .File.ContentBaseName) }}
       {{ if eq $title "_index" }}
         {{ $title = path.Base .File.Dir }}
@@ -19,8 +19,15 @@
 {{/* doubt I was posting before I was born 😀. */}}
 {{ $last_year := 1999 }}
 
+{{/* TODO fix pagination is now broken */}}
+{{ $pages := .Paginator.Pages.ByDate.Reverse }}
+{{ if or .Params.index_recursively (and (or (eq .Params.index_recursively nil) (eq .Params.index_recursively "maybe")) (eq 0 (len $pages))) }}
+  {{/* when we're indexing recursively, we index every page */}}
+  {{ $pages = .CurrentSection.RegularPagesRecursive.ByDate.Reverse }} 
+{{ end }}
+
 {{/* ignore the broken HTML, it's necessary. */}}
-{{ range .Paginator.Pages.ByDate.Reverse }}
+{{ range $pages }}
   {{ if not (eq $last_year .Date.Year) }}
     {{ if not (eq $last_year 1999) }}
       </table> {{/* close the previous table. */}}

@@ -9,6 +9,7 @@ meta:
   category: false
   footer_links: false
 
+index_recursively: true
 cascade:
   meta:
     post: true

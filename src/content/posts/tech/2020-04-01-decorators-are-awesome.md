@@ -1,6 +1,5 @@
 ---
 title: Decorators Are Awesome!
-categories: programming
 tags:
   - python
   - educational

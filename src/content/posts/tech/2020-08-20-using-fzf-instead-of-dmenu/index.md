@@ -1,7 +1,6 @@
 ---
 title: Using fzf as a dmenu Replacement
 display_title: Using fzf Instead of dmenu
-categories: programming
 
 tags:
   - fundamentals

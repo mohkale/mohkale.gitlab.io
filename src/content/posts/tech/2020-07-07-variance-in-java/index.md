@@ -1,6 +1,5 @@
 ---
 title: Variance in Java
-categories: programming
 tags:
   - java
   - educational
