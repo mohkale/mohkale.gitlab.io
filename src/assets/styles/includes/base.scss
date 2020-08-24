@@ -27,7 +27,7 @@ $small:  443px;
 // spacing/alignment
 $center-padding: 40px;
 $top-offset:     60px;
-$vertical-spacing: 16px;
+$vertical-spacing: 14px;
 
 // colors
 $main-bg: $white;
@@ -52,6 +52,7 @@ html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-size: $font-size;
+    line-height: 1.4;
     @if variable_exists(min-width) {
         min-width: $min-width;
     }
