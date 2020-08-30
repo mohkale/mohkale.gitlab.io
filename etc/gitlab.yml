@@ -41,7 +41,7 @@ install:
       - Gemfile.lock
       - package-lock.json
       - yarn.lock
-      - src/assets/images/fa
+      - src/
       - var/themes
 
 build:
