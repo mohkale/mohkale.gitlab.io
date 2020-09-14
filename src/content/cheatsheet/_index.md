@@ -23,11 +23,6 @@ meta:
   post: true
   latex: true
   anchor_links: true
-
-menu:
-  nav:
-    identifier: cheatsheet
-    weight: 15
 ---
 
 This page demonstrates some of the different ways to control the rendering of

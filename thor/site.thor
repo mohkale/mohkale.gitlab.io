@@ -2,6 +2,7 @@
 
 require 'pry'
 require 'git'
+require 'pathname'
 
 # rubcop:disable
 def site_build_options
@@ -218,7 +219,25 @@ class Site < Thor
       run commands[:pack] if do_pack
       run commands[:hugo] if do_hugo
     end
+    # build_resumes
   end
+
+  # desc 'build_resumes', 'convert html resumes to pdfs.'
+  # site_build_options
+  # def build_resumes
+  #   Dir.chdir(options[:output] || dirs[:publish]) do
+  #     Pathname.new('resume').children.map do |path|
+  #       next unless path.directory?
+  #       src = path / 'index.html'
+  #       dst = path / 'index.pdf'
+  #       if src.exist?
+  #         run Shellwords.join([chromium_engine, '--headless', '--disable-gpu',
+  #                              "--print-to-pdf=#{dst.to_path}", '--no-margins',
+  #                              src.to_path])
+  #       end
+  #     end
+  #   end
+  # end
 
   desc 'serve', 'build then serve the site on localhost.'
   site_build_options

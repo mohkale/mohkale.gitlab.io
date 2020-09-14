@@ -1,0 +1,80 @@
+@import './page';
+
+@mixin full-width-seperator() {
+    content: '';
+    height: 2px;
+    background: $divider-color;
+    @include full-main-width;
+}
+
+.review {
+    display: grid;
+    grid-template-columns: minmax(min-content, 1fr) 2fr;
+    align-items: center;
+    margin: $vertical-spacing 0px;
+
+    position: relative;
+    // horizontal seperator taking up the full page width.
+    &::before, &::after {
+        @include full-width-seperator;
+        position: absolute;
+    }
+    &::before { top:  0; }
+    &::after { bottom: 0; }
+
+    // for when there's a review and some comments.
+    & > :first-child:not(:last-child) {
+        border-right: solid 2px $divider-color;
+        position: relative;
+        @media screen and (max-width: $small) {
+            border-right: 0px;
+            &::after {
+                @include full-width-seperator;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: $small) {
+        grid-template-columns: auto;
+    }
+}
+
+.ratings-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: $vertical-spacing 1.4em;
+    box-sizing: border-box;
+}
+
+.ratings {
+    margin: 0px;
+}
+
+.review__takeways {
+    .positives, .negatives {
+        // padding: 0px;
+        list-style-type: none;
+        li::before {
+            content: var(--indicator);
+            color: var(--indicator-color);
+            // font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    }
+
+    .positives {
+        --indicator: '+';
+        --indicator-color: #{$turquoise};
+    }
+
+    .negatives {
+        --indicator: '-';
+        --indicator-color: #{$red};
+    }
+}

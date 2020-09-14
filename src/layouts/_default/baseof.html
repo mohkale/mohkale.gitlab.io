@@ -122,17 +122,19 @@
             {{ partial "utils/navmenu" . }}
         {{- end }}
 
-        <main>
-            {{ partial "header" . }}
+        {{ block "main-container" . }}
+            <main>
+                {{ partial "header" . }}
 
-            {{ block "main" . }}
-                <article>
-                    {{ partial "content" . }}
-                </article>
+                {{ block "main" . }}
+                    <article>
+                        {{ partial "content" . }}
+                    </article>
 
-                {{ partial "utils/meta" . }}
-            {{ end }}
-        </main>
+                    {{ partial "utils/meta" . }}
+                {{ end }}
+            </main>
+        {{ end }}
 
         {{ block "footer"  . }}
           {{ partial "footer" . }}

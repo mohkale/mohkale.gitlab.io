@@ -1,0 +1,79 @@
+{{/* How we format dates. */}}
+{{ $dateFormat := "2006" }}
+
+<section id="main">
+  <header id="title">
+    <div>
+      <h1>{{ .Site.Params.name }}</h1>
+      {{ with .Title }}
+        <span class="subtitle">{{ . }}</span>
+      {{ end }}
+    </div>
+
+    {{ with .Content }}
+      <section id="objective">
+        {{ . | markdownify }}
+      </section>
+    {{ end }}
+  </header>
+
+  {{ $sections := .Params.sections }}
+  {{ if not (reflect.IsSlice $sections) }}
+    {{ $sections = slice $sections }}
+  {{ end }}
+  {{ range .Params.sections }}
+    <section class="main-block">
+      <h2>
+        {{ with .icon }}
+          {{- partial "core/fontawesome" (dict "context" $.Page "type" (index . 0) "name" (index . 1) "classes" "fa header-icon") . -}}
+        {{ end }}
+
+        {{ .title }}
+      </h2>
+
+      {{ range .items }}
+        <section class="blocks">
+          <div class="date">
+            {{ with .date }}
+              {{ with .start }}
+                <span>{{ dateFormat $dateFormat . }}</span>
+              {{ else }}
+                {{ warnf "no start date supplied in resume section" }}
+              {{ end }}
+              <span>
+                {{ with .finish }}
+                  {{ dateFormat $dateFormat . }}
+                {{ else }}
+                  {{ or (.finish_fallback | markdownify) "present" }}
+                {{ end }}
+              </span>
+            {{ end }}
+          </div>
+
+          <div class="decorator"></div>
+
+          <div class="details {{ if and (not .location) (not .subtitle) }}concise{{ end }}">
+            <header>
+              <h3>{{ .title | markdownify }}</h3>
+
+              {{ with .subtitle }}
+                <span class="place">{{ . }}</span>
+              {{ end }}
+
+              {{ with .location }}
+                <span class="place">{{ .title }}</span>
+                <span class="my-location">
+                  {{- partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "map-marker-alt" "classes" "fa") . -}}
+                  {{ .address }}
+                </span>
+              {{ end }}
+            </header>
+            <div>
+              {{ .body | markdownify }}
+            </div>
+          </div>
+        </section>
+      {{ end }}
+    </section>
+  {{ end }}
+</section>

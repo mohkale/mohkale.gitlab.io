@@ -34,12 +34,16 @@ module Utils
   end
 
   def which(bin)
-    ex = `which #{Shellwords.escape bin}`.chomp
+    ex = `which #{Shellwords.escape bin} 2>/dev/null`.chomp
     ex if $?.success?
   end
 
   def editor
     @editor ||= ENV['editor'] || which('vim') || which('vi')
+  end
+
+  def chromium_engine
+    @engine = which('chrome') || which('chromium') || which('brave')
   end
 
   def logger

@@ -12,6 +12,10 @@ we *can* use the default styles.
 {{ if or (and .Params.styles .Params.default_styles) (not .Params.styles) }}
   {{ $possibles := slice }}{{/* possible file names for styles */}}
 
+  {{ with .Layout }}
+    {{ $possibles = $possibles | append . }}
+  {{ end }}
+
   {{ with .Section }}
     {{/* NOTE
     .Section applies for both the taxonomy and taxonomy-term pages.

@@ -24,6 +24,7 @@ before_script:
   - curl -sL https://deb.nodesource.com/setup_13.x | bash -
   - apt update >/dev/null
   - apt install -y pcregrep gawk tralics nodejs ruby-full ruby-dev jq wget build-essential patch zlib1g-dev liblzma-dev libffi-dev >/dev/null
+  # - apt install -y chromium-browser >/dev/null
   # setup thor
   - gem install bundler
 

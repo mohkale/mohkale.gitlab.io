@@ -11,11 +11,21 @@ params:
     - a lifelong weeb (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
     - (lost (in (lisp (parens))))
     # - a frequent gamer
+  address:
+    name: 9 Birchlands Drive
+    postcode: S4 8BX
+    town: Sheffield
+    county: South Yorkshire
+    country: United Kingdom
   contact:
-    mail: mailto:mohkale@kisara.moe
+    # TODO test
+    phone: "tel:+07743287831"
+    mail: mailto:mkaleem1@sheffield.ac.uk
     github: https://github.com/mohkale
     gitlab: https://gitlab.com/mohkale
-    linkedin: https://www.linkedin.com/in/mohsin-kaleem-3911511a3/
+    linkedin: https://www.linkedin.com/in/mohkale
+    # upwork: https://www.upwork.com/o/profiles/users/~01b9386b9361c6cba7/
+    upwork: http://kisara.moe/r/upwork
   homepage:
     recent_posts:
       limit: 12
