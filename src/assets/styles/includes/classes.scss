@@ -32,6 +32,10 @@
     display: none !important;
 }
 
+.block {
+    display: block;
+}
+
 .inline {
     display: inline-block;
 }
@@ -48,6 +52,16 @@
         &::after {
             content: ", ";
         }
+    }
+}
+
+@each $it in (bottom, top, left, right) {
+    .no-#{$it}-margin {
+        margin-#{$it}: 0px;
+    }
+
+    .no-#{$it}-padding {
+        margin-#{$it}: 0px;
     }
 }
 
@@ -96,3 +110,14 @@ table.img-gallery {
         @include full-main-width;
     }
 }
+
+figure.clamp-width img {
+    max-width: 100%;
+}
+
+// $step: 10;
+// @for $i from 1 through 100/$step {
+//     figure.width-#{$i*$step} img {
+//         width: $i * $step * 1%;
+//     }
+// }

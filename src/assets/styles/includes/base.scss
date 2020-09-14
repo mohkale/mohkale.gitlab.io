@@ -225,7 +225,7 @@ blockquote {
 
 hr {
     border: 0px;
-    border-bottom: 2px solid #f3f3f3;
+    border-bottom: 2px solid $divider-color;
 }
 
 figure {
@@ -252,9 +252,7 @@ figure {
 
 figure.post-thumbnail {
     margin: 0px;
-    position: relative;
-    width: calc(100% + #{2 * $center-padding});
-    left: -$center-padding;
+    @include full-main-width;
 
     figcaption {
         padding: 8px 75px 0px;

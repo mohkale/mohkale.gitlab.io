@@ -1,7 +1,7 @@
 {{ $ctx := . }}
 
 {{ with or .Params.display_title .Title }}
-  <h1><a href="{{ $.Page.Permalink }}">{{- . -}}</a></h1>
+  <h1><a href="{{ $.Page.Permalink }}">{{- . | markdownify -}}</a></h1>
 {{ end }}
 
 {{ if .Params.meta.post }}

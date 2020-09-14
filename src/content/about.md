@@ -12,15 +12,15 @@ layout: about
 # of this file will appear after this section.
 about_summary:
   - title: Birthday
-    icon: ["solid", "birthday-cake"]
+    icon: [solid, birthday-cake]
     text: December 08, 1999
 
   - title: Belongs
-    icon: ["solid", "school"]
+    icon: [solid, school]
     text: "[University of Sheffield](https://www.sheffield.ac.uk/)"
 
   - title: Department
-    icon: ["solid", "graduation-cap"]
+    icon: [solid, graduation-cap]
     text: "[Department of Computer Science](https://www.sheffield.ac.uk/dcs)"
 
 # skills are represented as an array of properties associated with a skill.
@@ -45,14 +45,14 @@ about_summary:
 
 skills:
   - title: C#
-    icon: ["devicon", "csharp"]
+    icon: [devicon, csharp]
     tags:
       - Visual Studio
       - - WinForms
         - MonoGame
 
   - title: Python
-    icon: ["devicon", "python"]
+    icon: [devicon, python]
     tags:
       - PyCharm
       - - pip
@@ -63,7 +63,7 @@ skills:
         - numpy
 
   - title: Java
-    icon: ["devicon", "java"]
+    icon: [devicon, java]
     tags:
       - IDEA
       - - OpenJDK
@@ -73,31 +73,32 @@ skills:
         - JavaFX
 
   - title: Linux
-    icon: ["devicon", "linux"]
+    icon: [devicon, linux]
     tags:
       -
       - - Arch
         - Ubuntu
+      - - bash
 
   - title: Node/JS
-    icon: ["devicon", "javascript"]
+    icon: [devicon, javascript]
     tags:
       - VSCode
       - TypeScript
       - - Redux
-        - Webpack
+        - Vue
         - React
         - Express.js
 
   - title: SQL
-    icon: ["devicon", "mysql"]
+    icon: [devicon, mysql]
     tags:
       -
       - - SQLite
         - MySQL/MariDB
 
   - title: HTML
-    icon: ["devicon", "html"]
+    icon: [devicon, html]
     tags:
       -
       - - HTML5
@@ -107,7 +108,7 @@ skills:
         - Liquid
 
   - title: Ruby
-    icon: ["devicon", "ruby"]
+    icon: [devicon, ruby]
     tags:
       - rubymine
       - mruby
@@ -115,6 +116,13 @@ skills:
         - Sinatra
         - Thor
         - Jekyll
+
+  - title: Go
+    icon: [devicon, go]
+    tags:
+      -
+      - - go(lang)
+        - Hugo
 
 # A timeline for my life. The format is similair to skills except its
 # specialised for structuring date dependent data. Supported fields are.
