@@ -1,5 +1,6 @@
 ---
 title: kotlin
+date: 2020-07-15
 ---
 
 - TODO reified types
@@ -1309,7 +1310,7 @@ context][stc] whenever your mutating a value across different coroutines.
 [stc]: https://kotlinlang.org/docs/reference/coroutines/shared-mutable-state-and-concurrency.html#thread-confinement-coarse-grained
 
 ### Channels
-Kotlin supports [go]({{< ref "/notes/langs/go.md" >}}) like [channels][channels].
+Kotlin supports [go]({{< ref "go.md" >}}) like [channels][channels].
 I.E. concurrent pipes through which you can send data across different asynchronous
 runtimes.
 

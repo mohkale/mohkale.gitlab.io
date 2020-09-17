@@ -1,13 +1,15 @@
 ---
-title: gradle
-language: gradle (kotlin)
+title: Gradle
+date: 2020-04-25
+
 version: 5.6.4
+language: Gradle (Kotlin)
 wiki_link: https://docs.gradle.org/current/userguide/userguide.html
 ---
 
 gradle is a build framework implemented in java. It has supports both
 [groovy][groovy-wiki] and [kotlin][kotlin-wiki] for defining build tasks. Before you
-venture any further, it's probably worth taking a look at my [Kotlin]({{< relref "/notes/langs/kotlin.md" >}})
+venture any further, it's probably worth taking a look at my [Kotlin]({{< relref "kotlin.md" >}})
 language notes (if you're not familliar with the language), because that's the
 preferred build DSL for this guide.
 
