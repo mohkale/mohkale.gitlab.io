@@ -38,6 +38,7 @@ sidebar:
       - Thor
       - Rake
       - jQuery
+      - Material
       -
       - XP
       - MVC
@@ -58,24 +59,22 @@ sections:
     - title: Puddle
       subtitle: A dashboard for managing torrents using modern web standards
       body: |-
-        - Written with an **ExpressJS** backend and a **React** based frontend (both in **Typescript**)
-        - Uses a **Redux** store for managing state and **Axios** for outgoing requests to the backend
-        - Interfaces with a Torrent daemon that exposes a **REST**ful API
-        - Supports **filtering** by search query, tag, tracker, category and status
+        - Implemented with a **React** based frontend and an **ExpressJS** backend (both in **Typescript**)
+        - Communicates with a Torrent daemon through a fully documented **REST**ful API, and **Axios**
+        - Setup a state management system using **Redux** and async event propagation using **Redux Thunks**
 
     - title: dotty
       subtitle: A delightfully lispy, cross platform, dotfile manager
       body: |-
         - Written in **go**, configured with **lisp** and tested with **ruby**
-        - Automated testing suite setup using **Github Actions**
-        - Native path translation and shell quoting for windows and unix like platforms
+        - Setup an automated testing suite through **Github Actions** CI/CD
 
     - title: Hollow Aether
       subtitle: A 2D game project written with C# and monogame
       body: |-
-        - Developed from scratch using core drawing primitives offered by the **Monogame** API
-        - Basic **physics engine** and **collision handling** implemented using custom code
-        - Created a **WinForms** based level editor to simplify level generation
+        - Created from scratch using core drawing primitives offered by the **Monogame** API
+        - Streamlined entity interaction and **collision handling** with a bespoke **Physics Engine**
+        - Automated level creation using a custom built, **winforms** based, level editor
 
 - title: Experiences
   icon: [solid, suitcase]
@@ -88,13 +87,10 @@ sections:
         start: 2018-10-05
       body: |-
         Multiple small to medium scale roles over the past few years:
-        - Taught python fundamentals to a someone unfamilliar with CS and collaborated with them on
-          the creation of a **flask** web application
-        - Created a web scraper using **scrapy** and deployed it to a **remote server** to periodically
-          scrape new data
-        - Used **selenium** to scrape dynamically generated content on a modern **GraphQL** backed web
-          application
-        - Populated an **excel** table using data fetched from multiple API endpoints
+        - Taught **python** fundamentals to a someone unfamiliar with CS, later bringing them up to speed and
+          collaborating with them on the creation of a **flask** web application
+        - Created a web scraper using **scrapy** and deployed it to a **VPS** to periodically fetch updates
+        - Used **selenium** to scrape dynamically generated content on a **GraphQL** backed web-app
 
 - title: Education
   icon: [solid, graduation-cap]
@@ -110,16 +106,17 @@ sections:
         #### Year 01
         - Teamed up with 2 others to create a maze traversal algorithm for a robot in java
           - Ranked in the **top 3** of solutions for the entire year group
-        - Worked collaboratively with a team of 7 to create a **web platform** for a twitter based taxi service
-          - I oversaw team interaction with the repository and created scripts to **automate content generation**.
-          - I also lead development on our **backend twitter connection**; including an **asynchronous** update system
-            that lazily read incoming requests and synced both backend and frontend **states**.
+        - Coordinated a team of 7 on the creation of a **web platform** for a twitter based taxi service
+          - Oversaw interaction with the repository and created scripts to **automate content generation**.
+          - Lead development on our **backend twitter connection**; including an **asynchronous** update system
+            which kept the backend and frontend **states** in sync.
+
+        <p class="break"><br/></p>
 
         #### Year 02
         - Built on earlier work by learning **stochastic** approaches to solving **intractable** problems
-        - Created an **OCR** system, using **Numpy** and **Pillow**, to read words from images passed through
-          progressively noisier filters
-          - Included word **auto-correction algorithm** and worked to an accuracy of **82%** (on average).
+        - Created an **OCR** system, using **Numpy** and **Pillow**, to read text from images
+          - Included word **auto-correction algorithm** and reached an accuracy of **82%**
         - Learnt functional programming by developing an **emulator** for the Enigma Machine in **haskell**.
         - Worked on a maze traversal algorithm using **ROS** (the Robot Operating System).
     - title: A Levels (2A + B)
@@ -145,6 +142,7 @@ sections:
         address: Moorgate rd., Rotherham
 ---
 
-Grounded and solution-oriented Computer Scientist with a wide variety
-of practical experiences. Adept at motivating self and others.
-Passionate about data security and software development.
+Solution oriented Computer Scientist with a wide variety of practical
+experience and a strong foundation in **Maths**, **Logic** and **Algorithmic
+Design**. <!-- Seeking to leverage solid skills in **collaboration**, **communication**
+and **software development** as a **Software Engineer**. -->

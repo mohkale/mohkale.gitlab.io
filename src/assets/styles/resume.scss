@@ -133,7 +133,7 @@ body {
 #title {
     display: grid;
     grid-template-columns: auto 1fr;
-    align-items: self-end;
+    align-items: center;
     grid-column-gap: 25px;
     margin-left: .55in;
 
@@ -151,7 +151,12 @@ body {
 }
 
 #main {
-    font-size: 7.45pt;
+    font-size: 7.54pt;
+    padding-top: 38px;
+}
+
+p.break {
+    margin: 0px;
 }
 
 .details > div {
