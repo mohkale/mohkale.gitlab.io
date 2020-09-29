@@ -1,0 +1,14 @@
+/* adapted from [[https://stackoverflow.com/questions/34259171/how-can-i-implement-a-spoiler-quote-with-just-css][here]]. */
+.spoiler,
+.spoiler > * {
+    transition: all 0.5s;
+    transition-property: filter;
+}
+
+.spoiler--clickable {
+    cursor: pointer;
+}
+
+.spoiler:not(:hover) {
+    filter: blur(4px);
+}

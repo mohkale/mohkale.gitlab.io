@@ -1,0 +1,38 @@
+{{ if not (.Page.Scratch.Get "spoiler") }}
+  {{ .Page.Scratch.Set "spoilers" true }}
+
+  {{ with resources.Get "styles/utils/spoilers.scss" }}
+    <link rel="stylesheet" type="text/css"
+          href="{{- (. | resources.ExecuteAsTemplate (printf "styles/%s" .) $.Site | toCSS | postCSS (dict "config" "etc/postcss.config.js") | minify | resources.Fingerprint).Permalink -}}" />
+  {{ else }}
+    {{ warnf "failed to find spoiler styles" }}
+  {{ end }}
+
+  <script>
+   'use strict';
+
+   const SPOILER_CLASS = 'spoiler';
+   const SPOILER_CLICK_CLASS = 'spoiler--clickable';
+
+   function setupSpoilers() {
+     const elems = document.getElementsByClassName(SPOILER_CLASS)
+     Array(...elems).forEach(elem => {
+       elem.classList.add(SPOILER_CLICK_CLASS)
+       elem.addEventListener('click', e => {
+         e.stopPropagation();
+         if (elem.classList.contains(SPOILER_CLASS)) {
+           elem.classList.remove(SPOILER_CLASS)
+         } else {
+           elem.classList.add(SPOILER_CLASS)
+         }
+       })
+     })
+   }
+
+   window.addEventListener('load', setupSpoilers);
+  </script>
+{{ end }}
+
+<span class="spoiler">
+  {{ .Inner | markdownify }}
+</span>
