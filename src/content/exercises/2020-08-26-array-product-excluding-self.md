@@ -3,6 +3,7 @@ title: Array Product Excluding Self
 source:
   title: leetcode
   link: https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/530/week-3/3300/
+tags: [python]
 
 challenge: |-
   Given an array of non-zero positive integers, return an output array with each

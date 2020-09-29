@@ -6,5 +6,5 @@ windows:
   - root:
       layout: 6456,228x23,0,0{175x23,0,0,9,52x23,176,0,10}
       panes:
-        - <%= ENV["EDITOR"] || "vim" || "vi" %> .
+        - lf || ranger || <%= ENV["EDITOR"] || "vim" || "vi" %> .
         - <%= @settings["serve-cmd"] || "bundle exec thor site:serve" %>

@@ -34,13 +34,11 @@ solution: |-
 
       map[x][y] = nil # prevent cycles
 
-      path_found = false \
+      return false \
         || x > 0      && map[x-1][y] == rest[0] && search_path(rest, x-1, y) \
         || y > 0      && map[x][y-1] == rest[0] && search_path(rest, x, y-1) \
         || x < cols-1 && map[x+1][y] == rest[0] && search_path(rest, x+1, y) \
         || y < rows-1 && map[x][y+1] == rest[0] && search_path(rest, x, y+1)
-
-      path_found
     ensure
       map[x][y] = ch if ch
     end

@@ -5,7 +5,7 @@ tags:
   - educational
 ---
 **Variance** is a cool sounding word I've always had difficulty wrapping my head around.
-I recently decided to start learning [kotlin]({{< ref "/notes/langs/kotlin.md" >}}) and
+I recently decided to start learning [kotlin]({{< ref "/notes/kotlin.md" >}}) and
 in doing so I brushed up against java and type generics again. Now I think I
 finally have a good handle on it so lets try explaining variance in java.
 
