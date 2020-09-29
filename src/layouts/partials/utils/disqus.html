@@ -1,0 +1,33 @@
+<div id="disqus_thread">
+  <noscript>
+    <div class="disqus-noscript">
+      Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </div>
+  </noscript>
+</div>
+
+<style>
+ #disqus_thread {
+   padding-bottom: 24px;
+ }
+ .disqus-noscript {
+   text-align: center;
+   margin-top: 16px;
+ }
+</style>
+
+<script>
+ var disqus_config = function () {
+   this.page.url = {{ .Page.Permalink }}; // page's canonical URL variable
+   this.page.identifier = {{ .Page.File.UniqueID }}; // page's unique identifier variable
+ };
+
+ (function() {
+   var d = document, s = d.createElement('script');
+   s.src = 'https://mohkale-gitlab-io.disqus.com/embed.js';
+   s.setAttribute('data-timestamp', +new Date());
+   (d.head || d.body).appendChild(s);
+ })();
+</script>
+
+<script id="dsq-count-scr" src="//mohkale-gitlab-io.disqus.com/count.js" async="async"></script>

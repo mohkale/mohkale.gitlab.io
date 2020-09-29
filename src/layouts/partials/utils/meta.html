@@ -32,3 +32,10 @@
     {{ end }}
   {{ end }}
 </aside>
+
+
+{{ if .Params.meta.comments }}
+  <hr/>
+  {{ partial "utils/disqus" . }}
+  <p></p>
+{{ end }}

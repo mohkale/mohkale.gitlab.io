@@ -20,6 +20,7 @@ thumbnail:
     title: kantoku
 
 meta:
+  comments: true
   post: true
   latex: true
   anchor_links: true
@@ -332,6 +333,8 @@ Here are the prescribed defaults and their intended affects.
 
 ```yaml
 meta:
+  # include a Disqus comment thread on this page
+  comments: false
   # include meta data about post, include date
   # categories, tags, next/prev post etc.
   post: false
