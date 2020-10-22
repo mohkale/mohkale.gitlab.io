@@ -53,45 +53,6 @@ sidebar:
       - Creativity
 
 sections:
-- title: Personal Projects
-  icon: [solid, folder-open]
-  items:
-    - title: Puddle
-      subtitle: A dashboard for managing torrents using modern web standards
-      body: |-
-        - Implemented with a **React** based frontend and an **ExpressJS** backend (both in **Typescript**)
-        - Communicates with a Torrent daemon through a fully documented **REST**ful API, and **Axios**
-        - Setup a state management system using **Redux** and async event propagation using **Redux Thunks**
-
-    - title: dotty
-      subtitle: A delightfully lispy, cross platform, dotfile manager
-      body: |-
-        - Written in **go**, configured with **lisp** and tested with **ruby**
-        - Setup an automated testing suite through **Github Actions** CI/CD
-
-    - title: Hollow Aether
-      subtitle: A 2D game project written with C# and monogame
-      body: |-
-        - Created from scratch using core drawing primitives offered by the **Monogame** API
-        - Streamlined entity interaction and **collision handling** with a bespoke **Physics Engine**
-        - Automated level creation using a custom built, **winforms** based, level editor
-
-- title: Experiences
-  icon: [solid, suitcase]
-  items:
-    - title: Freelance Developer
-      location:
-        title: Upwork
-        address: (remote)
-      date:
-        start: 2018-10-05
-      body: |-
-        Multiple small to medium scale roles over the past few years:
-        - Taught **python** fundamentals to a someone unfamiliar with CS, later bringing them up to speed and
-          collaborating with them on the creation of a **flask** web application
-        - Created a web scraper using **scrapy** and deployed it to a **VPS** to periodically fetch updates
-        - Used **selenium** to scrape dynamically generated content on a **GraphQL** backed web-app
-
 - title: Education
   icon: [solid, graduation-cap]
   items:
@@ -140,6 +101,45 @@ sections:
       location:
         title: Oakwood High School
         address: Moorgate rd., Rotherham
+
+- title: Professional Experiences
+  icon: [solid, suitcase]
+  items:
+    - title: Freelance Developer
+      location:
+        title: Upwork
+        address: (remote)
+      date:
+        start: 2018-10-05
+      body: |-
+        Multiple small to medium scale roles over the past few years:
+        - Taught **python** fundamentals to a someone unfamiliar with CS, later bringing them up to speed and
+          collaborating with them on the creation of a **flask** web application
+        - Created a web scraper using **scrapy** and deployed it to a **VPS** to periodically fetch updates
+        - Used **selenium** to scrape dynamically generated content on a **GraphQL** backed web-app
+
+- title: Personal Projects
+  icon: [solid, folder-open]
+  items:
+    - title: Puddle
+      subtitle: A dashboard for managing torrents using modern web standards
+      body: |-
+        - Implemented with a **React** based frontend and an **ExpressJS** backend (both in **Typescript**)
+        - Communicates with a Torrent daemon through a fully documented **REST**ful API, and **Axios**
+        - Setup a state management system using **Redux** and async event propagation using **Redux Thunks**
+
+    - title: dotty
+      subtitle: A delightfully lispy, cross platform, dotfile manager
+      body: |-
+        - Written in **go**, configured with **lisp** and tested with **ruby**
+        - Setup an automated testing suite through **Github Actions** CI/CD
+
+    - title: Hollow Aether
+      subtitle: A 2D game project written with C# and monogame
+      body: |-
+        - Created from scratch using core drawing primitives offered by the **Monogame** API
+        - Streamlined entity interaction and **collision handling** with a bespoke **Physics Engine**
+        - Automated level creation using a custom built, **winforms** based, level editor
 ---
 
 Solution oriented Computer Scientist with a wide variety of practical
