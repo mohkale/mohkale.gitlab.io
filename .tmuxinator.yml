@@ -7,4 +7,4 @@ windows:
       layout: 6456,228x23,0,0{175x23,0,0,9,52x23,176,0,10}
       panes:
         - lf || ranger || <%= ENV["EDITOR"] || "vim" || "vi" %> .
-        - <%= @settings["serve-cmd"] || "bundle exec thor site:serve" %>
+        - <%= @settings["serve-cmd"] || "bundle exec thor site:serve --no-webpack" %>

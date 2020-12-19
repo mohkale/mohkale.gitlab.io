@@ -4,5 +4,6 @@
          (create-lockfiles . nil)
          (electric-pair-preserve-balance . t)))
  (web-mode . ((web-mode-engines-alist . (("go" . "\\.html")))
-              (web-mode-enable-auto-pairing . nil))))
+              (web-mode-enable-auto-pairing . nil)))
+ (markdown-mode . ((eval . (flyspell-mode +1)))))
 
