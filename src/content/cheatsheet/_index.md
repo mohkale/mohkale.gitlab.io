@@ -1,6 +1,5 @@
 ---
 title: Cheatsheet
-display_title: Style Guide Cheatsheet
 date: 2020-04-26
 categories: meta
 # draft: true
@@ -24,6 +23,7 @@ meta:
   post: true
   latex: true
   anchor_links: true
+  title: {"display": "Style Guide Cheatsheet"}
 ---
 
 This page demonstrates some of the different ways to control the rendering of
@@ -342,6 +342,13 @@ meta:
   anchor_links: true
   # latex, render latex at runtime using mathjax
   latex: true
+  # configure rendering of the title element
+  title:
+    # when true the title is ommitted from the page
+    hidden: true
+    # override the title that's shown, the page title
+    # is still .Title
+    display: "New title"
 ```
 
 For demonstration purposes, each of these have been toggled to their non-default

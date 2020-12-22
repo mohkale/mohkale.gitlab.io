@@ -1,6 +1,10 @@
 ---
 title: Using fzf as a dmenu Replacement
-display_title: Using fzf Instead of dmenu
+meta:
+  title: {"display": "Using fzf Instead of dmenu"}
+  post: true
+  comments: true
+  anchor_links: true
 
 tags:
   - fundamentals

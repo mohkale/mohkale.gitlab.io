@@ -1,7 +1,9 @@
 {{ $ctx := . }}
 
-{{ with or .Params.display_title .Title }}
-  <h1><a href="{{ $.Page.Permalink }}">{{- . | markdownify -}}</a></h1>
+{{ if not .Params.meta.title.hidden }}
+  {{ with or .Params.meta.title.display .Title }}
+    <h1><a href="{{ $.Page.Permalink }}">{{- . | markdownify -}}</a></h1>
+  {{ end }}
 {{ end }}
 
 {{ if .Params.meta.post }}
