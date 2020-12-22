@@ -1,7 +1,7 @@
 <blockquote{{ with .Get "src" }}cite="{{ . }}"{{ end }}>
-    <p>{{- .Inner | markdownify -}}</p>
+  <p>{{- .Inner | markdownify -}}</p>
 
-    {{ with .Get "cite" }}
-        <cite>{{ . }}</cite>
-    {{ end }}
+  {{ with .Get "cite" }}
+    <cite>{{ . }}</cite>
+  {{ end }}
 </blockquote>

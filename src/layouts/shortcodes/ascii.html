@@ -2,21 +2,21 @@
 {{ $classes := .Get 1 }}
 
 {{ if $name }}
-    {{ $src := resources.Get (printf "ascii/%s.ant" $name) }}
-    {{ $header := resources.Get (printf "ascii/%s.header" $name) }}
+  {{ $src := resources.Get (printf "ascii/%s.ant" $name) }}
+  {{ $header := resources.Get (printf "ascii/%s.header" $name) }}
 
-    {{ if $src }}
-        <div class="ascii-gif {{ with $classes }}{{ . }}{{ end }}" data-src="{{ $src.Permalink }}">
-            {{- with $header -}}
-                {{ .Content | safeHTML }}
-            {{- end -}}
-        </div>
+  {{ if $src }}
+    <div class="ascii-gif {{ with $classes }}{{ . }}{{ end }}" data-src="{{ $src.Permalink }}">
+      {{- with $header -}}
+        {{ .Content | safeHTML }}
+      {{- end -}}
+    </div>
 
-        {{ if not (.Page.Scratch.Get "added-ascii-gif") }}
-            <script async="async" src="{{ (resources.Get "scripts/ascii-gif.bundle.js" | fingerprint).Permalink }}"></script>
-            {{ .Page.Scratch.Set "added-ascii-gif" true }}
-        {{ end }}
-    {{ else }}
-        {{ warnf "failed to find ascii-gif: %s" $name }}
+    {{ if not (.Page.Scratch.Get "added-ascii-gif") }}
+      <script async="async" src="{{ (resources.Get "scripts/ascii-gif.bundle.js" | fingerprint).Permalink }}"></script>
+      {{ .Page.Scratch.Set "added-ascii-gif" true }}
     {{ end }}
+  {{ else }}
+    {{ warnf "failed to find ascii-gif: %s" $name }}
+  {{ end }}
 {{ end }}

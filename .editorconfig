@@ -1,0 +1,9 @@
+# -*- mode: editorconfig-conf-mode -*-
+
+root = true
+
+[*]
+indent_style = space
+
+[{*.md,.*.html}]
+indent_size = 2

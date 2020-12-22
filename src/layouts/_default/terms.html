@@ -9,20 +9,20 @@ and /tags/b/.
 */}}
 
 {{ define "main" }}
-    <h1>{{ $.Data.Plural | humanize }}</h1>
+  <h1>{{ $.Data.Plural | humanize }}</h1>
 
-    <aside>{{- partial "content" . -}}</aside>
+  <aside>{{- partial "content" . -}}</aside>
 
-    <ul class="tax-entries">
-      {{ range $key, $value := .Data.Terms }}
-        <li>
-          <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">
-            {{- $key -}}
-            <span class="term-count">{{ len $value.Pages }}</span>
-          </a>
-        </li>
-      {{ end }}
-    </ul>
+  <ul class="tax-entries">
+    {{ range $key, $value := .Data.Terms }}
+      <li>
+        <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">
+          {{- $key -}}
+          <span class="term-count">{{ len $value.Pages }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
 
-    {{ partial "utils/meta" . }}
+  {{ partial "utils/meta" . }}
 {{ end }}

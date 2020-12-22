@@ -55,21 +55,21 @@
 {{/*
 {{- $tags := and (or .Params.meta.tag .Params.meta.tags) (or .Params.tag .Params.tags) -}}
 {{ with $tags }}
-    <div id="tags">
-        {{ partial "utils/fontawesome" (dict "type" "s" "name" "tag" "context" $ctx) }}
+  <div id="tags">
+    {{ partial "utils/fontawesome" (dict "type" "s" "name" "tag" "context" $ctx) }}
 
-        <ul class="inline inline-list">
-            {{ range $tag := . }}
-                <li>
-                    {{- with $ctx.Site.GetPage (printf "tags/%s" $tag) -}}
-                        <a href="{{ .Permalink }}">{{- $tag -}}</a>
-                    {{- else -}}
-                        {{ warnf "failed to find index for category: %s" $tag }}
-                        {{- $tag -}}
-                    {{- end -}}
-                </li>
-            {{ end }}
-        </ul>
-    </div>
+    <ul class="inline inline-list">
+      {{ range $tag := . }}
+        <li>
+          {{- with $ctx.Site.GetPage (printf "tags/%s" $tag) -}}
+            <a href="{{ .Permalink }}">{{- $tag -}}</a>
+          {{- else -}}
+            {{ warnf "failed to find index for category: %s" $tag }}
+            {{- $tag -}}
+          {{- end -}}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 {{ end }}
 */}}

@@ -1,12 +1,12 @@
 {{ if .Page.Params.meta.anchor_links }}
-    {{/*
-      $1 - heading number
-      $2 - heading id
-      $3 - remaining heading attribs
-      $4 - text content
-      $5 - heading number again
-    */}}
-    {{- .Content | replaceRE "<h([2-4]+) id=\"([^\"]+)\"(.*)>(.+)</h([1-9]+)>" `<h${1} id="${2}" ${3} data-with-anchor="true"><a class="anchor" href="#${2}">#</a>${4}</h${5}>`  | safeHTML -}}
+  {{/*
+    $1 - heading number
+    $2 - heading id
+    $3 - remaining heading attribs
+    $4 - text content
+    $5 - heading number again
+  */}}
+  {{- .Content | replaceRE "<h([2-4]+) id=\"([^\"]+)\"(.*)>(.+)</h([1-9]+)>" `<h${1} id="${2}" ${3} data-with-anchor="true"><a class="anchor" href="#${2}">#</a>${4}</h${5}>`  | safeHTML -}}
 {{ else }}
-    {{- .Content -}}
+  {{- .Content -}}
 {{ end }}

@@ -10,20 +10,20 @@ field specifiying the name of the icon file.
 {{ $name := .name }}
 
 {{ if and $type $name }}
-    {{ if eq (len $type) 1 }}
-        {{ if (eq $type "b") }}
-            {{ $type = "brands" }}
-        {{ else if (eq $type "r") }}
-            {{ $type = "regular" }}
-        {{ else if (eq $type "s") }}
-            {{ $type = "solid" }}
-        {{ end }}
+  {{ if eq (len $type) 1 }}
+    {{ if (eq $type "b") }}
+      {{ $type = "brands" }}
+    {{ else if (eq $type "r") }}
+      {{ $type = "regular" }}
+    {{ else if (eq $type "s") }}
+      {{ $type = "solid" }}
     {{ end }}
+  {{ end }}
 
-    {{ $resource_path := printf "images/fa/%s/%s.svg" $type $name }}
-    {{ $id := printf "%s-%s" $type $name | htmlEscape }}
+  {{ $resource_path := printf "images/fa/%s/%s.svg" $type $name }}
+  {{ $id := printf "%s-%s" $type $name | htmlEscape }}
 
-    {{ partial "core/svg" (merge . (dict "path" $resource_path "context" .context "id" $id "classes" .classes)) }}
+  {{ partial "core/svg" (merge . (dict "path" $resource_path "context" .context "id" $id "classes" .classes)) }}
 {{ else }}
-    {{ warnf "must supply both type and name" }}
+  {{ warnf "must supply both type and name" }}
 {{ end }}
