@@ -17,19 +17,6 @@
         </a>
       {{ end }}
     </div>
-
-    {{ with or .Params.tags .Params.tag }}
-      <div class="tags">
-        {{- partial "core/fontawesome" (dict "context" $ctx "type" "solid" "name" "tags") -}}
-
-        <ul class="inline-list no-sep inline">
-          {{ range . -}}
-            {{ $page := $.Site.GetPage (printf "tags/%s" .) }}
-            <li><a href="{{ $page.Permalink }}">{{ . }}</a></li>
-          {{- end }}
-        </ul>
-      </div>
-    {{ end }}
   {{ end }}
 </aside>
 

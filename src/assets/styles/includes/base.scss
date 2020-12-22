@@ -66,51 +66,42 @@ main {
 
     @include link($link-color, $link-hover-color);
 
-    $leading: 1.5rem;
-    h1, h2, h3, h4, h5, h6 {
-        margin-top: $leading;
-        margin-bottom: 0;
-        line-height: $leading;
-        clear: both;
-        text-align: left;
-    }
-
-    h1 {
-        line-height: 1.5 * $leading;
-        margin-top:  1.5 * $leading;
-        &:first-child {
-            @include link(black);
-        }
-    }
-
-
-    $scale: 1.414;
-    h1 { font-size: ($scale * 1.5)   * 1rem; }
-    h2 { font-size: ($scale)         * 1rem; }
-    h3 { font-size: ($scale / 1.2)   * 1rem; }
-    h4 { font-size: ($scale / 1.44)  * 1rem; }
-    h5 { font-size: ($scale / 1.728) * 1rem; }
-
-    h2, h3, h4 {
-        .anchor {
-            left: calc(#{$center-padding} - 1rem);
-            position: absolute;
-            font-weight: 400;
-            font-size: 1.2rem;
-        }
-
-        @include link($grey, $dark-grey, '.anchor');
-    }
-
-    // @for $i from 1 through 6 {
-    //     h#{$i} + h#{$i+1} {
-    //         // don't seperate 2 headings, specified
-    //         // one after the other. collapse them
-    //         // together.
-    //         margin-top: 0px;
-    //     }
-    // }
 }
+$leading: 1.5rem;
+h1, h2, h3, h4, h5, h6 {
+    margin-top: $leading;
+    margin-bottom: 0;
+    line-height: $leading;
+    clear: both;
+    text-align: left;
+}
+
+$scale: 1.414;
+h1 { font-size: ($scale * 1.5)   * 1rem; }
+h2 { font-size: ($scale)         * 1rem; }
+h3 { font-size: ($scale / 1.2)   * 1rem; }
+h4 { font-size: ($scale / 1.44)  * 1rem; }
+h5 { font-size: ($scale / 1.728) * 1rem; }
+
+h2, h3, h4 {
+    .anchor {
+        left: calc(#{$center-padding} - 1rem);
+        position: absolute;
+        font-weight: 400;
+        font-size: 1.2rem;
+    }
+
+    @include link($grey, $dark-grey, '.anchor');
+}
+
+// @for $i from 1 through 6 {
+//     h#{$i} + h#{$i+1} {
+//         // don't seperate 2 headings, specified
+//         // one after the other. collapse them
+//         // together.
+//         margin-top: 0px;
+//     }
+// }
 
 // make element take up the full width of main,
 // disregarding $center-padding.

@@ -1,77 +1,67 @@
 {{ $ctx := . }}
 
-{{ if not .Params.meta.title.hidden }}
-  {{ with or .Params.meta.title.display .Title }}
-    <h1><a href="{{ $.Page.Permalink }}">{{- . | markdownify -}}</a></h1>
-  {{ end }}
-{{ end }}
-
-{{ if .Params.meta.post }}
-  {{ $cats := or .Params.categories .Params.category }}
-  {{ if reflect.IsSlice $cats }}
-    {{ if eq 1 (len $cats) }}
-      {{ $cats = index $cats 0 }}
-    {{ end }}
-  {{ end }}
-
-  <ul class="post-meta">
-    {{ with .Date }}
-      <li class="date">{{ dateFormat "2006-01" . }}</li>
-    {{ end }}
-    {{- if $cats }}
-      <li class="categor{{ if reflect.IsSlice $cats }}ies{{ else }}y{{ end }}">
-        {{ if reflect.IsSlice $cats }}
-          <ul id="categories" class="inline inline-list">
-            {{/* $cat_tax := index $ctx.Site.Taxonomies "categories" */}}
-            {{ range $cat := $cats }}
-              <li>
-                {{- with $ctx.Site.GetPage (printf "categories/%s" $cat) -}}
-                  <a href="{{ .Permalink }}">{{- $cat -}}</a>
-                {{ else }}
-                  {{ warnf "failed to find index for category: %s" $cat }}
-                  {{ $cat }}
-                {{ end }}
-              </li>
-            {{ end }}
-          </ul>
-        {{ else }}
-          <p id="categories" class="inline">
-            {{ with .Site.GetPage (printf "categories/%s" $cats) -}}
-              <a href="{{ .Permalink }}">{{- $cats -}}</a>
-            {{ else }}
-              {{ warnf "failed to find index for category: %s" $cats }}
-              {{ $cats }}
-            {{- end }}
-          </p>
-        {{ end }}
-      </li>
-    {{- end }}
-    {{ with .ReadingTime -}}
-    <li class="duration">
-      {{ . }} min read
-    </li>
-    {{- end }}
-  </ul>
-{{ end }}
-
-{{/*
-{{- $tags := and (or .Params.meta.tag .Params.meta.tags) (or .Params.tag .Params.tags) -}}
-{{ with $tags }}
-  <div id="tags">
-    {{ partial "utils/fontawesome" (dict "type" "s" "name" "tag" "context" $ctx) }}
-
-    <ul class="inline inline-list">
-      {{ range $tag := . }}
-        <li>
-          {{- with $ctx.Site.GetPage (printf "tags/%s" $tag) -}}
-            <a href="{{ .Permalink }}">{{- $tag -}}</a>
-          {{- else -}}
-            {{ warnf "failed to find index for category: %s" $tag }}
-            {{- $tag -}}
-          {{- end -}}
-        </li>
-      {{ end }}
+<div class="full-title {{ if $.Params.meta.post }}post-full-title{{ end }}">
+  {{ with or .Params.tags .Params.tag }}
+    <ul class="inline-list no-sep inline tags">
+      {{ range . -}}
+        {{ $page := $.Site.GetPage (printf "tags/%s" .) }}
+        <li class="tag"><a href="{{ $page.Permalink }}">{{ . }}</a></li>
+      {{- end }}
     </ul>
-  </div>
-{{ end }}
-*/}}
+  {{ end }}
+
+  {{ if not .Params.meta.title.hidden }}
+    {{ with or .Params.meta.title.display .Title }}
+      <h1><a href="{{ $.Page.Permalink }}">{{- . | markdownify -}}</a></h1>
+    {{ end }}
+  {{ end }}
+
+  {{ if .Params.meta.post }}
+    {{ $cats := or .Params.categories .Params.category }}
+    {{ if reflect.IsSlice $cats }}
+      {{ if eq 1 (len $cats) }}
+        {{ $cats = index $cats 0 }}
+      {{ end }}
+    {{ end }}
+
+    <ul class="post-meta">
+      {{ with .Date }}
+        <li class="date">{{ dateFormat "2006-01" . }}</li>
+      {{ end }}
+      {{- if $cats }}
+        <li class="categor{{ if reflect.IsSlice $cats }}ies{{ else }}y{{ end }}">
+          {{ if reflect.IsSlice $cats }}
+            <ul id="categories" class="inline inline-list">
+              {{/* $cat_tax := index $ctx.Site.Taxonomies "categories" */}}
+              {{ range $cat := $cats }}
+                <li>
+                  {{- with $.Site.GetPage (printf "categories/%s" $cat) -}}
+                    <a href="{{ .Permalink }}">{{- $cat -}}</a>
+                  {{ else }}
+                    {{ warnf "failed to find index for category: %s" $cat }}
+                    {{ $cat }}
+                  {{ end }}
+                </li>
+              {{ end }}
+            </ul>
+          {{ else }}
+            <p id="categories" class="inline">
+              {{ with .Site.GetPage (printf "categories/%s" $cats) -}}
+                <a href="{{ .Permalink }}">{{- $cats -}}</a>
+              {{ else }}
+                {{ warnf "failed to find index for category: %s" $cats }}
+                {{ $cats }}
+              {{- end }}
+            </p>
+          {{ end }}
+        </li>
+      {{- end }}
+      {{ with .ReadingTime -}}
+      <li class="duration">
+        {{ . }} min read
+      </li>
+      {{- end }}
+    </ul>
+  {{ end }}
+</div>
+

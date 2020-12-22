@@ -15,6 +15,7 @@ ul.post-meta {
     marign-bottom: $vertical-spacing;
     align-items: center;
     list-style-type: none;
+    justify-content: flex-end;
 
     li:not(:last-child) {
         margin-right: 0.25em;
