@@ -51,6 +51,7 @@ permalinks:
 
 ignoreFiles:
   - '^\\.#'
+  - 'resume/ACV/.*'
 
 frontmatter:
   date:
@@ -93,6 +94,9 @@ menu:
     - identifier: tags
       url: /tags/
       weight: 30
+    - identifier: resume
+      url: /resume/index.pdf
+      weight: 20
 
 # Extra output formats, including a search index.
 outputFormats:

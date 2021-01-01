@@ -4,3 +4,6 @@
 [submodule "src/assets/styles/utils/hamburgers"]
 	path = src/assets/styles/utils/hamburgers
 	url = https://github.com/jonsuh/hamburgers
+[submodule "src/content/resume/ACV"]
+	path = src/content/resume/ACV
+	url = git@gitlab.com:mohkale/resume.git
