@@ -1,23 +1,18 @@
 @import './page';
 
-h2 { font-weight: 600; }
+// h2 { font-weight: 600; }
 h3 { font-weight: 500; }
 
-// used for posts which're to be scrolled, not shown statically.
-.slide-container {
-    overflow-x: auto;
-    @include scrollbar(13px);
-}
+$slide-min-height: 140px; // minimum height of all posts.
 
 // ------------------------- A Post -------------------------
-.posts-slider__post {
-    height: 140px;
+.post-slide__post {
+    min-height: $slide-min-height;
     overflow: hidden;
     outline: none;
     text-align: left;
 
     position: relative;
-    border-radius: 8px;
 
     box-sizing: border-box;
     display: inline-block;
@@ -28,11 +23,11 @@ h3 { font-weight: 500; }
         text-shadow: 0 0 8px black;
     }
 
-    .posts-slider__post__content {
+    .post-slide__post__content {
         z-index: 10;
     }
 
-    .posts-slider__post__content::before {
+    .post-slide__post__content::before {
         content: '';
         width:  100%;
         height: 100%;
@@ -47,13 +42,13 @@ h3 { font-weight: 500; }
     }
 
     &:hover, &:focus {
-        .posts-slider__post__content::before {
+        .post-slide__post__content::before {
             opacity: 0.7;
         }
     }
 }
 
-.posts-slider__post__content {
+.post-slide__post__content {
     padding: 10px 20px;
     width:  100%;
     height: 100%;
@@ -61,7 +56,7 @@ h3 { font-weight: 500; }
     box-sizing: border-box;
 }
 
-.posts-slider__post__date {
+.post-slide__post__date {
     position: absolute;
     bottom: 12px;
     right: 0;
@@ -74,9 +69,9 @@ h3 { font-weight: 500; }
     transition: transform 0.2s;
 }
 
-.posts-slider__post:hover,
-.posts-slider__post:focus {
-    .posts-slider__post__date {
+.post-slide__post:hover,
+.post-slide__post:focus {
+    .post-slide__post__date {
         transform: none;
     }
 }
@@ -84,7 +79,7 @@ h3 { font-weight: 500; }
 // -------------------------- Thumbnails --------------------------
 
 $thumbnail-scale: 50%;
-.posts-slider__post .posts-slider__post__thumbnail {
+.post-slide__post .post-slide__post__thumbnail {
     margin: 0px;
     position: absolute;
     top:    0;
@@ -96,7 +91,7 @@ $thumbnail-scale: 50%;
     width:  100%;
     height: 100%;
 }
-.posts-slider__post--without-thumbnail .posts-slider__post__thumbnail {
+.post-slide__post--without-thumbnail .post-slide__post__thumbnail {
     padding: 20px;
     box-sizing: border-box;
     width:  80px;
@@ -105,7 +100,7 @@ $thumbnail-scale: 50%;
     right: unset;
     fill: $grey;
 }
-.posts-slider__post--with-thumbnail .posts-slider__post__thumbnail img {
+.post-slide__post--with-thumbnail .post-slide__post__thumbnail img {
     width:  100% + $thumbnail-scale;
     height: 100%;
     object-fit: cover;
@@ -115,9 +110,9 @@ $thumbnail-scale: 50%;
 
     transform-origin: 50% 50%;
 }
-.posts-slider__post--with-thumbnail:hover,
-.posts-slider__post--with-thumbnail:focus {
-    .posts-slider__post__thumbnail img {
+.post-slide__post--with-thumbnail:hover,
+.post-slide__post--with-thumbnail:focus {
+    .post-slide__post__thumbnail img {
         width: 100%;
         margin-left: 0px;
         transform: none;
@@ -125,55 +120,53 @@ $thumbnail-scale: 50%;
     }
 }
 
-// ------------------------ Specific Slider Types ------------------------
-#highlighted-posts, #recent-posts {
+// ------------------------ Slides Container ------------------------
+#post-thumbs {
     margin-top: 10px;
-}
-
-#highlighted-posts {
     display: grid;
+    @include full-main-width;
 
-    $gap: 10px;
-    grid-row-gap: $gap;
-    grid-column-gap: 2 * $gap;
-    grid-template-columns: repeat(2, calc(50% - #{$gap}));
+    $column-count:      6;                                                      // Number of columns used to divide the grid.           NOTE: should be divisable by 2 & 3.
+    $main-column-count: 4;                                                      // Number of columns the first pinned post should take. WARN: Should be less than $column-count;
+    $slide-hl-rows: 3;                                                          // Number of rows the main post should take up.
+    grid-template-columns: repeat($column-count, 1fr);
 
     @media screen and (max-width: $medium) {
         grid-template-columns: 100%;
+    }
 
-        .posts-slider__post {
-            left: -$center-padding;
-            width: calc(100% + #{2 * $center-padding});
-            border-radius: 0px;
+    .post-slide__post {
+    }
+
+    & > .post-slide__post {
+        // by default each slide takes up half the available space
+        grid-column: span #{$column-count / 2};
+
+        &:first-child {
+            min-height: $slide-hl-rows * $slide-min-height;
+            grid-column: span #{$column-count};
+        }
+
+        @media screen and (min-width: $large) {
+            &:first-child {
+                grid-row:    1 / #{$slide-hl-rows+1};
+                grid-column: span $main-column-count;
+            }
+
+            @for $i from 2 through $slide-hl-rows+1 {
+                &:nth-child(#{$i}) {
+                    grid-column: span #{$column-count - $main-column-count};
+                }
+            }
+
+            &:nth-child(n+#{$slide-hl-rows+2}) {
+                grid-column: span #{$column-count / 3};
+            }
         }
     }
 }
 
-#recent-posts {
-    width: 100%;
-    max-height: 400px;
 
-    --bottom-margin: 15px;
-
-    .posts-slider__post  {
-        width: 100%;
-        margin-bottom: var(--bottom-margin);
-
-        &:not(:last-child) {
-            margin-right: var(--right-margin);
-        }
-    }
-
-    @media screen and (min-width: $small) {
-        --bottom-margin: 0px;
-        --right-margin: 1em;
-
-        display: block;
-        width: max-content;
-        max-height: auto;
-
-        .posts-slider__post {
-            width: 350px;
-        }
-    }
+hr.full-width {
+    @include full-main-width;
 }

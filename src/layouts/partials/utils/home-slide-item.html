@@ -2,20 +2,20 @@
 
 <a href="{{ .post.Permalink }}"
    class="
-     posts-slider__post
-     posts-slider__post--with{{ if not $has_thumbnail }}out{{ end }}-thumbnail
+     post-slide__post
+     post-slide__post--with{{ if not $has_thumbnail }}out{{ end }}-thumbnail
    ">
 
   {{ if $has_thumbnail }}
-    {{ partial "utils/thumbnail" (dict "post" .post "resize" "1000x1000" "classes" "posts-slider__post__thumbnail" "hide_caption" true "no_link_to_image" true) }}
+    {{ partial "utils/thumbnail" (dict "post" .post "resize" "1000x1000" "classes" "post-slide__post__thumbnail" "hide_caption" true "no_link_to_image" true) }}
   {{ else }}
-    <div class="posts-slider__post__thumbnail">
-        {{ partial "core/fontawesome" (dict "context" $.context "type" "regular" "name" "file" "classes" "posts-slider__post__thumbnail") }}
+    <div class="post-slide__post__thumbnail">
+        {{ partial "core/fontawesome" (dict "context" $.context "type" "regular" "name" "file" "classes" "post-slide__post__thumbnail") }}
       </div>
   {{ end }}
 
-  <div class="posts-slider__post__content">
+  <div class="post-slide__post__content">
     <span class="title">{{ .post.Title }}</span>
-    <span class="posts-slider__post__date">{{ dateFormat "2006-01-02" .post.Date }}</span>
+    <span class="post-slide__post__date">{{ dateFormat "2006-01-02" .post.Date }}</span>
   </div>
 </a>

@@ -26,14 +26,6 @@ params:
     linkedin: https://www.linkedin.com/in/mohkale
     # upwork: https://www.upwork.com/o/profiles/users/~01b9386b9361c6cba7/
     upwork: http://kisara.moe/r/upwork
-  homepage:
-    recent_posts:
-      limit: 12
-    potd: # post of the day
-      excluded_sections:
-        # no posts from this section can exist in the POTD
-        - exercises
-        - notes
 
 themes:
   - name: default

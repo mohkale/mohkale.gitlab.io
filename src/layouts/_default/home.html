@@ -1,53 +1,49 @@
 {{ define "main" }}
   <article>
-    {{ partial "content" . }}
+    {{ $hl := slice }}
 
-    {{ with .Params.highlighted_posts }}
-      <h2>Posts</h2>
+    {{/* First we show the pinned posts */}}
+    {{ range .Params.pinned_posts }}
+      {{ with $.Site.GetPage . }}
+        {{ $hl = $hl | append . }}
+      {{ else }}
+        {{ warnf "Failed to find highlighted page: %s" . }}
+      {{ end }}
+    {{ end }}
 
-      <div id="highlighted-posts" class="posts-slider">
+    {{/* Then some posts with rich media content */}}
+    {{ $highlight_count := (or .Params.highlight_count 5) }}
+    {{ range (where $.Site.RegularPages.ByDate.Reverse ".Params.thumbnail" "!=" nil) }}
+      {{ if and (lt (len $hl) $highlight_count) (not (in $hl .)) }}
+        {{ $hl = $hl | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{/* Lastly just the n most recent posts needed to break even. */}}
+    {{ $recent_count := (or .Params.recent_count 5) }}
+    {{ range $.Site.RegularPages.ByDate.Reverse }}
+      {{ if and (lt (len $hl) (add $recent_count $highlight_count)) (not (in $hl .)) }}
+        {{ $hl = $hl | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{ with $hl }}
+      <div id="post-thumbs">
         {{ range . }}
-          {{ with $.Site.GetPage . }}
-            {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
-          {{ else }}
-            {{ warnf "failed to find page: %s" . }}
-          {{ end }}
+          {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
         {{ end }}
       </div>
     {{ end }}
 
-    {{ $recent_posts := sort $.Site.RegularPages "Date" "desc" }}
-    {{ with first $.Site.Params.homepage.recent_posts.limit $recent_posts }}
-      <h3>
-        Recent Posts
+    {{ if .Content }}
+      <hr class="full-width" style="margin-top: 0px;"/>
 
-        {{ with $.Site.GetPage "/all.md" }}
-          (<a href="{{ .Permalink }}">See all</a>)
-        {{ else }}
-          {{ warnf "failed to find complete pagination at: /all.md" }}
-        {{ end }}
-      </h3>
-
-      <div class="slide-container">
-        <div id="recent-posts">
-          {{ range . }}
-            {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
-          {{ end }}
-        </div>
+      <div>
+        {{ partial "content" . }}
       </div>
-    {{ end }}
 
-    {{/*
-    {{ $potd_posts := where $.Site.RegularPages "Section" "not in" $.Site.Params.homepage.potd.excluded_sections }}
-    {{ $potd_posts = where $potd_posts "Section" "!=" "" }}
-    {{ with index (shuffle $potd_posts) 0 }}
-      <h2>Post of the Day</h2>
-      <div id="post-of-the-day">
-        <iframe frameborder="0" src="{{ .Permalink }}" style="width: 100%; height: 100%;">
-        </iframe>
-      </div>
+      <hr class="full-width"/>
     {{ end }}
-    */}}
 
     {{ $exercises := where $.Site.Pages "Section" "exercises" }}
     {{ $exercises = where $exercises "Params.solution" "!=" nil }}
@@ -60,7 +56,7 @@
         make both the source code and the title text link to the exercise
         solution.
       -->
-      <a href="{{ .Permalink }}">
+      <a href="{{ .Permalink }}" title="Snippet of The Day">
         {{ highlight .Params.Solution (or .Params.language "") "" }}
       </a>
     {{ end }}
