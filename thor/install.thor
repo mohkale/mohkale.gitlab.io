@@ -75,11 +75,6 @@ class Install < Thor
     send(node_or_npm)
   end
 
-  desc 'fontawesome', 'install all fontawesome icons'
-  def fontawesome
-    in_root { run './dev/get-fontawesome -o "./src/assets/images/fa"' }
-  end
-
   desc 'submodules', 'fetch any git submodules'
   def submodules
     in_root { run 'git submodule update --init --recursive' }

@@ -7,3 +7,6 @@
 [submodule "src/content/resume/ACV"]
 	path = src/content/resume/ACV
 	url = git@gitlab.com:mohkale/resume.git
+[submodule "vendor/fontawesome"]
+	path = vendor/fontawesome
+	url = https://github.com/FortAwesome/Font-Awesome.git

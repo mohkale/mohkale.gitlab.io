@@ -10,7 +10,8 @@ __pycache__/
 tmp/
 var/
 bin/
-vendor/
+vendor/ruby/
+vendor/node/
 font-awesome
 .deprecated/
 
@@ -24,9 +25,6 @@ font-awesome
 [._]sw[a-p]
 
 # generated assets within the src directory
-src/assets/images/fa/brands
-src/assets/images/fa/solid
-src/assets/images/fa/regular
 src/assets/scripts/*.bundle.js
 
 # lock files. I don't like commiting lock files.

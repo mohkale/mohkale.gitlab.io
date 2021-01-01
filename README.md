@@ -8,6 +8,7 @@ Official repository can be found on [gitlab](https://gitlab.com/mohkale/mohkale.
 
 ## Setup Instructions
 ```
+git submodule update --init --recursive
 ./dev/setup
 bundle exec thor install:all
 ```
