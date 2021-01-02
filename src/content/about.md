@@ -10,7 +10,7 @@ layout: about
 # A section shown just before the main content. This just consists of a title, an icon
 # and some associated values. Populate it with whatever you feel is relevent. The content
 # of this file will appear after this section.
-about_summary:
+about:
   - title: Birthday
     icon: [solid, birthday-cake]
     text: December 08, 1999
@@ -22,6 +22,32 @@ about_summary:
   - title: Department
     icon: [solid, graduation-cap]
     text: "[Department of Computer Science](https://www.sheffield.ac.uk/dcs)"
+
+interests:
+  - title: Favourite Games
+    icon: [solid, gamepad]
+    text: |-
+      {.inline-list .nt}
+      - [Cave Story](https://www.cavestory.org/game-info/about-cave-story.php)
+      - [Deus Ex: HR](https://store.steampowered.com/app/238010/Deus_Ex_Human_Revolution__Directors_Cut/)
+
+  - title: Favourite Movies
+    icon: [solid, film]
+    text: |-
+      {.inline-list .nt}
+      - [The Great Gatsby](https://www.imdb.com/title/tt1343092/)
+
+  - title: Favourite TV Shows
+    icon: [solid, tv]
+    text: |-
+      {.inline-list .nt}
+      - [Warrior](https://www.imdb.com/title/tt5743796/)
+      - [The Last Kingdom](https://www.imdb.com/title/tt4179452/)
+      - [H&CF](https://www.imdb.com/title/tt2543312/)
+
+  - title: Favourite Anime
+    icon: [solid, crosshairs]
+    text: "**Impossible to Rank ヽ(´□｀。)ﾉ**"
 
 # skills are represented as an array of properties associated with a skill.
 # Available fields include:

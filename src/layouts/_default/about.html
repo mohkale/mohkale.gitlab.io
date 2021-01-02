@@ -1,6 +1,6 @@
 {{ define "main" }}
   <article>
-    <section>
+    <section class="summary-section">
       <div class="heading">
         <div class="heading__with-icon">
           {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "book") }}
@@ -9,17 +9,42 @@
         <h2>About Me</h2>
       </div>
 
-      {{ range .Params.about_summary }}
-        <div class="summary-section">
-          {{ partial "core/fontawesome" (dict "context" $.Page "type" (index .icon 0) "name" (index .icon 1)) }}
-          <div>
-            <h3>{{ .title }}</h3>
-            <p>{{ .text | markdownify }}</p>
+      <div class="section-body">
+        {{ range .Params.about }}
+          <div class="summary-section__item">
+            {{ partial "core/fontawesome" (dict "context" $.Page "type" (index .icon 0) "name" (index .icon 1)) }}
+            <div>
+              <h3>{{ .title }}</h3>
+              <p>{{ .text | markdownify }}</p>
+            </div>
           </div>
-        </div>
-      {{ end }}
+        {{ end }}
+      </div>
 
       {{ partial "content" . }}
+    </section>
+
+    <hr/>
+
+    <section class="summary-section interests-section">
+      <div class="heading">
+        <div class="heading__with-icon">
+          {{ partial "core/fontawesome" (dict "context" $.Page "type" "solid" "name" "bookmark") }}
+          <h1>Favourites</h1>
+        </div>
+      </div>
+
+      <div class="section-body">
+        {{ range .Params.interests }}
+          <div class="summary-section__item interests-section__item">
+            {{ partial "core/fontawesome" (dict "context" $.Page "type" (index .icon 0) "name" (index .icon 1)) }}
+            <div>
+              <h3>{{ .title }}</h3>
+              <p>{{ .text | markdownify }}</p>
+            </div>
+          </div>
+        {{ end }}
+      </div>
     </section>
 
     <hr/>
@@ -82,10 +107,10 @@
 
       <div class="timeline">
         <div class="timeline__item">
-          <span class="timeline__item__tag">Start</span>
+          <span class="timeline__item__tag">Now</span>
         </div>
 
-        {{ $timeline := sort .Params.timeline "date" }}
+        {{ $timeline := sort .Params.timeline "date" "desc" }}
         {{ with $timeline }}
           {{ $first_year := dateFormat "2006" (index $timeline 0).date }}
           {{ $last_year := $first_year }}
@@ -111,7 +136,7 @@
                   {{ end }}
                 </p>
 
-                <div class="summary-section">
+                <div class="summary-section__item">
                   {{ with .icon }}
                     {{ partial "core/fontawesome" (dict "context" $.Page "type" (index . 0) "name" (index . 1)) }}
                   {{ end }}
@@ -139,7 +164,7 @@
         {{ end }}
 
         <div class="timeline__item">
-          <span class="timeline__item__tag">Now</span>
+          <span class="timeline__item__tag">Start</span>
         </div>
       </div>
     </section>

@@ -1,0 +1,13 @@
+.interests-section__item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.interests-section .section-body {
+    @media screen and (min-width: $medium) {
+        columns: 2;
+    }
+    @media screen and (min-width: $large) {
+        columns: 3;
+    }
+}
