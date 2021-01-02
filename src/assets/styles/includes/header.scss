@@ -115,6 +115,10 @@ h1.site-title {
     }
 }
 
+#subtitle {
+    font-size: var(--secondary-font-size);
+}
+
 header.site-header {
     display: flex;
     justify-content: space-between;

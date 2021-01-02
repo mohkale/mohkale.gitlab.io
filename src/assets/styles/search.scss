@@ -78,8 +78,8 @@ ul#search-results {
     @include link(black);
 
     .meta {
-        $font-size: 12px;
-        font-size: $font-size;
+        --font-size: 12px;
+        --secondary-font-size: 12px;
 
         margin: 20px 0px;
         display: flex;
@@ -98,8 +98,8 @@ ul#search-results {
         }
 
         .icon {
-            width:  $font-size;
-            height: $font-size;
+            width:  var(--font-size);
+            height: var(--font-size);
 
             &:not(:first-child) {
                 margin-left: 8px;

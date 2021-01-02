@@ -15,6 +15,7 @@ ul.post-meta {
     align-items: center;
     list-style-type: none;
     justify-content: flex-start;
+    font-size: var(--secondary-font-size);
 
     li:not(:last-child) {
         margin-right: 0.25em;
