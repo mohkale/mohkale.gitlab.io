@@ -26,7 +26,7 @@
 
     <ul class="post-meta">
       {{ with .Date }}
-        <li class="date">{{ dateFormat "2006-01" . }}</li>
+        <li class="date">{{ dateFormat "2006-01-02" . }}</li>
       {{ end }}
       {{- if $cats }}
         <li class="categor{{ if reflect.IsSlice $cats }}ies{{ else }}y{{ end }}">

@@ -120,13 +120,6 @@ figure.clamp-width img {
     max-width: 100%;
 }
 
-// $step: 10;
-// @for $i from 1 through 100/$step {
-//     figure.width-#{$i*$step} img {
-//         width: $i * $step * 1%;
-//     }
-// }
-
 .full-title {
     margin-top:  1.5 * $leading;
 

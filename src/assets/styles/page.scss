@@ -93,29 +93,4 @@ aside.post-meta {
             }
         }
     }
-
-    .tags {
-        display: flex;
-        align-items: center;
-        padding-bottom: 30px;
-
-        $font-size: 0.8rem;
-
-        .icon {
-            width:  $font-size;
-            height: $font-size;
-            margin-right: 5px;
-        }
-
-        ul {
-            margin: 0px;
-            display: inline-block;
-
-            font-size: $font-size;
-
-            li {
-                margin-right: 5px;
-            }
-        }
-    }
 }

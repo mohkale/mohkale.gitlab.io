@@ -4,8 +4,8 @@ source: dailybyte
 tags: [python]
 
 challenge: |-
-  given a non-empty, singly, linked list, return a pointer to the middle of the list.
-  if the list contains an even number of elements, return the one closer to the end.
+  Given a non-empty, singly, linked list, return a pointer to the middle of the list.
+  If the list contains an even number of elements, return the one closer to the end.
 
 runtime: "n"
 language: python

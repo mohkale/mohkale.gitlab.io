@@ -3,7 +3,7 @@
 @mixin full-width-seperator() {
     content: '';
     height: 2px;
-    background: $divider-color;
+    background: $divider;
     @include full-main-width;
 }
 
@@ -24,7 +24,7 @@
 
     // for when there's a review and some comments.
     & > :first-child:not(:last-child) {
-        border-right: solid 2px $divider-color;
+        border-right: solid 2px $divider;
         position: relative;
         @media screen and (max-width: $small) {
             border-right: 0px;

@@ -2,6 +2,8 @@
 
 {{/* prepopulate page recursively, then posts. */}}
 {{ with and (not .Params.hide_subsections) .Sections }}
+  <h2>Subsections</h2>
+
   <table class="pagination">
     {{ range sort . "Title" }}
       {{ $title := (or .Title .File.ContentBaseName) }}
