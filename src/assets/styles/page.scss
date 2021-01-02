@@ -12,21 +12,15 @@ ul.post-meta {
     flex-wrap: wrap;
     padding-left: 0px;
     margin-top: 6px;
-    marign-bottom: $vertical-spacing;
     align-items: center;
     list-style-type: none;
-    justify-content: flex-end;
+    justify-content: flex-start;
 
     li:not(:last-child) {
         margin-right: 0.25em;
     }
-    .category::before {
-        content: " in category ";
-    }
-
-    .categories::before {
-        content: "in categories";
-    }
+    .category::before   { content: " in category "; }
+    .categories::before { content: " in categories "; }
 
     #categories {
         margin: 0px;
@@ -34,6 +28,24 @@ ul.post-meta {
 
     .duration:not(:first-child)::before {
         content: " • ";
+    }
+
+    // Adds a divider spanning from meta to EOL.
+    &::after {
+        content: '';
+        height: 2px;
+        background-color: $divider-color;
+
+        // clip and border-radus
+        margin-left: 16px;
+        margin-right: 8px;
+        border-radius: 0.5px;
+
+        // Take the full remaining width of the page
+        display: flex;
+        flex-grow: 1;
+
+        margin-top: 3px; // TODO: Fix whatevers causing the alignment to be off
     }
 }
 
