@@ -24,6 +24,11 @@
 .stack-left  { @extend .left;  @extend .pad-left; }
 .stack-right { @extend .right; @extend .pad-right; }
 
+.nt { margin-top:    0px; }
+.nb { margin-bottom: 0px; }
+.nl { margin-left:   0px; }
+.nr { margin-right:  0px; }
+
 .center {
     text-align: center;
 }

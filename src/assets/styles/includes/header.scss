@@ -115,7 +115,7 @@ h1.site-title {
     }
 }
 
-header {
+header.site-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,12 +129,17 @@ header {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             width: 100%;
 
             #subtitle {
                 margin-bottom: 0px;
             }
+        }
+
+        .sm-links {
+            width: 100%;
+            justify-content: space-evenly;
         }
     }
 }
