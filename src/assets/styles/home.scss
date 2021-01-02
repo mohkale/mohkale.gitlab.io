@@ -131,19 +131,16 @@ $thumbnail-scale: 50%;
     $slide-hl-rows: 3;                                                          // Number of rows the main post should take up.
     grid-template-columns: repeat($column-count, 1fr);
 
-    @media screen and (max-width: $medium) {
-        grid-template-columns: 100%;
-    }
-
-    .post-slide__post {
-    }
-
     & > .post-slide__post {
         // by default each slide takes up half the available space
         grid-column: span #{$column-count / 2};
 
         &:first-child {
             min-height: $slide-hl-rows * $slide-min-height;
+            grid-column: span #{$column-count};
+        }
+
+        @media screen and (max-width: $medium) {
             grid-column: span #{$column-count};
         }
 
