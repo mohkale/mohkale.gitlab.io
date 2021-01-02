@@ -1,0 +1,69 @@
+@import "./colors";
+
+$fg:          var(--fg);                                              // Foreground color of the main part of the page
+$bg:          var(--bg);                                              // Background of the page
+$main-bg:     var(--main-bg);                                         // Background of the main body of the page (on top of the bg)
+$burger-bg:   var(--burger-bg);                                       // Background of the navbar when shown as a burger-menu
+$main-shadow: var(--main-shadow);                                     // Shadow emphasizing the main page content
+
+$title: var(--title);                                                 // Color of headings/titles
+
+$link:              var(--link);                                      // Foreground color of anchor tags
+$link-hover:        var(--link-hover);                                // Foreground color of anchor tags on hover
+$anchor-link:       var(--anchor-link);                               // Same as $link but for heading anchor links
+$anchor-hover-link: var(--anchor-hover-link);                         // Same as $link but for heading anchor links
+
+$caption: var(--caption);                                             // eg. figcaption
+$divider: var(--divider);                                             // Used to seperate from other elements (eg. hr)
+
+$blockquote:       var(--blockquote);
+$blockquote-quote: var(--blockquote-quote);
+
+$scrollbar-bg: var(--scrollbar-bg);                                   // Background color of the scrollbar section not containing the thumb
+$scrollbar-fg: var(--scrollbar-fg);                                   // Foreground color of the scrollable section of the scrollbar
+$scrollbar-active-fg: var(--scrollbar-active-fg);                     // Same as $scrollbar-fg but when currently scrolling
+
+$placeholder:      var(--placeholder);                                // Input placeholder
+$placeholder-bold: var(--placeholder-bold);                           // Variant
+
+$positive:       var(--positive);
+$negative:       var(--negative);
+$neutral-yellow: var(--neutral-yellow);
+$neutral-blue:   var(--neutral-blue);
+$neutral-grey:   var(--neutral-grey);
+
+// Links to previous/next post shown at the bottom of a post
+$footer-link-bg:       var(--footer-link-bg);
+$footer-link-hover-bg: var(--footer-link-hover-bg);
+$footer-link-fg:       var(--footer-link-fg);
+$footer-link-sub-fg:   var(--footer-link-sub-fg);
+
+$nav-fg:        var(--nav-fg);                                        // Foreground of navbar links
+$nav-active-fg: var(--nav-active-fg);                                 // Like $nav-fg but for the current nav item
+
+$notice-bg: var(--notice-bg);                                         // BG of notifications (See [[file:~/prog/repos/mohkale.io/src/layouts/shortcodes/notify.html::{{ $type := .Get 0 }}][here]]).
+
+$table-border:    var(--table-border);
+$table-header-bg: var(--table-header-bg);
+
+// Inline code syntax highlighting
+$inline-highlight-bg: var(--inline-highlight-bg);
+$inline-highlight-fg: var(--inline-highlight-fg);
+
+// Block style syntax highlighting
+$syntax-bg:       var(--syntax-bg);
+$syntax-fg:       var(--syntax-fg);
+$syntax-id:       var(--syntax-id);                                   // Identifier
+$syntax-hl-bg:    var(--syntax-hl-bg);
+$syntax-hl-fg:    var(--syntax-hl-fg);
+$syntax-class:    var(--syntax-class);
+$syntax-function: var(--syntax-function);
+$syntax-comment:  var(--syntax-comment);
+$syntax-string:   var(--syntax-string);
+$syntax-keyword:  var(--syntax-keyword);
+$syntax-builtin:  var(--syntax-builtin);                              // Like pythons print or map
+$syntax-operator: var(--syntax-operator);
+$syntax-diff-add: var(--syntax-diff-add);                             // Bg
+$syntax-diff-del: var(--syntax-diff-del);                             // Bg
+
+@import "./light";

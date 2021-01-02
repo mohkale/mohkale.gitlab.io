@@ -33,17 +33,17 @@ pre.chroma {
 
 /** Syntax Highlighting Rules. See [[https://gohugo.io/content-management/syntax-highlighting/][here]]. */
 .highlight {
-    color: $aoh-very-light-grey;
+    color: $syntax-fg;
 
-    /* Keyword       */ @include syntax-color(k, $aoh-green);
-    /* LiteralString */ @include syntax-color(s, $aoh-blue);
-    /* LiteralNumber */ @include syntax-color(m, $aoh-very-light-grey);
-    /* Comment       */ @include syntax-color(c, $aoh-grey);
-    /* Operator      */ @include syntax-color(o, $aoh-very-light-grey);
+    /* Keyword       */ @include syntax-color(k, $syntax-keyword);
+    /* LiteralString */ @include syntax-color(s, $syntax-string);
+    /* LiteralNumber */ @include syntax-color(m, $syntax-id);
+    /* Comment       */ @include syntax-color(c, $syntax-comment);
+    /* Operator      */ @include syntax-color(o, $syntax-operator);
 
     // non-existant parent syntax classes
-    /* Generic       */ @include syntax-color(g, $aoh-very-light-grey);
-    /* Name          */ @include syntax-color(n, $aoh-very-light-grey);
+    /* Generic       */ @include syntax-color(g, $syntax-id);
+    /* Name          */ @include syntax-color(n, $syntax-id);
 
     /*
      * == Unassigned Syntax Classes ==
@@ -54,18 +54,18 @@ pre.chroma {
     */
 
     .err { // Error
-        background: $aoh-red;
-        color: $aoh-very-dark-grey;
+        background: $syntax-class;
+        color: $syntax-bg;
     }
 
     .hl { // LineHighlight
-        background-color: $aoh-dark-grey;
+        background-color: $syntax-hl-bg;
 
         .lnt {
-            color: $aoh-very-light-grey;
+            color: $syntax-fg;
         }
 
-        color: $aoh-very-dark-grey;
+        color: $syntax-hl-fg;
     }
 
     // make highlighted lines span the full width
@@ -161,12 +161,12 @@ pre.chroma {
         nx, // NameOther
     );
 
-    /* NameDecorator */ @include syntax-color(nd, $aoh-blue);
-    /* NameBuiltin   */ @include syntax-color(nb, $aoh-blue);
-    /* NameClass     */ @include syntax-color(nc, $aoh-red);
-    /* NameFunction  */ @include syntax-color(nf, $aoh-yellow);
-    /* NameConstant  */ @include syntax-color(no, $aoh-red);
-    /* NameAttribute */ @include syntax-color(na, $aoh-yellow);
+    /* NameDecorator */ @include syntax-color(nd, $syntax-builtin);
+    /* NameBuiltin   */ @include syntax-color(nb, $syntax-builtin);
+    /* NameClass     */ @include syntax-color(nc, $syntax-class);
+    /* NameFunction  */ @include syntax-color(nf, $syntax-function);
+    /* NameConstant  */ @include syntax-color(no, $syntax-class);
+    /* NameAttribute */ @include syntax-color(na, $syntax-function);
 
     // for diffs, TODO prettify
     .gi, .gd {
@@ -176,18 +176,11 @@ pre.chroma {
 
     .gi {
         color: black;
-        background-color: darken(desaturate($aoh-green, 15%), 15%);
+        background-color: $syntax-diff-add;
     }
 
     .gd {
         color: black;
-        background-color: darken(desaturate($aoh-purple, 5%), 5%);
-    }
-
-    // language specific variants
-    .language-java {
-        // .n {
-        //     color: $aoh-red;
-        // }
+        background-color: $syntax-diff-del;
     }
 }

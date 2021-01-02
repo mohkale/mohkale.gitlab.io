@@ -1,4 +1,6 @@
-// shades of the millennium falcon
+$white: #fff;
+$black: #111;
+
 $aoh-very-light-grey: hsl(228, 007%, 081%);
 $aoh-light-grey:      hsl(228, 007%, 055%);
 $aoh-grey:            hsl(228, 007%, 044%);
@@ -11,12 +13,10 @@ $aoh-yellow:    hsl(050, 074%, 061%); // Human cyborg relations.
 $aoh-green:     hsl(107, 040%, 057%); // Fear is the path to the dark side.
 $aoh-blue:      hsl(196, 064%, 058%); // Whistle. Bloop.
 $aoh-purple:    hsl(313, 032%, 054%);
+$aoh-magenta:   $aoh-purple;
 $aoh-white:     hsl(000, 000%, 100%);
 $aoh-turquoise: hsl(161, 078%, 055%);
-
-// aliases
-$aoh-cyan:    $aoh-turquoise;
-$aoh-magenta: $aoh-purple;
+$aoh-cyan:      $aoh-turquoise;
 
 $aoh-colors: (
     "white":     white,
@@ -28,23 +28,3 @@ $aoh-colors: (
     "blue":      $aoh-blue,
     "purple":    $aoh-purple,
     "turquoise": $aoh-turquoise);
-
-$white: #fff;
-$black: #111;
-
-$table-border-color: #DFE2E5;
-$divider-color: #f3f3f3;
-
-$grey:       #9B9B9B;
-$dark-grey:  #717171;
-$light-grey: #F7F7F7;
-$very-dark-grey: #363636;
-
-$black:     #0a0a0a;
-$red:       #ff3860;
-$turquoise: #00d1b2;
-$blue:      #209cee;
-$yellow:    #ffdd57;
-
-$link-color: #e42b2b;
-$link-hover-color: #8e0000;

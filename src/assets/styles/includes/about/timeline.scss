@@ -13,7 +13,7 @@ $timeline-bar-indicator-size: .8em;
 .timeline__item__tag {
     display: inline-block;
     color: white;
-    background: $turquoise;
+    background: $positive;
     border-radius: 4px;
     padding: 4px 8px;
     font-size: 14px;
@@ -37,11 +37,11 @@ $timeline-bar-indicator-size: .8em;
     }
 }
 
-.timeline__item               { --bar-color: #{$grey}; }
-.timeline__item--hl-red       { --bar-color: #{$red}; }
-.timeline__item--hl-turquoise { --bar-color: #{$turquoise}; }
-.timeline__item--hl-blue      { --bar-color: #{$blue}; }
-.timeline__item--hl-yellow    { --bar-color: #{$yellow}; }
+.timeline__item               { --bar-color: #{$neutral-grey}; }
+.timeline__item--hl-red       { --bar-color: #{$negative}; }
+.timeline__item--hl-turquoise { --bar-color: #{$positive}; }
+.timeline__item--hl-blue      { --bar-color: #{$neutral-blue}; }
+.timeline__item--hl-yellow    { --bar-color: #{$neutral-yellow}; }
 
 .timeline__item--with-bar {
     display: grid;

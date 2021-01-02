@@ -12,14 +12,14 @@
 
     &::-webkit-scrollbar-thumb {
         min-height: 16px;
-        background-color: #999999;
+        background-color: $scrollbar-fg;
         background-clip: padding-box;
-        border: 3px solid #fdfdfd;
+        border: 3px solid $scrollbar-bg;
         border-radius: 5px;
     }
 
     &::-webkit-scrollbar-thumb:active,
     &::-webkit-scrollbar-thumb:hover {
-        background-color: #777;
+        background-color: $scrollbar-active-fg;
     }
 }

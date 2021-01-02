@@ -1,7 +1,7 @@
 @import "./main";
 
+$highlight: $placeholder;
 form {
-    $highlight: $grey;
     $radius: 5px;
     $trans-duration: 0.5s;
     margin: 16px 0px;
@@ -15,13 +15,13 @@ form {
         border-right: none;
         padding: 5px;
         height: 20px;
-        caret-color: black;
+        caret-color: $fg;
 
         border-radius: $radius 0 0 $radius;
         outline: none;
 
         &::placeholder {
-            color:  $grey;
+            color:  $placeholder;
         }
     }
 
@@ -31,18 +31,18 @@ form {
         border: 1px solid $highlight;
         background: $highlight;
         text-align: center;
-        color: white;
+        color: $main-bg;
         outline: 0px;
         cursor: pointer;
     }
 
     &.active {
         .search, button {
-            border-color: black;
+            border-color: $fg;
         }
 
         button {
-            background: black;
+            background: $fg;
         }
     }
 }
@@ -53,7 +53,7 @@ form {
     justify-content: center;
 
     .loader {
-        stroke: black;
+        stroke: $fg;
         width:  4em;
         height: 4em;
     }
@@ -75,7 +75,7 @@ ul#search-results {
         margin-top: 10px;
     }
 
-    @include link(black);
+    @include link($fg);
 
     .meta {
         --font-size: 12px;
@@ -85,12 +85,12 @@ ul#search-results {
         display: flex;
         vertical-align: middle;
 
-        fill:  $grey;
-        color: $grey;
+        fill:  $highlight;
+        color: $highlight;
 
         .tags {
             @extend .inline-list;
-            @include link($grey, $dark-grey);
+            @include link($highlight, $placeholder-bold);
         }
 
         .date, .tags {

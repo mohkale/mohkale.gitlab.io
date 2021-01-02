@@ -35,7 +35,7 @@ ul.post-meta {
     &::after {
         content: '';
         height: 2px;
-        background-color: $divider-color;
+        background-color: $divider;
 
         // clip and border-radus
         margin-left: 16px;
@@ -56,13 +56,14 @@ aside.post-meta {
         // align-items: center;
         display: grid;
         grid-template-columns: repeat(2, 50%);
+        background-color: $footer-link-bg;
 
         a {
             padding: 15px;
             border-radius: 4px;
 
             &:hover, &:active {
-                background-color: $light-grey;
+                background-color: $footer-link-hover-bg;
             }
 
             margin-bottom: 20px;
@@ -81,12 +82,12 @@ aside.post-meta {
             display: block;
 
             &.pagination-label {
-                color: $grey;
+                color: $footer-link-sub-fg;
                 font-size: .8rem;
             }
 
             &.pagination-title {
-                color: #111;
+                color: $footer-link-fg;
                 font-weight: 700;
                 margin-top: .25rem;
             }

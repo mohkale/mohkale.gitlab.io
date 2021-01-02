@@ -10,14 +10,8 @@ code {
 
 // syntax highlighting for inline code.
 code:not([class*="lang"]) {
-    // color: white;
-    // background: $inline-code-bg-color;
-    // padding: 1px 2px 2px 2px;
-    // border-radius: 3px;
-    // white-space: nowrap;
-    // vertical-align: baseline;
-    color: darken($grey, 15%);
-    background: darken($white, 3%);
+    color: $inline-highlight-bg;
+    background: $inline-highlight-fg;
     // WARN a non-0 vertical padding overlaps with text above and below the element.
     padding: 0px 5px;
     border-radius: 2px;
@@ -82,10 +76,10 @@ body .gist {
 
         a {
             font-weight: bold;
-            color: $link-color !important;
+            color: $link !important;
 
             &:hover{
-                color: $link-hover-color !important;
+                color: $link-hover !important;
             }
         }
     }

@@ -12,7 +12,7 @@
 
     z-index: 100;
     position: fixed;
-    background: transparentize($main-bg, 0.1);
+    background: $burger-bg;
     @include fade-in-down;
 
     transition: top 0.3s ease-out;
@@ -30,6 +30,8 @@
 nav {
     z-index: 1;
     visibility: hidden;
+    background-color: $main-bg;
+    box-shadow: 0 -10px 20px 0 $main-shadow;
 
     ul {
         list-style-type: none;
@@ -38,9 +40,10 @@ nav {
     }
 
     a {
-        color: $grey;
+        color: $nav-fg;
+
         &.current, &:hover {
-            color: $black;
+            color: $nav-active-fg;
         }
     }
 
@@ -98,7 +101,7 @@ h1.site-title {
     line-height: 1.2;
     margin: 0px;
 
-    @include link(black);
+    @include link($title);
 }
 
 // dropdown nav menu

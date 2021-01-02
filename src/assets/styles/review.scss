@@ -70,11 +70,11 @@
 
     .positives {
         --indicator: '+';
-        --indicator-color: #{$turquoise};
+        --indicator-color: #{$positive};
     }
 
     .negatives {
         --indicator: '-';
-        --indicator-color: #{$red};
+        --indicator-color: #{$negative};
     }
 }

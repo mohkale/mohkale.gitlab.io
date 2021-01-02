@@ -1,0 +1,64 @@
+html {
+    --fg: #000;
+    --bg: #F7F7F7;
+    --main-bg: #fff;
+    --burger-bg: #{transparentize(#fff, 0.1)};
+    --main-shadow: rgba(236, 236, 236, 0.86);
+
+    --title: #363636;
+
+    --link: #e42b2b;
+    --link-hover: #8e0000;
+    --anchor-link: #9B9B9B;
+    --anchor-hover-link: #717171;
+
+    --caption: #9B9B9B;
+    --divider: #f3f3f3;
+
+    --blockquote: #555;
+    --blockquote-quote: #444;
+
+    --scrollbar-bg: #fdfdfd;
+    --scrollbar-fg: #999;
+    --scrollbar-active-fg: #777;
+
+    --placeholder: #9B9B9B;
+    --placeholder-bold: #717171;
+
+    --positive:       #00d1b2;
+    --negative:       #ff3860;
+    --neutral-yellow: #ffdd57;
+    --neutral-blue:   #209cee;
+    --neutral-grey:   #9B9B9B;
+
+    --footer-link-bg: #FFF;
+    --footer-link-hover-bg: #F7F7F7;
+    --footer-link-fg: #111;
+    --footer-link-sub-fg: #9B9B9B;
+
+    --nav-fg:        #9B9B9B;
+    --nav-active-fg: #000;
+
+    --notice-bg: darken(#F7F7F7, 5%);
+
+    --table-border:    #DFE2E5;
+    --table-header-bg: #F7F7F7;
+
+    --inline-highlight-bg: darken(#9B9B9B, 15%);
+    --inline-highlight-fg: darken(#FFF, 3%);
+
+    --syntax-bg: #{lighten($aoh-very-dark-grey, 3%)};
+    --syntax-fg: #{$aoh-very-light-grey};
+    --syntax-id: #{$aoh-very-light-grey};
+    --syntax-hl-bg: #{$aoh-dark-grey};
+    --syntax-hl-fg: #{$aoh-very-dark-grey};
+    --syntax-class: #{$aoh-red};
+    --syntax-function: #{$aoh-yellow};
+    --syntax-comment: #{$aoh-grey};
+    --syntax-string: #{$aoh-blue};
+    --syntax-keyword: #{$aoh-green};
+    --syntax-builtin: #{$aoh-blue};
+    --syntax-operator: #{$aoh-very-light-grey};
+    --syntax-diff-add: #{darken(desaturate($aoh-green, 15%), 15%)};
+    --syntax-diff-del: #{darken(desaturate($aoh-purple, 5%), 5%)};
+}
