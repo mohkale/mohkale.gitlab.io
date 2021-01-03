@@ -88,7 +88,7 @@ class Site < Thor
       end
 
       status = git.status
-      unless [*status.added, *status.changed, *status.deleted].empty?
+      unless [*status.added, *status.changed, *status.deleted, *status.untracked].empty?
         if no_confirm || yes_no_prompt('working directory modified, stash before proceeding')
           logger.debug 'stashing work tree index'
           initial_branch.stashes.save(STASH_MSG)
@@ -168,8 +168,7 @@ class Site < Thor
       # deployment.
       def lock_files
         in_root do
-          %w[Gemfile.lock package-lock.json yarn.lock
-             .bundle src/assets/images/fa]
+          %w[.bundle vendor/]
             .filter { |file| File.exist?(file) }
         end
       end

@@ -23,7 +23,6 @@ class Install < Thor
   desc 'all', 'install all setup tasks.'
   def all
     invoke :themes
-    invoke :fontawesome
     invoke :asciinema
     invoke :node
     invoke :submodules

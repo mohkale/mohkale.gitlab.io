@@ -27,12 +27,6 @@ font-awesome
 # generated assets within the src directory
 src/assets/scripts/*.bundle.js
 
-# lock files. I don't like commiting lock files.
-# They introduce complexity which is useful for
-# deployment, but not much so for developmenet.
-Gemfile.lock
-package-lock.json
-
 # everything else
 *TODO-*
 TODO/

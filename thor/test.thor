@@ -44,6 +44,7 @@ class Test < Thor
         check_html: true,
         disable_external: true,
         empty_alt_ignore: true,
+        allow_hash_ref: true,
 
         # HTML options
         validation: {

@@ -1,9 +1,9 @@
 [submodule "src/assets/styles/utils/normalize"]
 	path = src/assets/styles/utils/normalize
-	url = https://github.com/necolas/normalize.css
+	url = https://github.com/necolas/normalize.css.git
 [submodule "src/assets/styles/utils/hamburgers"]
 	path = src/assets/styles/utils/hamburgers
-	url = https://github.com/jonsuh/hamburgers
+	url = https://github.com/jonsuh/hamburgers.git
 [submodule "src/content/resume/ACV"]
 	path = src/content/resume/ACV
 	url = git@gitlab.com:mohkale/resume.git

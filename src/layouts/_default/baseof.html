@@ -102,8 +102,8 @@
 
         {{ if $script }}
           <script type="text/javascript" src="{{- ($script | fingerprint).Permalink -}}"
-                  {{- if $it.async -}}async="true"{{- end -}}
-                  {{- if $it.module -}}type="module"{{- end -}}>
+                  {{ if $it.async }}async="true"{{ end }}
+                  {{ if $it.module }}type="module"{{ end }}>
           </script>
         {{ else }}
           {{ warnf "failed to find script: %s" $it.path }}

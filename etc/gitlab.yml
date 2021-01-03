@@ -9,10 +9,10 @@ stages:
   - deploy
 
 variables:
-  GIT_SUBMODULE_STRATEGY: recursive
+  GIT_SUBMODULE_STRATEGY: none
 
 before_script:
-  # setup locale
+  # Setup locale
   - apt update >/dev/null
   - apt install -y locales >/dev/null
   - echo "en_US UTF-8" > /etc/locale.gen
@@ -20,17 +20,20 @@ before_script:
   - export LANG=en_US.UTF-8
   - export LANGUAGE=en_US:en
   - export LC_ALL=en_US.UTF-8
-  # install dependencies
+  # Install dependencies
   - curl -sL https://deb.nodesource.com/setup_13.x | bash -
   - apt update >/dev/null
   - apt install -y pcregrep gawk tralics nodejs ruby-full ruby-dev jq wget build-essential patch zlib1g-dev liblzma-dev libffi-dev >/dev/null
-  # - apt install -y chromium-browser >/dev/null
-  # setup thor
+  # Setup thor
   - gem install bundler
 
 install:
   stage: setup
   script:
+    # Fix access rights on private modules then fetch them. See [[https://stackoverflow.com/a/53758544/6247387][here]].
+    - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/".insteadOf "git@gitlab.com:"
+    - git submodule sync --recursive && git submodule update --init --recursive
+    # Fetch packages/dependencies
     - ./dev/setup
     - bundle install
     - bundle exec thor install:all
