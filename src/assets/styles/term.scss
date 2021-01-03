@@ -2,7 +2,6 @@
 
 h2 {
     padding-top: 10px;
-    font-size: 1.4rem;
     line-height: 2.2em;
 }
 
@@ -14,7 +13,7 @@ table.pagination {
     }
 
     td {
-        font-size: 14px;
+        font-size: var(--secondary-font-size);
         padding: 0px;
         border: 0px;
         @include link(#424242, #1f1f1f);

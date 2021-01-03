@@ -121,48 +121,56 @@ $thumbnail-scale: 50%;
 }
 
 // ------------------------ Slides Container ------------------------
-#post-thumbs {
-    margin-top: 10px;
+$column-count:      6;                                                      // Number of columns used to divide the grid.           NOTE: should be divisable by 2 & 3.
+$main-column-count: 4;                                                      // Number of columns the first pinned post should take. WARN: Should be less than $column-count;
+$slide-hl-rows:     3;                                                      // Number of rows the main post should take up.
+
+.post-thumbs {
+    // margin-top: 10px;
     display: grid;
     @include full-main-width;
 
-    $column-count:      6;                                                      // Number of columns used to divide the grid.           NOTE: should be divisable by 2 & 3.
-    $main-column-count: 4;                                                      // Number of columns the first pinned post should take. WARN: Should be less than $column-count;
-    $slide-hl-rows: 3;                                                          // Number of rows the main post should take up.
     grid-template-columns: repeat($column-count, 1fr);
 
     & > .post-slide__post {
         // by default each slide takes up half the available space
         grid-column: span #{$column-count / 2};
 
-        &:first-child {
-            min-height: $slide-hl-rows * $slide-min-height;
-            grid-column: span #{$column-count};
-        }
-
         @media screen and (max-width: $medium) {
             grid-column: span #{$column-count};
         }
 
         @media screen and (min-width: $large) {
-            &:first-child {
-                grid-row:    1 / #{$slide-hl-rows+1};
-                grid-column: span $main-column-count;
-            }
-
-            @for $i from 2 through $slide-hl-rows+1 {
-                &:nth-child(#{$i}) {
-                    grid-column: span #{$column-count - $main-column-count};
-                }
-            }
-
-            &:nth-child(n+#{$slide-hl-rows+2}) {
-                grid-column: span #{$column-count / 3};
-            }
+            grid-column: span #{$column-count / 3};
         }
     }
 }
 
+// Same as .post-thumbs except the first post is larger and
+// more emphasized.
+.post-thumbs__main > .post-slide__post {
+    &:first-child {
+        min-height: $slide-hl-rows * $slide-min-height;
+        grid-column: span #{$column-count};
+    }
+
+    @media screen and (min-width: $large) {
+        &:first-child {
+            grid-row:    1 / #{$slide-hl-rows+1};
+            grid-column: span $main-column-count;
+        }
+
+        @for $i from 2 through $slide-hl-rows+1 {
+            &:nth-child(#{$i}) {
+                grid-column: span #{$column-count - $main-column-count};
+            }
+        }
+
+        &:nth-child(n+#{$slide-hl-rows+2}) {
+            grid-column: span #{$column-count / 3};
+        }
+    }
+}
 
 hr.full-width {
     @include full-main-width;

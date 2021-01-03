@@ -19,16 +19,19 @@
       {{ end }}
     {{ end }}
 
-    {{/* Lastly just the n most recent posts needed to break even. */}}
+    {{/*
+      * In case we haven't filled out the required number of highlighted
+      * posts, let's just add some of the most recent posts onto it here.
+      */}}
     {{ $recent_count := (or .Params.recent_count 5) }}
     {{ range $.Site.RegularPages.ByDate.Reverse }}
-      {{ if and (lt (len $hl) (add $recent_count $highlight_count)) (not (in $hl .)) }}
+      {{ if and (lt (len $hl) $highlight_count) (not (in $hl .)) }}
         {{ $hl = $hl | append . }}
       {{ end }}
     {{ end }}
 
     {{ with $hl }}
-      <div id="post-thumbs">
+      <div class="post-thumbs post-thumbs__main">
         {{ range . }}
           {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
         {{ end }}
@@ -42,8 +45,27 @@
         {{ partial "content" . }}
       </div>
 
-      <hr class="full-width"/>
+      <hr class="full-width" style="margin-bottom: 0px;"/>
     {{ end }}
+
+    {{ $recent := slice }}
+    {{/* We also show some of the most recent posts.*/}}
+    {{ $recent_count := (or .Params.recent_count 5) }}
+    {{ range $.Site.RegularPages.ByDate.Reverse }}
+      {{ if and (lt (add (len $hl) (len $recent)) (add $recent_count $highlight_count)) (not (in $hl .)) }}
+        {{ $recent = $recent | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{ with $recent }}
+      <div class="post-thumbs">
+        {{ range . }}
+          {{ partial "utils/home-slide-item" (dict "context" $.Page "post" .) }}
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <hr class="full-width"/>
 
     {{ $exercises := where $.Site.Pages "Section" "exercises" }}
     {{ $exercises = where $exercises "Params.solution" "!=" nil }}

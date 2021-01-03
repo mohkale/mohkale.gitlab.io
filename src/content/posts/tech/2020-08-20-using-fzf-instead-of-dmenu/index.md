@@ -43,7 +43,7 @@ started the chosen programs. He described it as a dmenu replacement and I really
 liked his solution.
 
 ## Too Permissive
-{{< figure src="./default.jpg" caption="observe over 4000 programs." class="stack-left" width="240px" >}}
+{{< figure src="./default.jpg" caption="Observe over 4000 programs." class="full-width-when-small stack-left" width="240px" >}}
 
 However I did find one minor issue with Ömür's implementation. Not all programs you
 can spawn from the command line are supposed to be run interactively.
@@ -54,7 +54,7 @@ builtins such as `[` or `test` as candidates when there's no real chance you'll 
 want to use them in this context.
 
 ## Let's Fix That
-{{< figure src="./with-xdg.jpg" caption="Observe only 150 programs." class="stack-right" width="240px" >}}
+{{< figure src="./with-xdg.jpg" caption="Observe only 150 programs." class="full-width-when-small stack-right" width="240px" >}}
 
 So how do you discern interactive from non-interactive programs? How does my Desktop
 Environment do it? Well as it happens, unix like systems have adopted the [XDG
@@ -101,7 +101,7 @@ config. For example, I've bound them to `S-[` and `S-]` respectively.
   }
 </style>
 
-{{< figure src="./demo.gif" class="demo-figure" >}}
+{{< figure src="./demo.gif" class="full-main-width-when-small demo-figure" >}}
 
 Another caveat of using fzf is that you can select multiple candidates at once. I'm
 not sure whether dmenu offers this, but I really like being able to spawn multiple

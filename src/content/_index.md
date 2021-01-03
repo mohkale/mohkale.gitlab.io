@@ -17,8 +17,8 @@ pinned_posts:
   - /cheatsheet
 
 # Total number of highlights and recent posts to show.
-highlight_count: 5
-recent_count:    5
+highlight_count: 7
+recent_count:    6
 ---
 
 <style>

@@ -18,6 +18,12 @@
 .clear-left  { clear: left; }
 .clear-right { clear: right; }
 
+.no-float-when-small {
+    @media screen and (max-width: $small) {
+        float: unset;
+    }
+}
+
 .pad-left  { margin-right: 1em; }
 .pad-right { margin-left:  1em; }
 
@@ -118,6 +124,29 @@ table.img-gallery {
 
 figure.clamp-width img {
     max-width: 100%;
+}
+
+figure.full-width-when-small {
+    @media screen and (max-width: $small) {
+        width: 100%;
+        float: unset;
+        margin-left:  0px;
+        margin-right: 0px;
+        img {
+            // override inline HTML width.
+            width: 100% !important;
+        }
+    }
+}
+
+// Expand figures to take up all the available space when on
+// small screen devices. This involves removing any horizontal
+// margining and floating controls.
+figure.full-main-width-when-small {
+    @extend .full-width-when-small;
+    @media screen and (max-width: $small) {
+        @include full-main-width;
+    }
 }
 
 .full-title {

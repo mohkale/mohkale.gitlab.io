@@ -211,7 +211,7 @@ different programs together and being able to do that in your file manager is am
 To finish, here's a link to all the scripts I've used in this post and my `lf`
 [config][lf_config] file.
 - [bulkrename][bulkrename]
-- [img2pdf](https://github.com/mohkale/.dotfiles/blob/390ec238e082fea0496b60c446f5314ac1f034ec/bin/preview)
+- [preview](https://github.com/mohkale/.dotfiles/blob/390ec238e082fea0496b60c446f5314ac1f034ec/bin/preview)
 - [img2pdf][img2pdf]
 - [condemn](https://github.com/mohkale/.dotfiles/blob/master/bin/condemn)
 

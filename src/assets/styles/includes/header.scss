@@ -47,6 +47,25 @@ nav {
         }
     }
 
+    // underline shown on hover/select unless in overlay.
+    @media screen and (min-width: $medium) {
+        li {
+            &::before {
+                content: '';
+                width: 0px;
+                top: 80%;
+                height: 1px;
+                background-color: #0a0a0a;
+                display: block;
+                position: relative;
+                transition: width 0.35s ease-in-out;
+            }
+            &:hover::before {
+                width: 100%;
+            }
+        }
+    }
+
     @media screen and (max-width: $medium) {
         font-size: 2em;
         position: fixed;
@@ -55,6 +74,7 @@ nav {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        z-index: 100;
 
         ul {
             width: 50%;
