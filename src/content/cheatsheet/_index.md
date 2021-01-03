@@ -23,6 +23,7 @@ meta:
   post: true
   latex: true
   anchor_links: true
+  scroll_button: true
   title: {"display": "Style Guide Cheatsheet"}
 ---
 
@@ -340,6 +341,8 @@ meta:
   post: false
   # whether to make headings links to themselves.
   anchor_links: true
+  # show a button to scroll back to the top of the page
+  scroll_button: true
   # latex, render latex at runtime using mathjax
   latex: true
   # configure rendering of the title element

@@ -38,7 +38,7 @@ $slide-min-height: 140px; // minimum height of all posts.
         left: 0;
 
         opacity: 0.2;
-        background: rgb(11,16,20);
+        background: $curtain;
     }
 
     &:hover, &:focus {

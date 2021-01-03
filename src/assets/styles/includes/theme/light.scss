@@ -14,6 +14,7 @@ html {
 
     --caption: #9B9B9B;
     --divider: #f3f3f3;
+    --curtain: rgb(11,16,20);
 
     --blockquote: #555;
     --blockquote-quote: #444;
@@ -39,7 +40,7 @@ html {
     --nav-fg:        #9B9B9B;
     --nav-active-fg: #000;
 
-    --notice-bg: darken(#F7F7F7, 5%);
+    --notice-bg: #{darken(#F7F7F7, 5%)};
 
     --table-border:    #DFE2E5;
     --table-header-bg: #F7F7F7;

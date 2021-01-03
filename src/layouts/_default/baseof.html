@@ -114,11 +114,17 @@
     {{ block "head" . }}{{ end }}
   </head>
   <body>
-    {{ block "header" . -}}
+    {{- block "scrollback" . -}}
+      {{ if or (eq .Params.scroll_button nil) .Params.scroll_button }}
+        {{ partial "utils/scrollback" . }}
+      {{ end }}
+    {{- end }}
+
+    {{- block "header" . -}}
       {{ partial "utils/burger_menu" . }}
     {{- end }}
 
-    {{ block "navmenu" . -}}
+    {{- block "navmenu" . -}}
       {{ partial "utils/navmenu" . }}
     {{- end }}
 
