@@ -1,4 +1,4 @@
-<blockquote{{ with .Get "src" }}cite="{{ . }}"{{ end }}>
+<blockquote {{ with .Get "src" }}cite="{{ . }}"{{ end }}>
   <p>{{- .Inner | markdownify -}}</p>
 
   {{ with .Get "cite" }}
