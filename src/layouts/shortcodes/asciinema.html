@@ -39,7 +39,7 @@
 {{ with .Page }}
   {{ if not (.Scratch.Get "asciinema") }}
     {{ .Scratch.Set "styles"  (or (.Scratch.Get "styles")  slice | append "asciinema") }}
-    {{ .Scratch.Set "scripts" (or (.Scratch.Get "scripts") slice | append "asciinema.js") }}
+    {{ .Scratch.Set "scripts" (or (.Scratch.Get "scripts") slice | append (dict "path" "asciinema.js" "async" true)) }}
 
     {{ .Scratch.Set "asciinema" true }}
   {{ end }}

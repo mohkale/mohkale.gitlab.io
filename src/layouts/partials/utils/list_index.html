@@ -12,7 +12,7 @@
       {{ end }}
 
       <tr>
-        <td><a href="{{ .Permalink }}">{{ $title | title }}</a></td>
+        <td><a href="{{ .Permalink }}">{{ $title }}</a></td>
       </tr>
     {{ end }}
   </table>
@@ -44,7 +44,7 @@
   {{ end }}
 
   <tr>
-    <td><a href="{{ .Permalink }}">{{ (or .Title .File.ContentBaseName) | title }}</a></td>
+    <td><a href="{{ .Permalink }}">{{ (or .Title .File.ContentBaseName) }}</a></td>
     {{ if not $.Params.meta.no_date }}
       <td>{{ dateFormat "01-02" .Date }}</td>
     {{ end }}

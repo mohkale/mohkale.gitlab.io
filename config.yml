@@ -88,7 +88,7 @@ menu:
       weight: 30
     - identifier: resume
       url: /resume/index.pdf
-      weight: 20
+      weight: 25
 
 # Extra output formats, including a search index.
 outputFormats:
