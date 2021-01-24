@@ -1,84 +1,6 @@
 <!-- Adapted from [[https://moderncss.dev/pure-css-smooth-scroll-back-to-top/][here]], this adds a button which jumps you back to the top of the page. -->
 
 <style>
-  @keyframes anim-scrollback-enter {
-    0%   {
-      transform: translateY(var(--drop-depth));
-      visibility: visible;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: var(--default-opacity);
-    }
-  }
-
-  .back-to-top-wrapper--visible {
-    visibility: visible;
-    animation: anim-scrollback-enter;
-    animation-fill-mode: none;
-  }
-
-  @keyframes anim-scrollback-leave {
-    0%   { transform: translateY(0); }
-    100% {
-      transform: translateY(var(--drop-depth));
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-
-  .back-to-top-wrapper--hidden {
-    animation: anim-scrollback-leave;
-    animation-fill-mode: forwards;
-  }
-
-  .back-to-top-wrapper {
-    z-index: 10;
-
-    --drop-depth: -2em;
-    animation-duration: 0.5s;
-    animation-delay: 0;
-    /* animation-fill-mode: both; */
-
-    position: fixed;
-    bottom: 3em;
-    right:  1.15em;
-
-    /* Make it kind of see-through */
-    --default-opacity: 0.3;
-    --active-opacity:  0.8;
-    opacity: var(--default-opacity);
-    transition: opacity 0.2s;
-  }
-
-  .back-to-top-wrapper:hover {
-    opacity: var(--active-opacity);
-  }
-
-  .back-to-top-link {
-    display: inline-block;
-    text-decoration: none;
-    line-height: 3rem;
-
-    text-align: center;
-
-    width:  3rem;
-    height: 3rem;
-    border-radius: 50%;
-
-    background-color: var(--curtain);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .back-to-top-link .icon {
-    width:  50%;
-    height: 50%;
-    fill: var(--main-bg);
-  }
-
   /* Make it smooth as butter */
   @media screen and (prefers-reduced-motion: no-preference) {
     html {
@@ -90,7 +12,7 @@
 <noscript>
   <!--
     -- Can't use javascript to display the scroll button so
-    -- lets just make it lets just make italways visible.
+    -- lets just make it always visible.
   -->
   <style>
     .back-to-top-wrapper--hidden {
@@ -99,8 +21,8 @@
   </style>
 </noscript>
 
-<div class="back-to-top-wrapper">
-  <a href="#" class="back-to-top-link" aria-label="Scroll to Top">
+<div class="back-to-top-wrapper toolbar__item-wrapper toolbar__item-wrapper--hidden">
+  <a href="#" class="back-to-top-link toolbar__item" aria-label="Scroll to Top">
     {{ partial "core/fontawesome" (dict "context" . "type" "solid" "name" "arrow-up") }}
   </a>
 </div>
@@ -117,11 +39,11 @@
   const scrollWrapper = document.querySelector('.back-to-top-wrapper');
   function toggleScrollbackDisplay(e) {
     if (showButton()) {
-      scrollWrapper.classList.remove('back-to-top-wrapper--hidden');
-      scrollWrapper.classList.add('back-to-top-wrapper--visible');
+      scrollWrapper.classList.remove('toolbar__item-wrapper--hidden');
+      scrollWrapper.classList.add('toolbar__item-wrapper--visible');
     } else {
-      scrollWrapper.classList.remove('back-to-top-wrapper--visible');
-      scrollWrapper.classList.add('back-to-top-wrapper--hidden');
+      scrollWrapper.classList.remove('toolbar__item-wrapper--visible');
+      scrollWrapper.classList.add('toolbar__item-wrapper--hidden');
     }
   }
 

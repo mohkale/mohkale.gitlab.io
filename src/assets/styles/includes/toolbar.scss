@@ -1,0 +1,82 @@
+$drop-depth: -2em;
+$default-opacity: 0.3;
+$active-opacity:  0.8;
+
+.toolbar {
+    position: fixed;
+    bottom: 3em;
+    right:  1.15em;
+}
+
+@keyframes anim-toolbar-enter {
+    0%   {
+        transform: translateY($drop-depth);
+        visibility: visible;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: $default-opacity;
+    }
+}
+
+.toolbar__item-wrapper--visible {
+    visibility: visible;
+    animation: anim-toolbar-enter;
+    animation-fill-mode: none;
+}
+
+@keyframes anim-toolbar-leave {
+    0%   { transform: translateY(0); }
+    100% {
+        transform: translateY($drop-depth);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.toolbar__item-wrapper--hidden {
+    animation: anim-toolbar-leave;
+    animation-fill-mode: forwards;
+}
+
+.toolbar__item-wrapper {
+    z-index: 100;
+
+    animation-duration: 0.5s;
+    animation-delay: 0;
+    /* animation-fill-mode: both; */
+    margin-top: 10px;
+
+    /* Make it kind of see-through */
+    opacity: $default-opacity;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: $active-opacity;
+    }
+}
+
+.toolbar__item {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 3rem;
+    cursor: pointer;
+
+    text-align: center;
+
+    width:  3rem;
+    height: 3rem;
+    border-radius: 50%;
+
+    fill: $main-bg;
+    background-color: $curtain;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+        width:  50%;
+        height: 50%;
+    }
+}

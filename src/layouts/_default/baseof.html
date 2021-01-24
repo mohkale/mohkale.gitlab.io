@@ -44,6 +44,8 @@
       </script>
     {{ end }}
 
+    <!-- TODO Assign in scratch and then use scratch :P. -->
+
     {{ block "styles" . }}
       {{/* apply styles for current page */}}
       {{ range partial "utils/styles" . }}
@@ -79,45 +81,11 @@
       {{ end }}
     {{ end }}
 
-    {{/* apply desired scripts for current page */}}
-    {{ $scripts := .Params.scripts }}
-
-    {{ if $scripts }}
-      {{ if not (reflect.IsSlice $scripts) }}
-        {{ $scripts = slice $scripts }}
-      {{ end }}
-
-      {{ with .Scratch.Get "scripts" }}
-        {{ range . }}
-          {{ $scripts = $scripts | append . }}
-        {{ end }}
-      {{ end }}
-
-      {{ range $it := $scripts }}
-        {{ if not (reflect.IsMap $it) }}
-          {{ $it = (dict "path" $it) }}
-        {{ end }}
-
-        {{ $script := resources.Get (printf "scripts/%s" $it.path) }}
-
-        {{ if $script }}
-          <script type="text/javascript" src="{{- ($script | fingerprint).Permalink -}}"
-                  {{ if $it.async }}async="true"{{ end }}
-                  {{ if $it.module }}type="module"{{ end }}>
-          </script>
-        {{ else }}
-          {{ warnf "failed to find script: %s" $it.path }}
-        {{ end }}
-      {{ end }}
-    {{ end }}
-
     {{ block "head" . }}{{ end }}
   </head>
   <body>
-    {{- block "scrollback" . -}}
-      {{ if or (eq .Params.scroll_button nil) .Params.scroll_button }}
-        {{ partial "utils/scrollback" . }}
-      {{ end }}
+    {{- block "toolbar" . -}}
+      {{ partial "utils/toolbar" . }}
     {{- end }}
 
     {{- block "header" . -}}
@@ -147,9 +115,41 @@
     {{ end }}
 
     {{ partial "utils/svg-trail" . }}
-  </body>
 
-  {{ if .Params.meta.latex }}
-    {{ partial "utils/latex" . }}
-  {{ end }}
+    {{ if .Params.meta.latex }}
+      {{ partial "utils/latex" . }}
+    {{ end }}
+
+    {{/* apply desired scripts for current page */}}
+    {{ $scripts := .Params.scripts }}
+
+    {{ if $scripts }}
+      {{ if not (reflect.IsSlice $scripts) }}
+        {{ $scripts = slice $scripts }}
+      {{ end }}
+
+      {{ with .Scratch.Get "scripts" }}
+        {{ range . }}
+          {{ $scripts = $scripts | append . }}
+        {{ end }}
+      {{ end }}
+
+      {{ range $it := $scripts }}
+        {{ if not (reflect.IsMap $it) }}
+          {{ $it = (dict "path" $it) }}
+        {{ end }}
+
+        {{ $script := resources.Get (printf "scripts/%s" $it.path) }}
+
+        {{ if $script }}
+          <script type="text/javascript" src="{{- ($script | fingerprint).Permalink -}}"
+            {{ if $it.async }}async="true"{{ end }}
+            {{ if $it.module }}type="module"{{ end }}>
+          </script>
+        {{ else }}
+          {{ warnf "failed to find script: %s" $it.path }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </body>
 </html>

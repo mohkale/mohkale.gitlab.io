@@ -1,0 +1,8 @@
+<div class="toolbar">
+  {{- block "scrollback" . -}}
+    {{ if or (eq .Params.scroll_button nil) .Params.scroll_button }}
+      {{ partial "utils/scrollback" . }}
+    {{ end }}
+  {{- end }}
+</div>
+
