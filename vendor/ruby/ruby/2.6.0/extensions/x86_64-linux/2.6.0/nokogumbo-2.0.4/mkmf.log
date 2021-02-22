@@ -1,0 +1,100 @@
+find_header: checking for libxml/tree.h in /home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/2.6.0/gems/nokogiri-1.10.10/ports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2... -------------------- no
+
+"gcc -o conftest -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99 conftest.c  -L. -L/home/mohkale/.local/share/rbenv/versions/2.6.6/lib -Wl,-rpath,/home/mohkale/.local/share/rbenv/versions/2.6.6/lib -L. -L/home/mohkale/.local/share/rbenv/versions/2.6.6/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/home/mohkale/.local/share/rbenv/versions/2.6.6/lib -L/home/mohkale/.local/share/rbenv/versions/2.6.6/lib -lruby  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -E -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: libxml/tree.h: No such file or directory
+    3 | #include <libxml/tree.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+"gcc -E -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99 -I/home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/2.6.0/gems/nokogiri-1.10.10/ports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: libxml/tree.h: No such file or directory
+    3 | #include <libxml/tree.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+--------------------
+
+find_header: checking for libxml/tree.h in ports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2... -------------------- yes
+
+"gcc -E -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: libxml/tree.h: No such file or directory
+    3 | #include <libxml/tree.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+"gcc -E -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99 -Iports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+--------------------
+
+find_header: checking for nokogiri.h in /home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/2.6.0/gems/nokogiri-1.10.10/ext/nokogiri... -------------------- yes
+
+"gcc -E -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -Iports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: nokogiri.h: No such file or directory
+    3 | #include <nokogiri.h>
+      |          ^~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+"gcc -E -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/backward -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0 -I. -Iports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 -I/home/mohkale/.local/share/rbenv/versions/2.6.6/include    -O3 -ggdb3 -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wrestrict -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable  -fPIC -std=c99 -I/home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/2.6.0/gems/nokogiri-1.10.10/ext/nokogiri conftest.c -o conftest.i"
+In file included from conftest.c:3:
+/home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/2.6.0/gems/nokogiri-1.10.10/ext/nokogiri/nokogiri.h:13: warning: "_GNU_SOURCE" redefined
+   13 | #define _GNU_SOURCE
+      | 
+In file included from /home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby/ruby.h:24,
+                 from /home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/ruby.h:33,
+                 from conftest.c:1:
+/home/mohkale/.local/share/rbenv/versions/2.6.6/include/ruby-2.6.0/x86_64-linux/ruby/config.h:16: note: this is the location of the previous definition
+   16 | #define _GNU_SOURCE 1
+      | 
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+--------------------
+
