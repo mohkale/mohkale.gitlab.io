@@ -1,0 +1,61 @@
+{{ define "main" }}
+  <article>
+    {{ partial "utils/title" . }}
+    {{ partial "utils/thumbnail" (dict "post" .) }}
+
+    {{ with .Params.introduction }}
+      {{ . | markdownify }}
+    {{ end }}
+
+    {{ with .Params.review }}
+      <section class="review">
+        <div class="ratings-container">
+          <table class="ratings no-style">
+            <tbody>
+              {{ with .rating }}
+                {{ $spread := .spread }}
+                {{ if not (reflect.IsSlice $spread) }}
+                  {{ $spread := slice $spread }}
+                {{ end }}
+                {{ range $spread }}
+                  {{ range $title, $value := . }}
+                    <tr>
+                      <td>{{ $title | title }}</td>
+                      <td>{{ $value }}</td>
+                    </tr>
+                  {{ end }}
+                {{ end }}
+                {{ with .total }}
+                  <tr>
+                    <td>Overall</td>
+                    <td>{{ . }}</td>
+                  </tr>
+                {{ end }}
+              {{ end }}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="review__takeways">
+          {{ $takeaways := slice (slice "positives" .positives) (slice "negatives" .negatives) }}
+
+          {{ range $takeaways }}
+            {{ if index . 1 }}
+              <ul class="{{ index . 0 }}">
+                {{ range index . 1  }}
+                  <li>{{ . | markdownify }}</li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+
+    <div>
+      {{ partial "content" . }}
+    </div>
+
+    {{ partial "utils/meta" . }}
+  </article>
+{{ end }}
