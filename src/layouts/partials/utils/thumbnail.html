@@ -29,7 +29,7 @@
       </a>
       {{ end }}
 
-      {{ if and (not $hide_caption) (or $thumb.caption $thumb.source) }}
+      {{ if and (not $hide_caption) (or $thumb.caption $thumb.source.title) }}
         <figcaption>
           {{ with $thumb.caption }}{{ . }}{{ end }}
           {{ with $thumb.source }}
