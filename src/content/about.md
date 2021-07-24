@@ -175,8 +175,12 @@ skills:
 #     link: https://site.com/link/to/event-details
 
 timeline:
+  - text: Graduated from the University of Sheffield
+    icon: [solid, graduation-cap]
+    date: 2021-07-16
+    color: red
   - text: I'm Born, **Hello World**!
-    icon: ["solid", "birthday-cake"]
+    icon: [solid, birthday-cake]
     date: 1999-12-08
     color: red
 ---
