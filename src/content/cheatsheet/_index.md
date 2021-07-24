@@ -320,7 +320,8 @@ thumbnail:
   resize: widthxheight # resize image before showing
   source:
     link: "https://find-this-image-here.com/image"
-    title: show this instead of the image link
+    title: title and maybe the caption of this link
+    display_title: use this as caption, but keep title
 ```
 
 ### Meta

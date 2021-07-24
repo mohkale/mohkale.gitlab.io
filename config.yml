@@ -23,6 +23,7 @@ params:
     mail: mailto:mohkalex@gmail.com
     github: https://github.com/mohkale
     gitlab: https://gitlab.com/mohkale
+    myanimelist: https://myanimelist.net/profile/mohkalex
     linkedin: https://www.linkedin.com/in/mohkale
     # upwork: https://www.upwork.com/o/profiles/users/~01b9386b9361c6cba7/
     upwork: http://kisara.moe/r/upwork
@@ -101,3 +102,8 @@ outputFormats:
 outputs:
   home: [HTML, RSS, JSON, SearchIndex]
   section: [HTML, RSS, JSON]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

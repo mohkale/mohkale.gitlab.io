@@ -31,10 +31,10 @@
 
       {{ if and (not $hide_caption) (or $thumb.caption $thumb.source.title) }}
         <figcaption>
-          {{ with $thumb.caption }}{{ . }}{{ end }}
+          {{ with $thumb.caption }}{{ . | markdownify }}{{ end }}
           {{ with $thumb.source }}
             {{ if reflect.IsMap . }}
-              [<a href="{{ .link }}">{{ .title }}</a>]
+              [<a href="{{ .link }}" {{ with .title }}title="{{ . }}"{{ end }}>{{ or .display_title .title }}</a>]
             {{ else }}
               <a href="{{ . }}">{{ . }}</a>
             {{ end }}
@@ -43,6 +43,6 @@
       {{ end }}
     </figure>
   {{ else }}
-    {{ warnf "failed to find thumbnail for post: %s%s" $post.File.Dir $thumb.path }}
+    {{ warnf "Failed to find thumbnail for post: %s%s" $post.File.Dir $thumb.path }}
   {{ end }}
 {{ end }}
