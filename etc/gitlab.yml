@@ -51,23 +51,24 @@ install:
 build:
   stage: build
   script:
-    - bundle exec thor site:build --output bin/ --no-drafts --env production
-    - ./dev/compress-assets -v bin/
+    - bundle exec thor site:build --output var/public/ --no-drafts --env production
+    - ./bin/compress-assets -v var/public
   artifacts:
     paths:
-      - bin/
+      - var/public
 
 test:
   stage: test
   script:
-    - bundle exec thor test:site --output bin/
+    - bundle exec thor test:site --output var/public/
 
 pages:
   stage: deploy
   script:
-    - mv bin public
+    - mv var/public public
   artifacts:
     paths:
       - public
   only:
-    - public # this job will affect only the 'public' branch
+    # This job will only run on the 'public' branch.
+    - public

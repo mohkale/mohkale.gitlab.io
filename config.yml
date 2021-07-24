@@ -62,14 +62,14 @@ refLinksErrorLevel: WARNING
 
 # configure paths
 archetypeDir: arch/
-configDir: etc/config
 assetDir: src/assets/
 contentDir: src/content/
 dataDir: src/data/
 layoutDir: src/layouts
 staticDir: src/static
-publishDir: bin/
-themesDir: var/themes/
+configDir: etc/config
+publishDir: var/public/
+themesDir: vendor/
 resourceDir: var/resources/
 
 logFile: var/hugo.log
