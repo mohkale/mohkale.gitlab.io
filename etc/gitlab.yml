@@ -1,6 +1,6 @@
 # gitlab CI/CD configuration file for mohkale.io
 
-image: monachus/hugo
+image: registry.gitlab.com/mohkale/mohkale.gitlab.io
 
 stages:
   - setup
@@ -11,22 +11,6 @@ stages:
 variables:
   GIT_SUBMODULE_STRATEGY: none
 
-before_script:
-  # Setup locale
-  - apt update >/dev/null
-  - apt install -y locales >/dev/null
-  - echo "en_US UTF-8" > /etc/locale.gen
-  - locale-gen en_US.UTF-8
-  - export LANG=en_US.UTF-8
-  - export LANGUAGE=en_US:en
-  - export LC_ALL=en_US.UTF-8
-  # Install dependencies
-  - curl -sL https://deb.nodesource.com/setup_13.x | bash -
-  - apt update >/dev/null
-  - apt install -y pcregrep gawk tralics nodejs ruby-full ruby-dev jq wget build-essential patch zlib1g-dev liblzma-dev libffi-dev >/dev/null
-  # Setup thor
-  - gem install bundler
-
 install:
   stage: setup
   script:
@@ -34,8 +18,7 @@ install:
     - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/".insteadOf "git@gitlab.com:"
     - git submodule sync --recursive && git submodule update --init --recursive
     # Fetch packages/dependencies
-    - ./dev/setup
-    - bundle install
+    - ./bin/setup
     - bundle exec thor install:all
   artifacts:
     paths:
@@ -47,6 +30,18 @@ install:
       - yarn.lock
       - src/
       - var/themes
+
+install-brain:
+  stage: setup
+  script:
+    - bundle install
+    - bundle exec thor install:org
+    - mkdir -p ~/.emacs.d/ && touch ~/.emacs.d/early-init.el
+    # For some reason straight crashes the bootstrap the first time?
+    - bundle exec thor site:brain || bundle exec thor site:brain
+  artifacts:
+    paths:
+      - vendor/org
 
 build:
   stage: build

@@ -107,3 +107,6 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+module:
+  imports:
+    - path: org/brain-hugo

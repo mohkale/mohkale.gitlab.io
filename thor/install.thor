@@ -79,6 +79,23 @@ class Install < Thor
     in_root { run 'git submodule update --init --recursive' }
   end
 
+  desc 'org', 'install my org-brain submodule.'
+  def org
+    in_root do
+      dest = File.join('vendor', 'org')
+      if File.exist?(dest)
+        inside dest do
+          run 'git fetch --all'
+          run 'git reset --hard origin/master'
+        end
+      else
+        token = ENV["GITHUB_TOKEN"]
+        url = "https://mohkale#{token ? ':'+token : nil}@github.com/mohkale/org.git"
+        run "git clone #{Shellwords.escape url} #{Shellwords.escape dest}"
+      end
+    end
+  end
+
   private
 
   desc 'npm', 'install node dependencies through npm.'

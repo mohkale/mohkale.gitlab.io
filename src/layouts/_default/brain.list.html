@@ -1,0 +1,29 @@
+{{- define "toolbar" -}}<!-- Omit -->{{- end -}}
+{{- define "footer"  -}}<!-- Omit -->{{- end -}}
+{{- define "navmenu" -}}<!-- Omit -->{{- end -}}
+{{- define "header" -}}
+  {{ partial "brain/header" . }}
+{{- end -}}
+
+{{ define "main-container" }}
+  <div class="grid-container">
+    <div class="grid">
+      <div class="page">
+        <div class="content">
+          {{ partial "content" . }}
+
+          {{ with .Paginator.Pages.ByTitle }}
+            <ul>
+              {{ range . }}
+                <li>
+                  <a href="{{ .RelPermalink }}">{{ (or .Title .File.ContentBaseName) }}</a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}
+

@@ -21,12 +21,18 @@ class Clean < Thor
     invoke :fontawesome
     invoke :vendor
     invoke :lock
+    invoke :org
   end
 
   desc 'build', 'delete site build directory.'
   def build
     remove_paths(*Dir.glob(dirs[:publish]))
     remove_paths(*Dir.glob('src/assets/scripts/*.bundle.js'))
+  end
+
+  desc 'org', 'delete org brain repository.'
+  def org
+    remove_paths('vendor/org')
   end
 
   desc 'cache', 'delete site cache.'

@@ -1,0 +1,22 @@
+{{- define "toolbar" -}}<!-- Omit -->{{- end -}}
+{{- define "footer"  -}}<!-- Omit -->{{- end -}}
+{{- define "navmenu" -}}<!-- Omit -->{{- end -}}
+{{- define "header" -}}
+  {{ partial "brain/header" . }}
+{{- end -}}
+
+{{ define "main-container" }}
+  <div class="grid-container">
+    <div class="grid">
+      <div class="page">
+        <div class="content">
+          {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+
+          {{ .Content }}
+
+          {{ partial "brain/backlinks" . }}
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

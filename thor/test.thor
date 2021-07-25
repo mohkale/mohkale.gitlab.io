@@ -45,6 +45,7 @@ class Test < Thor
         disable_external: true,
         empty_alt_ignore: true,
         allow_hash_ref: true,
+        file_ignore: [/\/brain\//],
 
         # HTML options
         validation: {

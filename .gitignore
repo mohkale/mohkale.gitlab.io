@@ -9,7 +9,7 @@ __pycache__/
 # root level misc runtime directories
 tmp/
 var/
-bin/
+vendor/org/
 vendor/ruby/
 vendor/node/
 font-awesome

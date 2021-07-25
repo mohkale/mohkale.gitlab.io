@@ -10,7 +10,7 @@
 
     <title>
       {{- block "title" . -}}
-        {{ with .Title }}{{ . | title }} | {{ end }}{{ .Site.Title }}
+        {{ with .Title }}{{ . | title }} | {{ end }}{{ or .Params.site_title .Site.Title }}
       {{- end -}}
     </title>
 

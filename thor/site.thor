@@ -168,7 +168,7 @@ class Site < Thor
       # deployment.
       def lock_files
         in_root do
-          %w[.bundle vendor/]
+          %w[.bundle vendor/fontawesome vendor/ruby]
             .filter { |file| File.exist?(file) }
         end
       end
@@ -341,6 +341,15 @@ class Site < Thor
     end
 
     puts output_file
+  end
+
+  desc 'brain', 'Compile org brain files into html.'
+  def brain
+    in_root do
+      inside File.join('vendor/org') do
+        run 'make'
+      end
+    end
   end
 
   no_commands do
