@@ -20,6 +20,24 @@ $timeline-bar-indicator-size: .8em;
     font-weight: 600;
 }
 
+.timeline__item__tag--with-bar {
+    $bar-offset: 1.5em;
+    position: relative;
+    margin-bottom: $bar-offset;
+
+    &::after {
+        content: '';
+        height: $bar-offset;
+        width: $timeline-bar-width;
+        background-color: var(--bar-color);
+
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 .timeline__item {
     .summary-section__item {
         --icon-spacing: 14px;
