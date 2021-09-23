@@ -14,7 +14,7 @@
   <p>
     <asciinema-player
       src="{{ $resource.Permalink }}"
-      {{ with .Get "classes" }}class="{{ range . }}{{ . }}{{ end }}"{{ end }}
+      {{ with .Get "class" }}class="{{ . }}"{{ end }}
       {{ with or (.Get 1) (.Get "cols") }}cols="{{ . }}"{{ end }}
       {{ with or (.Get 2) (.Get "rows") }}rows="{{ . }}"{{ end }}
       {{ with .Get "autoplay" }}autoplay="{{ . }}"{{ end }}

@@ -233,18 +233,18 @@ figure {
 
     &.left,  &.stack-left  { margin-left:  0px; }
     &.right, &.stack-right { margin-right: 0px; }
+}
 
-    figcaption {
-        & > p {
-            margin-top: 8px;
-            &:only-child {
-                margin: 8px 0px 0px;
-            }
+figure figcaption, .img-gallery > tbody td {
+    & > p {
+        margin-top: 8px;
+        &:only-child {
+            margin: 8px 0px 0px;
         }
-
-        color: $caption;
-        text-align: center;
     }
+
+    color: $caption;
+    text-align: center;
 }
 
 figure.post-thumbnail {

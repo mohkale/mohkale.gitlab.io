@@ -126,8 +126,13 @@ figure.clamp-width img {
     max-width: 100%;
 }
 
-figure.full-width-when-small {
-    @media screen and (max-width: $small) {
+@media screen and (max-width: $small) {
+    figure.full-main-width-when-small {
+        margin: 0px;
+        @include full-main-width;
+    }
+
+    figure.full-width-when-small {
         width: 100%;
         float: unset;
         margin-left:  0px;

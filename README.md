@@ -36,3 +36,8 @@ Here's a summary of some useful files/dirs.
 | etc/config           | hugo config directory |
 | src/assets/images/fa | fontawesome SVGs      |
 | etc/gitlab.yml       | gitlab-ci/cd config   |
+
+## Warnings
+This repository only builds with hugo `0.85.0`.
+Newer versions ship with simpler markdown renderers that are either buggy or lack
+support for some of the features this blog depends on.

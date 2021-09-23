@@ -11,7 +11,7 @@ layout: single
 thumbnail:
   path: 294738.jpg
   caption: cheatsheet, every good site should have one
-  height: 500
+  height: 700
   position: top
   resize: 1000x1000
   source:

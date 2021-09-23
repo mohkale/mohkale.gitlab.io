@@ -80,6 +80,15 @@ markup:
   defaultMarkdownHandler: mmark
   highlight:
     noClasses: false
+  goldmark:
+    parser:
+      # attribute:
+      #   block: true
+      #   title: true
+      autoHeadingID: true
+      autoHeadingIDType: github
+    renderer:
+      unsafe: true
 
 # add non-content entries to [[https://gohugo.io/content-management/menus/#add-non-content-entries-to-a-menu][menus]].
 menu:
@@ -103,10 +112,6 @@ outputs:
   home: [HTML, RSS, JSON, SearchIndex]
   section: [HTML, RSS, JSON]
 
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
 module:
   imports:
     - path: org/brain-hugo
