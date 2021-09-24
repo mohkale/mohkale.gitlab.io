@@ -1,0 +1,98 @@
+find_header: checking for libxml/tree.h in /home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/3.0.0/gems/nokogiri-1.10.10/ports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2... -------------------- no
+
+"gcc -o conftest -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99 conftest.c  -L. -L/usr/lib -L. -Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -lruby  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+"gcc -E -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: libxml/tree.h: No such file or directory
+    3 | #include <libxml/tree.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+"gcc -E -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99 -I/home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/3.0.0/gems/nokogiri-1.10.10/ports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: libxml/tree.h: No such file or directory
+    3 | #include <libxml/tree.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+--------------------
+
+find_header: checking for libxml/tree.h in ports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2... -------------------- yes
+
+"gcc -E -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: libxml/tree.h: No such file or directory
+    3 | #include <libxml/tree.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+"gcc -E -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99 -Iports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <libxml/tree.h>
+/* end */
+
+--------------------
+
+find_header: checking for nokogiri.h in /home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/3.0.0/gems/nokogiri-1.10.10/ext/nokogiri... -------------------- yes
+
+"gcc -E -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Iports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: nokogiri.h: No such file or directory
+    3 | #include <nokogiri.h>
+      |          ^~~~~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+"gcc -E -I/usr/include/ruby-3.0.0/x86_64-linux -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Iports/x86_64-pc-linux-gnu/libxml2/2.9.10/include/libxml2 -D_FORTIFY_SOURCE=2   -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fPIC -std=c99 -I/home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/3.0.0/gems/nokogiri-1.10.10/ext/nokogiri conftest.c -o conftest.i"
+In file included from conftest.c:3:
+/home/mohkale/prog/repos/mohkale.io/vendor/ruby/ruby/3.0.0/gems/nokogiri-1.10.10/ext/nokogiri/nokogiri.h:13: warning: "_GNU_SOURCE" redefined
+   13 | #define _GNU_SOURCE
+      | 
+In file included from /usr/include/ruby-3.0.0/ruby/internal/config.h:23,
+                 from /usr/include/ruby-3.0.0/ruby/ruby.h:15,
+                 from /usr/include/ruby-3.0.0/ruby.h:38,
+                 from conftest.c:1:
+/usr/include/ruby-3.0.0/x86_64-linux/ruby/config.h:16: note: this is the location of the previous definition
+   16 | #define _GNU_SOURCE 1
+      | 
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <nokogiri.h>
+/* end */
+
+--------------------
+
