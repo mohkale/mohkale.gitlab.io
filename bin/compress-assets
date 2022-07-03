@@ -56,12 +56,12 @@ else
 fi
 '
 
-if [ ! -d $bin_path ]; then
-    echo "compress-assets:warning() : destination path for build not found: $bin_path" >&2
+if [ ! -d "$bin_path" ]; then
+    echo "warning: $0: destination path for build not found: $bin_path" >&2
     exit 0 # 0 because a directory which doesn't exist... already has all it's assets compressed
 fi
 
-pushd $bin_path >/dev/null
+pushd "$bin_path" >/dev/null
 find . -type f -regextype egrep -not -empty -iregex '.*\.(htm|html|txt|text|js|css)$' -print0 |
     if [ $silent -eq 0 ]; then
         xargs -r0 -I! bash -c "$verbose_install_script"

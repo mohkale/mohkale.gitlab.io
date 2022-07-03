@@ -12,6 +12,18 @@
         <div class="content">
           {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
 
+          <dl>
+            {{ with or .Params.tags .Params.tag }}
+              <dt>Tags</dt>
+              <dd>
+                {{ range . }}
+                  {{ $page := $.Site.GetPage (printf "tags/%s" .) }}
+                  <a href="{{ $page.Permalink }}">{{ . }}</a>
+                {{ end }}
+              </dd>
+            {{ end }}
+          </dl>
+
           {{ .Content }}
 
           {{ partial "brain/backlinks" . }}

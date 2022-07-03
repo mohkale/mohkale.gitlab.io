@@ -28,12 +28,12 @@ params:
     # upwork: https://www.upwork.com/o/profiles/users/~01b9386b9361c6cba7/
     upwork: http://kisara.moe/r/upwork
 
-themes:
-  - name: default
-    repo: https://github.com/budparr/gohugo-theme-ananke.git
-    branch: master
-  - name: terminal
-    repo: https://github.com/panr/hugo-theme-terminal
+themes: []
+  # - name: default
+  #   repo: https://github.com/budparr/gohugo-theme-ananke.git
+  #   branch: master
+  # - name: terminal
+  #   repo: https://github.com/panr/hugo-theme-terminal
 
 taxonomies:
   category: categories

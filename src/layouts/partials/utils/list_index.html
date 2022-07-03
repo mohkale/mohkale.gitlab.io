@@ -25,29 +25,35 @@
 {{ $pages := .Paginator.Pages.ByDate.Reverse }}
 {{ if or .Params.index_recursively (and (or (eq .Params.index_recursively nil) (eq .Params.index_recursively "maybe")) (eq 0 (len $pages))) }}
   {{/* when we're indexing recursively, we index every page */}}
-  {{ $pages = .CurrentSection.RegularPagesRecursive.ByDate.Reverse }} 
+  {{ $pages = .CurrentSection.RegularPagesRecursive.ByDate.Reverse }}
 {{ end }}
 
 {{/* ignore the broken HTML, it's necessary. */}}
-{{ range $pages }}
-  {{ if not (eq $last_year .Date.Year) }}
-    {{ if not (eq $last_year 1999) }}
-      </table> {{/* close the previous table. */}}
+{{ range $ix, $page := $pages }}
+  {{ with $page }}
+    {{ if not (eq $last_year .Date.Year) }}
+      {{ if not (eq $last_year 1999) }}
+        </table> {{/* close the previous table. */}}
+      {{ end }}
+
+      {{ if not $.Params.meta.no_date }}
+        {{ if .Date }}
+          <h2>{{ .Date.Year }}</h2>
+        {{ else if gt $ix 0 }}
+          <hr/>
+        {{ end }}
+      {{ end }}
+
+      <table class="pagination">
+      {{ $last_year = .Date.Year }}
     {{ end }}
 
-    {{ if not $.Params.meta.no_date }}
-      <h2>{{ .Date.Year }}</h2>
-    {{ end }}
-
-    <table class="pagination">
-    {{ $last_year = .Date.Year }}
+    <tr>
+      <td><a href="{{ .Permalink }}">{{ (or .Title .File.ContentBaseName) }}</a></td>
+      {{ if and (not $.Params.meta.no_date) .Date }}
+        <td>{{ dateFormat "01-02" .Date }}</td>
+      {{ end }}
+    </tr>
   {{ end }}
-
-  <tr>
-    <td><a href="{{ .Permalink }}">{{ (or .Title .File.ContentBaseName) }}</a></td>
-    {{ if not $.Params.meta.no_date }}
-      <td>{{ dateFormat "01-02" .Date }}</td>
-    {{ end }}
-  </tr>
 {{ end }}
 </table>

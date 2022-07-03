@@ -1,5 +1,4 @@
-# gitlab CI/CD configuration file for mohkale.io
-
+--- # gitlab CI/CD configuration file for mohkale.io
 image: registry.gitlab.com/mohkale/mohkale.gitlab.io
 
 stages:
@@ -17,8 +16,6 @@ install:
     # Fix access rights on private modules then fetch them. See [[https://stackoverflow.com/a/53758544/6247387][here]].
     - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/".insteadOf "git@gitlab.com:"
     - git submodule sync --recursive && git submodule update --init --recursive
-    # Fetch packages/dependencies
-    - ./bin/setup
     - bundle exec thor install:all
   artifacts:
     paths:
@@ -34,11 +31,10 @@ install:
 install-brain:
   stage: setup
   script:
-    - bundle install
     - bundle exec thor install:org
     - mkdir -p ~/.emacs.d/ && touch ~/.emacs.d/early-init.el
-    # For some reason straight crashes the bootstrap the first time?
-    - bundle exec thor site:brain || bundle exec thor site:brain
+    # For some reason straight crashes the bootstrapper the first time?
+    - bundle exec thor site:brain
   artifacts:
     paths:
       - vendor/org

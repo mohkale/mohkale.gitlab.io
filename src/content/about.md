@@ -175,6 +175,10 @@ skills:
 #     link: https://site.com/link/to/event-details
 
 timeline:
+  - text: Hired as a Software Engineer at Bloomberg LP
+    icon: [solid, star]
+    date: 2021-11-01
+    color: red
   - text: Graduated from the University of Sheffield
     icon: [solid, graduation-cap]
     date: 2021-07-16

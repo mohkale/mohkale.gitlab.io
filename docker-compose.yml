@@ -1,0 +1,44 @@
+---
+version: "2.6"
+
+services:
+  server:
+    image: mohkale-io
+    build:
+      context: .
+      dockerfile: ./etc/Dockerfile
+    network_mode: host
+    command:
+      - bundle
+      - exec
+      - thor
+      - site:serve
+    ports:
+      - "4567:4567"
+    volumes:
+      - .:/blog
+
+  test:
+    image: mohkale-io
+    command:
+      - watchmedo
+      - shell-command
+      - ./var/public/
+      - --recursive
+      - --ignore-directories
+      - --wait
+      - --command
+      - bundle exec thor test:html
+    volumes:
+      - .:/blog
+
+  brain:
+    image: mohkale-io
+    command:
+      - bundle
+      - exec
+      - thor
+      - site:brain
+      - --watch
+    volumes:
+      - .:/blog

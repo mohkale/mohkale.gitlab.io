@@ -7,12 +7,12 @@
 # this script is expected to be run with just the animascii URL. It is
 # guaranteed to fail if you pass -a or -p.
 
-cd "$(dirname $0)"  # change to same directory as this script
+cd "$(dirname "$0")" || exit 1  # change to same directory as this script
 
 frame_sizes="$(./animascii2ant.py "$@" -p 2>&1 1>/dev/null)"
 
 if [ ! $? ]; then
-    echo "init::error() : failed to run animascii-to-ant.py with given args."
+    echo "error: $0: Failed to run animascii-to-ant.py with given args."
     exit 1
 fi
 

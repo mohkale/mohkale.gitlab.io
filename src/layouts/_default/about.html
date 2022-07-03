@@ -112,11 +112,17 @@
 
         {{ $timeline := sort .Params.timeline "date" "desc" }}
         {{ with $timeline }}
-          {{ $first_year := dateFormat "2006" (index $timeline 0).date }}
-          {{ $last_year := "1977" }}
+          {{ $last_year := dateFormat "2006" (index $timeline 0).date }}
           {{ range $ix, $entry := $timeline }}
             {{ with $entry }}
               {{ $current_year := dateFormat "2006" .date }}
+
+              {{ if not (eq $last_year $current_year) }}
+                <div class="timeline__item timeline__item__tag--with-tag {{ if eq (add $ix 1) (len $timeline) }}timeline__item__tag--with-bar timeline__item--hl-red{{ end }}">
+                  <span class="timeline__item__tag">{{ $last_year }}</span>
+                </div>
+                {{ $last_year = $current_year }}
+              {{ end }}
 
               <div class="timeline__item timeline__item--with-bar {{ with .color }}timeline__item--hl-{{ . }}{{ end }}">
                 <span class="timeline__item__bar"></span>
@@ -150,15 +156,13 @@
                   </div>
                 </div>
               </div>
-
-              {{ if not (eq $last_year $current_year) }}
-                <div class="timeline__item timeline__item__tag--with-tag                   {{ if eq (add $ix 1) (len $timeline) }}timeline__item__tag--with-bar timeline__item--hl-red{{ end }} ">
-                  <span class="timeline__item__tag">{{ $current_year }}</span>
-                </div>
-                {{ $last_year = $current_year }}
-              {{ end }}
             {{ end }}
           {{ end }}
+
+          <div class="timeline__item timeline__item__tag--with-tag timeline__item__tag--with-bar timeline__item--hl-red">
+            <span class="timeline__item__tag">{{ $last_year }}</span>
+          </div>
+
         {{ end }}
 
         <div class="timeline__item">

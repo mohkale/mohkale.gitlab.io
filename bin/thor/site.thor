@@ -344,10 +344,26 @@ class Site < Thor
   end
 
   desc 'brain', 'Compile org brain files into html.'
+  method_option :watch,
+                aliases: '-w',
+                type: :boolean,
+                default: false,
+                desc: 'Spawn a watcher and keep generating files afterwards'
+  method_option :jobs,
+                aliases: '-j',
+                type: :numeric,
+                default: 1,
+                desc: 'Number of jobs to run in parallel'
   def brain
     in_root do
       inside File.join('vendor/org') do
-        run 'make'
+        # Prepratory tasks that should be done before we can start generating files
+        run 'make emacs-setup brain-hugo/locations.el brain-hugo/bib-all.bib'
+        if options[:watch]
+          run "make -j#{options[:jobs]} brain-watcher"
+        else
+          run "make -j#{options[:jobs]}"
+        end
       end
     end
   end
@@ -381,6 +397,8 @@ class Site < Thor
         'yarn run ' + cmd
       when :npm
         'npx ' + cmd
+      else
+        cmd
       end
     end
 

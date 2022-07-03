@@ -31,10 +31,10 @@ end
 
 $root = File.dirname(__FILE__)
 
-Dir.glob(File.expand_path('./thor/utils/*.rb'))
+Dir.glob(File.expand_path('./bin/thor/utils/*.rb'))
   .each(&method(:require))
 
 Dir.chdir($root) do
-  Dir.glob('./thor/*.thor')
+  Dir.glob('./bin/thor/*.thor')
     .sort.each(&method(:load))
 end

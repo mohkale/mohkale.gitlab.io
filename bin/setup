@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# setup working directory so that you can run thor.
-#
-
-gem install bundler
-bundle config build.ffi --enable-system-libffi
-bundle install --path=./vendor/ruby

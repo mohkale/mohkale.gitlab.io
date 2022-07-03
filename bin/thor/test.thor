@@ -39,41 +39,42 @@ class Test < Thor
     def proofer_options
       # see here: https://github.com/gjtorikian/html-proofer
       @proofer_options ||= {
-        :assume_extension => true,
-        :check_favicon => true,
-        :check_html => true,
-        :disable_external => true,
-        :empty_alt_ignore => true,
-        :allow_hash_ref => true,
-        :url_ignore => [/^\/livereload.js/],
-        :file_ignore => [/\/brain\//],
+        assume_extension: true,
+        check_favicon: true,
+        check_html: true,
+        disable_external: true,
+        empty_alt_ignore: true,
+        allow_hash_ref: true,
+        url_ignore: [/^\/livereload.js/],
+        file_ignore: [/\/brain\//],
 
         # HTML options
-        :validation => {
-          :report_eof_tags => true,
-          :report_invalid_tags => true,
-          :report_missing_names => true,
-          #:report_mismatched_tags => true,
-          :report_missing_doctype => true
+        validation: {
+          report_eof_tags: true,
+          report_invalid_tags: true,
+          report_missing_names: true,
+          #report_mismatched_tags: true,
+          report_missing_doctype: true
         },
 
-        :parallel => {
-          :in_processes => 3
+        parallel: {
+          in_processes: 3
         },
 
         # link checking
-        :cache => {
-          :timeframe => '1w'
+        cache: {
+          timeframe: '1w',
+          storage_dir: "var/html-proofer",
         },
 
-        :typhoeus => {
-          :followlocation => true,
-          :connecttimeout => 10,
-          :timeout => 30
+        typhoeus: {
+          followlocation: true,
+          connecttimeout: 10,
+          timeout: 30
         },
 
-        :hydra => {
-          :max_concurrency => 50
+        hydra: {
+          max_concurrency: 50
         }
       }
     end

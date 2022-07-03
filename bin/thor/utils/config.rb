@@ -91,8 +91,6 @@ module Utils
       elsif $stdin.isatty && !options['no_confirm']
         ask('which package manager would you like to use?',
             limited_to: %w[npm yarn]).to_sym
-      else
-        :npm # the default
       end
     end
   end
