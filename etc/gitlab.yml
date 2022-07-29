@@ -61,5 +61,5 @@ pages:
     paths:
       - public
   only:
-    # This job will only run on the 'public' branch.
-    - public
+    # This job will only run on the 'master' branch.
+    - master
